@@ -1,7 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { decorateBlock, loadBlock } from '../../scripts/aem.js';
-
-export default async function decorate(block) {
+export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
@@ -18,13 +15,4 @@ export default async function decorate(block) {
       }
     });
   });
-
-  const nestedBreadcrumbs = [...block.querySelectorAll('.breadcrumb')]
-    .filter((nestedBlock) => nestedBlock !== block);
-
-  nestedBreadcrumbs.forEach((nestedBlock) => {
-    decorateBlock(nestedBlock);
-  });
-
-  await Promise.all(nestedBreadcrumbs.map((nestedBlock) => loadBlock(nestedBlock)));
 }

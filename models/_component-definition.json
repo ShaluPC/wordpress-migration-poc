@@ -15,6 +15,9 @@
         },
         {
           "...": "./_button.json#/definitions"
+        },
+        {
+          "...": "../blocks/breadcrumb/_breadcrumb.json#/definitions"
         }
       ]
     },
@@ -32,7 +35,16 @@
       "id": "blocks",
       "components": [
         {
-          "...": "../blocks/*/_*.json#/definitions"
+          "...": "../blocks/cards/_cards.json#/definitions"
+        },
+        {
+          "...": "../blocks/columns/_columns.json#/definitions"
+        },
+        {
+          "...": "../blocks/fragment/_fragment.json#/definitions"
+        },
+        {
+          "...": "../blocks/hero/_hero.json#/definitions"
         }
       ]
     }
