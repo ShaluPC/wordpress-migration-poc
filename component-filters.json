@@ -39,11 +39,5 @@
       "button",
       "title"
     ]
-  },
-  {
-    "id": "breadcrumb",
-    "components": [
-      "breadcrumb-item"
-    ]
   }
 ]

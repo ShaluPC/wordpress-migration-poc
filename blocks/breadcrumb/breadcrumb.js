@@ -1,5 +1,3 @@
-import { moveInstrumentation } from '../../scripts/scripts.js';
-
 const LABEL_OVERRIDES = {
   'tax-center': 'Tax Information Center',
 };
@@ -33,62 +31,6 @@ async function resolveLabel(path, fallback) {
   } catch {
     return fallback;
   }
-}
-
-function parseMode(block) {
-  const modeFromData = block.dataset.displayMode;
-  if (modeFromData === 'manual' || modeFromData === 'auto') {
-    return modeFromData;
-  }
-
-  const firstRow = block.firstElementChild;
-  if (!firstRow || firstRow.children.length < 2) {
-    return 'auto';
-  }
-
-  const key = firstRow.children[0].textContent.trim().toLowerCase();
-  const value = firstRow.children[1].textContent.trim().toLowerCase();
-
-  if (key.includes('display mode') || key === 'mode') {
-    return value === 'manual' ? 'manual' : 'auto';
-  }
-
-  return 'auto';
-}
-
-function parseManualItems(block) {
-  const rows = [...block.children];
-  return rows
-    .map((row) => {
-      const cells = [...row.children];
-      if (!cells.length) return null;
-
-      const firstLink = row.querySelector('a[href]');
-      if (firstLink) {
-        return {
-          label: firstLink.textContent.trim(),
-          href: firstLink.getAttribute('href'),
-          source: row,
-        };
-      }
-
-      if (cells.length >= 2) {
-        const firstCellText = cells[0].textContent.trim();
-        const secondCellText = cells[1].textContent.trim();
-        if (firstCellText.toLowerCase().includes('display mode')) return null;
-
-        if (firstCellText && secondCellText) {
-          return {
-            label: firstCellText,
-            href: secondCellText,
-            source: row,
-          };
-        }
-      }
-
-      return null;
-    })
-    .filter(Boolean);
 }
 
 async function buildAutoItems() {
@@ -129,11 +71,6 @@ function render(items, block) {
     anchor.href = item.href;
     anchor.textContent = item.label;
 
-    if (item.source) {
-      moveInstrumentation(item.source, li);
-      moveInstrumentation(item.source, anchor);
-    }
-
     li.append(anchor);
     ol.append(li);
   });
@@ -143,7 +80,6 @@ function render(items, block) {
 }
 
 export default async function decorate(block) {
-  const mode = parseMode(block);
-  const items = mode === 'manual' ? parseManualItems(block) : await buildAutoItems();
+  const items = await buildAutoItems();
   render(items, block);
 }
