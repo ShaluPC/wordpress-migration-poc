@@ -18,22 +18,7 @@ const toLabelFromSegment = (segment) => {
   return LABEL_OVERRIDES[segment] || titleCase(cleaned);
 };
 
-async function resolveLabel(path, fallback) {
-  try {
-    const response = await fetch(`${path}.plain.html`);
-    if (!response.ok) return fallback;
-
-    const html = await response.text();
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    const heading = doc.querySelector('h1, h2, title');
-
-    return heading?.textContent?.trim() || fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-async function buildAutoItems() {
+function buildAutoItems() {
   const segments = window.location.pathname
     .split('/')
     .map((segment) => segment.trim())
@@ -42,13 +27,12 @@ async function buildAutoItems() {
   // Last segment is treated as the current page, so it is not included.
   const parentSegments = segments.slice(0, -1);
 
-  const items = await Promise.all(parentSegments.map(async (segment, index) => {
+  const items = parentSegments.map((segment, index) => {
     const href = `/${parentSegments.slice(0, index + 1).join('/')}`;
-    const fallback = toLabelFromSegment(segment);
-    const label = await resolveLabel(href, fallback);
+    const label = toLabelFromSegment(segment);
 
     return { label, href };
-  }));
+  });
 
   return items.filter((item) => item.label && item.href);
 }
@@ -80,6 +64,6 @@ function render(items, block) {
 }
 
 export default async function decorate(block) {
-  const items = await buildAutoItems();
+  const items = buildAutoItems();
   render(items, block);
 }
