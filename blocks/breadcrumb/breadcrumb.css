@@ -15,7 +15,7 @@
   font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 500;
   letter-spacing: -0.3px;
-  color: #0057B8;
+  color: #005D1F;
 }
 
 .breadcrumb li {
@@ -31,17 +31,12 @@
   justify-content: center;
   width: 18px;
   height: 18px;
-  color: #0057B8;
+  color: #005D1F;
 }
 
 .breadcrumb a {
-  color: #0057B8;
+  color: #005D1F;
   text-decoration: none;
-}
-
-.breadcrumb a:hover,
-.breadcrumb a:focus-visible {
-  text-decoration: underline;
 }
 
 @media (min-width: 900px) {
@@ -66,7 +61,7 @@
     justify-content: center;
     width: 18px;
     height: 18px;
-    color: #0057B8;
+    color: #005D1F;
     font-weight: 600;
   }
 }
