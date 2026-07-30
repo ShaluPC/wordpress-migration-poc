@@ -51,7 +51,11 @@
         "image",
         "button",
         "title",
-        "breadcrumb"
+        "breadcrumb",
+        "hero",
+        "cards",
+        "columns",
+        "fragment"
       ]
     }
   ]
