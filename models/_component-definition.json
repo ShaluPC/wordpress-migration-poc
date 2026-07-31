@@ -45,6 +45,9 @@
         },
         {
           "...": "../blocks/hero/_hero.json#/definitions"
+        },
+        {
+          "...": "../blocks/vcolumns/_vcolumns.json#/definitions"
         }
       ]
     }
