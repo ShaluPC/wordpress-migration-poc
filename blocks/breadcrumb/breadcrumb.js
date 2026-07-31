@@ -19,7 +19,7 @@ const toLabelFromSegment = (segment) => {
 };
 
 function buildAutoItems() {
-  const segments = resolvePagePath()
+  const segments = window.location.pathname
     .split('/')
     .map((segment) => segment.trim())
     .filter(Boolean);
