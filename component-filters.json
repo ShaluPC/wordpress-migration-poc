@@ -15,6 +15,7 @@
       "hero",
       "cards",
       "columns",
+      "content-columns",
       "fragment",
       "breadcrumb"
     ]
@@ -33,6 +34,26 @@
   },
   {
     "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "breadcrumb",
+      "hero",
+      "cards",
+      "columns",
+      "fragment"
+    ]
+  },
+  {
+    "id": "content-columns",
+    "components": [
+      "content-column"
+    ]
+  },
+  {
+    "id": "content-column",
     "components": [
       "text",
       "image",

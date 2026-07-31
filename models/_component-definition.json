@@ -41,6 +41,9 @@
           "...": "../blocks/columns/_columns.json#/definitions"
         },
         {
+          "...": "../blocks/content-columns/_content-columns.json#/definitions"
+        },
+        {
           "...": "../blocks/fragment/_fragment.json#/definitions"
         },
         {
