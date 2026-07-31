@@ -2,12 +2,21 @@
 import { decorateBlock, loadBlock } from '../../scripts/aem.js';
 
 const MAX_COLUMNS = 4;
+const NESTED_BLOCK_SELECTOR = [
+  '.breadcrumb',
+  '.cards',
+  '.hero',
+  '.fragment',
+  '.columns',
+  '.vcolumns',
+].join(', ');
 
 const CONFIG_KEYS = {
   columns: 'columns',
   'column count': 'columns',
-  'width mode': 'widthMode',
-  widthmode: 'widthMode',
+  'column widths': 'columnWidths',
+  'column widths (%)': 'columnWidths',
+  columnwidths: 'columnWidths',
 };
 
 function normalizeKey(value) {
@@ -17,7 +26,7 @@ function normalizeKey(value) {
 function parseConfig(block) {
   const config = {
     columns: 2,
-    widthMode: 'ratio',
+    columnWidths: '',
   };
 
   const configRows = [];
@@ -38,8 +47,8 @@ function parseConfig(block) {
       }
     }
 
-    if (mapped === 'widthMode') {
-      config.widthMode = rawValue.toLowerCase() === 'percentage' ? 'percentage' : 'ratio';
+    if (mapped === 'columnWidths') {
+      config.columnWidths = rawValue;
     }
   });
 
@@ -54,16 +63,16 @@ function parsePercentage(value) {
   return parsed;
 }
 
-function parseRatio(value) {
-  const raw = (value || '').trim();
-  if (!raw) return 1;
-  if (raw.includes(':')) {
-    const [left] = raw.split(':');
-    const parsed = Number.parseFloat(left);
-    return Number.isNaN(parsed) || parsed <= 0 ? 1 : parsed;
-  }
-  const parsed = Number.parseFloat(raw);
-  return Number.isNaN(parsed) || parsed <= 0 ? 1 : parsed;
+function parseColumnWidths(raw, columnCount) {
+  const parts = (raw || '')
+    .split(',')
+    .map((part) => parsePercentage(part))
+    .filter((value) => value !== null);
+
+  if (parts.length !== columnCount) return [];
+  const total = parts.reduce((sum, value) => sum + value, 0);
+  if (total > 100.01) return [];
+  return parts;
 }
 
 function toBackgroundClass(value) {
@@ -72,29 +81,21 @@ function toBackgroundClass(value) {
   return `vcolumns-bg-${token}`;
 }
 
-function decorateRow(row, config) {
+function decorateRow(row, widthPercentage) {
   const cells = [...row.children];
   const contentCell = cells[0];
-  const sizeCell = cells[1];
-  const backgroundCell = cells[2];
+  const backgroundCell = cells.length > 2 ? cells[2] : cells[1];
 
   const column = document.createElement('div');
   column.className = 'vcolumns-col';
 
-  const sizeRaw = sizeCell?.textContent?.trim() || '';
   const backgroundRaw = backgroundCell?.textContent?.trim() || '';
   const backgroundClass = toBackgroundClass(backgroundRaw);
   if (backgroundClass) column.classList.add(backgroundClass);
 
-  if (config.widthMode === 'percentage') {
-    const percentage = parsePercentage(sizeRaw);
-    if (percentage) {
-      column.style.flex = `0 0 ${percentage}%`;
-      column.style.maxWidth = `${percentage}%`;
-    }
-  } else {
-    const ratio = parseRatio(sizeRaw || '1');
-    column.style.flex = `${ratio} 1 0`;
+  if (widthPercentage) {
+    column.style.flex = `0 0 ${widthPercentage}%`;
+    column.style.maxWidth = `${widthPercentage}%`;
   }
 
   if (contentCell) {
@@ -108,20 +109,29 @@ function decorateRow(row, config) {
 
 export default async function decorate(block) {
   const config = parseConfig(block);
-  const rows = [...block.children].slice(0, Math.min(MAX_COLUMNS, config.columns));
+  const targetColumns = Math.min(MAX_COLUMNS, config.columns);
+  const rows = [...block.children].slice(0, targetColumns);
+  while (rows.length < targetColumns) {
+    rows.push(document.createElement('div'));
+  }
+
+  const widths = parseColumnWidths(config.columnWidths, targetColumns);
 
   const grid = document.createElement('div');
-  grid.className = `vcolumns-grid vcolumns-mode-${config.widthMode}`;
+  grid.className = 'vcolumns-grid vcolumns-mode-percentage';
 
-  rows.forEach((row) => {
-    grid.append(decorateRow(row, config));
+  rows.forEach((row, index) => {
+    grid.append(decorateRow(row, widths[index]));
   });
 
   block.replaceChildren(grid);
 
   const nestedBlocks = [];
-  [...block.querySelectorAll('.vcolumns-col > div')].forEach((candidate) => {
-    if (!candidate.className) return;
+  [...block.querySelectorAll(`.vcolumns-col ${NESTED_BLOCK_SELECTOR}`)].forEach((candidate) => {
+    if (candidate.classList.contains('block')) {
+      nestedBlocks.push(candidate);
+      return;
+    }
     decorateBlock(candidate);
     if (candidate.classList.contains('block')) nestedBlocks.push(candidate);
   });

@@ -62,39 +62,17 @@
           ]
         },
         {
-          "component": "select",
-          "name": "widthMode",
-          "label": "Width Mode",
-          "value": "ratio",
-          "options": [
-            {
-              "name": "Ratio",
-              "value": "ratio"
-            },
-            {
-              "name": "Percentage",
-              "value": "percentage"
-            }
-          ]
+          "component": "text",
+          "name": "columnWidths",
+          "label": "Column Widths (%)",
+          "value": "",
+          "description": "Comma-separated percentages. Example: 50,30,20"
         }
       ]
     },
     {
       "id": "vcolumn",
       "fields": [
-        {
-          "component": "richtext",
-          "name": "content",
-          "value": "",
-          "label": "Content",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "size",
-          "value": "1",
-          "label": "Size"
-        },
         {
           "component": "select",
           "name": "background",
