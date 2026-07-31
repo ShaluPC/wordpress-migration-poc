@@ -120,8 +120,8 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "columns": "2",
-                  "rows": "1"
+                  "name": "Columns",
+                  "filter": "columns"
                 }
               }
             }
