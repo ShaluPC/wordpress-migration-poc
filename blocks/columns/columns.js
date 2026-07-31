@@ -29,4 +29,4 @@ import { decorateBlock, loadBlock } from '../../scripts/aem.js';
   });
 
   await Promise.all(nestedBlocks.map((nestedBlock) => loadBlock(nestedBlock)));
-}
+
