@@ -17,6 +17,14 @@ const CONFIG_KEYS = {
   'column widths': 'columnWidths',
   'column widths (%)': 'columnWidths',
   columnwidths: 'columnWidths',
+  'column 1 background': 'col1Background',
+  'column 2 background': 'col2Background',
+  'column 3 background': 'col3Background',
+  'column 4 background': 'col4Background',
+  col1background: 'col1Background',
+  col2background: 'col2Background',
+  col3background: 'col3Background',
+  col4background: 'col4Background',
 };
 
 function normalizeKey(value) {
@@ -27,6 +35,10 @@ function parseConfig(block) {
   const config = {
     columns: 2,
     columnWidths: '',
+    col1Background: 'none',
+    col2Background: 'none',
+    col3Background: 'none',
+    col4Background: 'none',
     configRows: [],
   };
 
@@ -49,6 +61,10 @@ function parseConfig(block) {
 
     if (mapped === 'columnWidths') {
       config.columnWidths = rawValue;
+    }
+
+    if (mapped.startsWith('col') && mapped.endsWith('Background')) {
+      config[mapped] = rawValue.toLowerCase();
     }
   });
 
@@ -81,10 +97,6 @@ function toBackgroundClass(value) {
   return `vcolumns-bg-${token}`;
 }
 
-function isAuthoringContext(block) {
-  return !!(block.closest('[data-aue-resource]') || block.querySelector('[data-aue-resource]'));
-}
-
 function applyColumnStyles(column, widthPercentage, backgroundRaw) {
   column.classList.add('vcolumns-col');
   const backgroundClass = toBackgroundClass(backgroundRaw);
@@ -101,21 +113,16 @@ function getColumnRows(block, configRows) {
   return [...block.children].filter((child) => !excluded.has(child));
 }
 
-function decorateExistingRows(rows, widths) {
+function decorateExistingRows(rows, widths, config) {
   rows.forEach((row, index) => {
     const cells = [...row.children];
     if (!cells.length) return;
 
     const contentCell = cells[0];
-    const backgroundCell = cells.length > 1 ? cells[cells.length - 1] : null;
-    const backgroundRaw = backgroundCell ? backgroundCell.textContent.trim() : '';
+    const backgroundRaw = config[`col${index + 1}Background`] || 'none';
 
     row.classList.add('vcolumns-row');
     applyColumnStyles(contentCell, widths[index], backgroundRaw);
-
-    if (backgroundCell && backgroundCell !== contentCell) {
-      backgroundCell.remove();
-    }
   });
 }
 
@@ -139,10 +146,8 @@ export default async function decorate(block) {
   const widths = parseColumnWidths(config.columnWidths, targetColumns);
   block.classList.add('vcolumns-grid', 'vcolumns-mode-percentage');
 
-  decorateExistingRows(rows, widths);
-  if (!isAuthoringContext(block) && rows.length < targetColumns) {
-    addVisualPlaceholders(block, rows.length, targetColumns, widths);
-  }
+  decorateExistingRows(rows, widths, config);
+  addVisualPlaceholders(block, rows.length, targetColumns, widths);
 
   const nestedBlocks = [];
   [...block.querySelectorAll(`.vcolumns-col ${NESTED_BLOCK_SELECTOR}`)].forEach((candidate) => {

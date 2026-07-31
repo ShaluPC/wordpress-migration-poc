@@ -260,16 +260,95 @@
         "label": "Column Widths (%)",
         "value": "",
         "description": "Comma-separated percentages. Example: 50,30,20"
-      }
-    ]
-  },
-  {
-    "id": "vcolumn",
-    "fields": [
+      },
       {
         "component": "select",
-        "name": "background",
-        "label": "Background",
+        "name": "col1Background",
+        "label": "Column 1 Background",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Mint",
+            "value": "mint"
+          },
+          {
+            "name": "Sky",
+            "value": "sky"
+          },
+          {
+            "name": "Sand",
+            "value": "sand"
+          },
+          {
+            "name": "Charcoal",
+            "value": "charcoal"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "col2Background",
+        "label": "Column 2 Background",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Mint",
+            "value": "mint"
+          },
+          {
+            "name": "Sky",
+            "value": "sky"
+          },
+          {
+            "name": "Sand",
+            "value": "sand"
+          },
+          {
+            "name": "Charcoal",
+            "value": "charcoal"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "col3Background",
+        "label": "Column 3 Background",
+        "value": "none",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Mint",
+            "value": "mint"
+          },
+          {
+            "name": "Sky",
+            "value": "sky"
+          },
+          {
+            "name": "Sand",
+            "value": "sand"
+          },
+          {
+            "name": "Charcoal",
+            "value": "charcoal"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "col4Background",
+        "label": "Column 4 Background",
         "value": "none",
         "options": [
           {

@@ -178,27 +178,13 @@
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
+                "resourceType": "core/franklin/components/columns/v1/columns",
                 "template": {
                   "name": "V Columns",
                   "model": "vcolumns",
-                  "filter": "vcolumns"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "V Column",
-          "id": "vcolumn",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/columns/v1/columns/column",
-                "template": {
-                  "name": "V Column",
-                  "model": "vcolumn",
-                  "filter": "vcolumn"
+                  "filter": "vcolumns",
+                  "columns": "2",
+                  "rows": "1"
                 }
               }
             }
