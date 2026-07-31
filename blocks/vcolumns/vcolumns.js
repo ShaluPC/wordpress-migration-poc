@@ -27,9 +27,9 @@ function parseConfig(block) {
   const config = {
     columns: 2,
     columnWidths: '',
+    configRows: [],
   };
 
-  const configRows = [];
   [...block.children].forEach((row) => {
     const cells = [...row.children];
     if (cells.length < 2) return;
@@ -38,7 +38,7 @@ function parseConfig(block) {
     const mapped = CONFIG_KEYS[key];
     if (!mapped) return;
 
-    configRows.push(row);
+    config.configRows.push(row);
     const rawValue = cells[1].textContent.trim();
     if (mapped === 'columns') {
       const parsed = Number.parseInt(rawValue, 10);
@@ -52,7 +52,7 @@ function parseConfig(block) {
     }
   });
 
-  configRows.forEach((row) => row.remove());
+  config.configRows.forEach((row) => row.remove());
   return config;
 }
 
@@ -81,15 +81,12 @@ function toBackgroundClass(value) {
   return `vcolumns-bg-${token}`;
 }
 
-function decorateRow(row, widthPercentage) {
-  const cells = [...row.children];
-  const contentCell = cells[0];
-  const backgroundCell = cells.length > 2 ? cells[2] : cells[1];
+function isAuthoringContext(block) {
+  return !!(block.closest('[data-aue-resource]') || block.querySelector('[data-aue-resource]'));
+}
 
-  const column = document.createElement('div');
-  column.className = 'vcolumns-col';
-
-  const backgroundRaw = backgroundCell?.textContent?.trim() || '';
+function applyColumnStyles(column, widthPercentage, backgroundRaw) {
+  column.classList.add('vcolumns-col');
   const backgroundClass = toBackgroundClass(backgroundRaw);
   if (backgroundClass) column.classList.add(backgroundClass);
 
@@ -97,34 +94,55 @@ function decorateRow(row, widthPercentage) {
     column.style.flex = `0 0 ${widthPercentage}%`;
     column.style.maxWidth = `${widthPercentage}%`;
   }
+}
 
-  if (contentCell) {
-    while (contentCell.firstChild) {
-      column.append(contentCell.firstChild);
+function getColumnRows(block, configRows) {
+  const excluded = new Set(configRows);
+  return [...block.children].filter((child) => !excluded.has(child));
+}
+
+function decorateExistingRows(rows, widths) {
+  rows.forEach((row, index) => {
+    const cells = [...row.children];
+    if (!cells.length) return;
+
+    const contentCell = cells[0];
+    const backgroundCell = cells.length > 1 ? cells[cells.length - 1] : null;
+    const backgroundRaw = backgroundCell ? backgroundCell.textContent.trim() : '';
+
+    row.classList.add('vcolumns-row');
+    applyColumnStyles(contentCell, widths[index], backgroundRaw);
+
+    if (backgroundCell && backgroundCell !== contentCell) {
+      backgroundCell.remove();
     }
-  }
+  });
+}
 
-  return column;
+function addVisualPlaceholders(block, existingCount, targetCount, widths) {
+  for (let i = existingCount; i < targetCount; i += 1) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'vcolumns-col vcolumns-col-placeholder';
+    if (widths[i]) {
+      placeholder.style.flex = `0 0 ${widths[i]}%`;
+      placeholder.style.maxWidth = `${widths[i]}%`;
+    }
+    block.append(placeholder);
+  }
 }
 
 export default async function decorate(block) {
   const config = parseConfig(block);
   const targetColumns = Math.min(MAX_COLUMNS, config.columns);
-  const rows = [...block.children].slice(0, targetColumns);
-  while (rows.length < targetColumns) {
-    rows.push(document.createElement('div'));
-  }
+  const rows = getColumnRows(block, config.configRows).slice(0, targetColumns);
 
   const widths = parseColumnWidths(config.columnWidths, targetColumns);
+  block.classList.add('vcolumns-grid', 'vcolumns-mode-percentage');
 
-  const grid = document.createElement('div');
-  grid.className = 'vcolumns-grid vcolumns-mode-percentage';
-
-  rows.forEach((row, index) => {
-    grid.append(decorateRow(row, widths[index]));
-  });
-
-  block.replaceChildren(grid);
+  decorateExistingRows(rows, widths);
+  if (!isAuthoringContext(block) && rows.length < targetColumns) {
+    addVisualPlaceholders(block, rows.length, targetColumns, widths);
+  }
 
   const nestedBlocks = [];
   [...block.querySelectorAll(`.vcolumns-col ${NESTED_BLOCK_SELECTOR}`)].forEach((candidate) => {

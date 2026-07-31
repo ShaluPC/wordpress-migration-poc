@@ -4,10 +4,20 @@
   gap: 1rem;
 }
 
+.vcolumns .vcolumns-row {
+  display: contents;
+}
+
 .vcolumns .vcolumns-col {
   border-radius: 8px;
   padding: 1rem;
   min-width: 0;
+}
+
+.vcolumns .vcolumns-col-placeholder {
+  min-height: 100px;
+  border: 1px dashed #9aa9b7;
+  background: rgb(235 242 248 / 50%);
 }
 
 .vcolumns .vcolumns-col > :first-child {
