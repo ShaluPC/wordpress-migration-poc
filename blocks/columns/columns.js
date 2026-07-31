@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { decorateBlock, loadBlock } from '../../scripts/aem.js';
-
+export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
@@ -17,16 +15,4 @@ import { decorateBlock, loadBlock } from '../../scripts/aem.js';
       }
     });
   });
-
-  const nestedBlocks = [];
-  [...block.querySelectorAll(':scope > div > div')].forEach((col) => {
-    [...col.children].forEach((child) => {
-      if (child.tagName === 'DIV' && child.className) {
-        decorateBlock(child);
-        if (child.classList.contains('block')) nestedBlocks.push(child);
-      }
-    });
-  });
-
-  await Promise.all(nestedBlocks.map((nestedBlock) => loadBlock(nestedBlock)));
-
+}
