@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import { decorateBlock, loadBlock } from '../../scripts/aem.js';
+
 const MAX_COLUMNS = 4;
 
 const CONFIG_KEYS = {
@@ -103,7 +106,7 @@ function decorateRow(row, config) {
   return column;
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const config = parseConfig(block);
   const rows = [...block.children].slice(0, Math.min(MAX_COLUMNS, config.columns));
 
@@ -115,4 +118,13 @@ export default function decorate(block) {
   });
 
   block.replaceChildren(grid);
+
+  const nestedBlocks = [];
+  [...block.querySelectorAll('.vcolumns-col > div')].forEach((candidate) => {
+    if (!candidate.className) return;
+    decorateBlock(candidate);
+    if (candidate.classList.contains('block')) nestedBlocks.push(candidate);
+  });
+
+  await Promise.all(nestedBlocks.map((nestedBlock) => loadBlock(nestedBlock)));
 }

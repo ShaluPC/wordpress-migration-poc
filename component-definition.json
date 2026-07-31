@@ -197,7 +197,8 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "V Column",
-                  "model": "vcolumn"
+                  "model": "vcolumn",
+                  "filter": "vcolumn"
                 }
               }
             }

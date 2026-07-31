@@ -25,7 +25,8 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "V Column",
-              "model": "vcolumn"
+              "model": "vcolumn",
+              "filter": "vcolumn"
             }
           }
         }
@@ -130,6 +131,21 @@
       "id": "vcolumns",
       "components": [
         "vcolumn"
+      ]
+    },
+    {
+      "id": "vcolumn",
+      "components": [
+        "text",
+        "image",
+        "button",
+        "title",
+        "hero",
+        "cards",
+        "columns",
+        "fragment",
+        "breadcrumb",
+        "vcolumns"
       ]
     }
   ]

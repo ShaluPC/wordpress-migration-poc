@@ -52,5 +52,20 @@
     "components": [
       "vcolumn"
     ]
+  },
+  {
+    "id": "vcolumn",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "cards",
+      "columns",
+      "fragment",
+      "breadcrumb",
+      "vcolumns"
+    ]
   }
 ]
