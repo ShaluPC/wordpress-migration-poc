@@ -16,8 +16,7 @@
       "cards",
       "columns",
       "fragment",
-      "breadcrumb",
-      "vcolumns"
+      "breadcrumb"
     ]
   },
   {
@@ -43,14 +42,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "vcolumns"
-    ]
-  },
-  {
-    "id": "vcolumns",
-    "components": [
-      "column"
+      "fragment"
     ]
   }
 ]

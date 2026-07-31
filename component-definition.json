@@ -171,24 +171,6 @@
               }
             }
           }
-        },
-        {
-          "title": "V Columns",
-          "id": "vcolumns",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/columns/v1/columns",
-                "template": {
-                  "name": "V Columns",
-                  "model": "vcolumns",
-                  "filter": "vcolumns",
-                  "columns": "2",
-                  "rows": "1"
-                }
-              }
-            }
-          }
         }
       ]
     }
