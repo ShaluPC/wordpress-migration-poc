@@ -1,23 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { decorateBlock, loadBlock } from '../../scripts/aem.js';
 
-function mergeSingleCellRows(block) {
-  const rows = [...block.children].filter((child) => child.tagName === 'DIV');
-  if (rows.length < 2 || !rows.every((row) => row.children.length === 1)) return;
-
-  const mergedRow = document.createElement('div');
-  rows.forEach((row) => {
-    mergedRow.append(row.firstElementChild);
-  });
-
-  block.replaceChildren(mergedRow);
-}
-
-export default async function decorate(block) {
-  mergeSingleCellRows(block);
-
-  if (!block.firstElementChild) return;
-
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 

@@ -19,7 +19,7 @@ const toLabelFromSegment = (segment) => {
 };
 
 function buildAutoItems() {
-  const segments = window.location.pathname
+  const segments = resolvePagePath()
     .split('/')
     .map((segment) => segment.trim())
     .filter(Boolean);
@@ -39,7 +39,7 @@ function buildAutoItems() {
 
 function render(items, block) {
   if (!items.length) {
-    block.classList.remove('breadcrumb-ready');
+    block.textContent = '';
     return;
   }
 
@@ -61,7 +61,6 @@ function render(items, block) {
 
   nav.append(ol);
   block.replaceChildren(nav);
-  block.classList.add('breadcrumb-ready');
 }
 
 export default async function decorate(block) {
