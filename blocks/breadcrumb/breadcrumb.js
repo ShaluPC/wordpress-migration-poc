@@ -39,7 +39,7 @@ function buildAutoItems() {
 
 function render(items, block) {
   if (!items.length) {
-    block.textContent = '';
+    block.classList.remove('breadcrumb-ready');
     return;
   }
 
@@ -61,6 +61,7 @@ function render(items, block) {
 
   nav.append(ol);
   block.replaceChildren(nav);
+  block.classList.add('breadcrumb-ready');
 }
 
 export default async function decorate(block) {
