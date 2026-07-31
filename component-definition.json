@@ -128,15 +128,14 @@
           }
         },
         {
-          "title": "Column",
-          "id": "column",
+          "title": "Columns",
+          "id": "columns",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Column",
-                  "filter": "column"
+                  "columns": "2",
+                  "rows": "1"
                 }
               }
             }
