@@ -14,12 +14,58 @@
           }
         }
       }
+    },
+    {
+      "title": "Column",
+      "id": "column",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Column",
+              "model": "column"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
     {
-      "id": "columns",
+      "id": "column",
       "fields": [
+        {
+          "component": "select",
+          "name": "width",
+          "label": "Width",
+          "options": [
+            {
+              "name": "25%",
+              "value": "width-25"
+            },
+            {
+              "name": "33%",
+              "value": "width-33"
+            },
+            {
+              "name": "50%",
+              "value": "width-50"
+            },
+            {
+              "name": "66%",
+              "value": "width-66"
+            },
+            {
+              "name": "75%",
+              "value": "width-75"
+            },
+            {
+              "name": "100%",
+              "value": "width-100"
+            }
+          ]
+        },
         {
           "component": "multiselect",
           "name": "style",

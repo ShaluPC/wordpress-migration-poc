@@ -160,22 +160,58 @@
       }
     ]
   },
-   {
-    "id": "columns",
+  {
+    "id": "column",
     "fields": [
       {
-        "component": "text",
-        "valueType": "number",
-        "name": "columns",
-        "value": "",
-        "label": "Columns"
+        "component": "select",
+        "name": "width",
+        "label": "Width",
+        "options": [
+          {
+            "name": "25%",
+            "value": "width-25"
+          },
+          {
+            "name": "33%",
+            "value": "width-33"
+          },
+          {
+            "name": "50%",
+            "value": "width-50"
+          },
+          {
+            "name": "66%",
+            "value": "width-66"
+          },
+          {
+            "name": "75%",
+            "value": "width-75"
+          },
+          {
+            "name": "100%",
+            "value": "width-100"
+          }
+        ]
       },
       {
-        "component": "text",
-        "valueType": "number",
-        "name": "rows",
-        "value": "",
-        "label": "Rows"
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Light background",
+            "value": "bg-light"
+          },
+          {
+            "name": "Brand background",
+            "value": "bg-brand"
+          },
+          {
+            "name": "Rounded corners",
+            "value": "rounded"
+          }
+        ]
       }
     ]
   },

@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { decorateBlock, loadBlock } from '../../scripts/aem.js';
+import { decorateBlock, loadBlock, readBlockConfig } from '../../scripts/aem.js';
 
 function mergeSingleCellRows(block) {
   const rows = [...block.children].filter((child) => child.tagName === 'DIV');
@@ -13,6 +13,27 @@ function mergeSingleCellRows(block) {
   block.replaceChildren(mergedRow);
 }
 
+function applyColumnStyles(column) {
+  const metadata = column.querySelector(':scope > div.column-metadata')
+    || ([...column.children].find((row) => row.children?.length === 2
+      && row.firstElementChild?.textContent?.trim().toLowerCase() === 'style') || null);
+  if (!metadata) return;
+
+  const { style, width } = readBlockConfig(metadata);
+  if (width) {
+    column.classList.add(width);
+  }
+  if (style) {
+    style
+      .split(',')
+      .map((token) => token.trim())
+      .filter(Boolean)
+      .forEach((token) => column.classList.add(token));
+  }
+
+  metadata.remove();
+}
+
 export default async function decorate(block) {
   mergeSingleCellRows(block);
 
@@ -24,6 +45,8 @@ export default async function decorate(block) {
   // setup image columns
   [...block.children].forEach((row) => {
     [...row.children].forEach((col) => {
+      applyColumnStyles(col);
+
       const pic = col.querySelector('picture');
       if (pic) {
         const picWrapper = pic.closest('div');
