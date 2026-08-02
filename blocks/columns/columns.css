@@ -19,6 +19,29 @@
   display: block;
 }
 
+.columns.bg-light {
+  background-color: var(--light-color);
+}
+
+.columns.bg-brand {
+  background-color: #005D1F;
+  color: var(--background-color);
+}
+
+.columns.rounded {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.columns.bg-light.rounded,
+.columns.bg-brand.rounded {
+  padding: 24px;
+}
+
+.columns.bg-brand a {
+  color: var(--background-color);
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
