@@ -26,6 +26,20 @@
     ]
   },
   {
+    "id": "card",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "breadcrumb",
+      "hero",
+      "cards",
+      "columns",
+      "fragment"
+    ]
+  },
+  {
     "id": "columns",
     "components": [
       "column"

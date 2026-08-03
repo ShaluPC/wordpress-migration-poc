@@ -507,6 +507,9 @@ function decorateSections(main) {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });
+      if (section.dataset.articleDetailBar === 'true') {
+        section.classList.add('article-body', 'tic-article-detail-bar', 'tic-article-detail-bar--desktop');
+      }
       sectionMeta.parentNode.remove();
     }
   });

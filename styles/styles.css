@@ -323,3 +323,20 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+main > .section.article-body.tic-article-detail-bar,
+main > .section.article-body.tic-article-detail-bar--desktop {
+  background-color: transparent !important;
+  margin: 0;
+}
+
+main > .section.article-body.tic-article-detail-bar > div,
+main > .section.article-body.tic-article-detail-bar--desktop > div {
+  position: relative;
+  float: none;
+  width: calc(100% - 500px);
+  max-width: 760px;
+  margin: auto;
+  padding: 90px 0 0;
+  color: #03512;
+}
