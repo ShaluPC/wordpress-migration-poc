@@ -489,6 +489,9 @@ function decorateSections(main) {
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section');
+    if (section.dataset.articledetailbar === 'true') {
+      section.classList.add('article', 'article-body');
+    }
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
 
@@ -507,9 +510,6 @@ function decorateSections(main) {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });
-      if (section.dataset.articledetailbar === 'true') {
-        section.classList.add('article-body');
-      }
       sectionMeta.parentNode.remove();
     }
   });
