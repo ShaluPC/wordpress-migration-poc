@@ -38,6 +38,9 @@
       "id": "blocks",
       "components": [
         {
+          "...": "../blocks/cta-banner/_cta-banner.json#/definitions"
+        },
+        {
           "...": "../blocks/cards/_cards.json#/definitions"
         },
         {

@@ -21,6 +21,9 @@
     "...": "./_article.json#/models"
   },
   {
+    "...": "../blocks/cta-banner/_cta-banner.json#/models"
+  },
+  {
     "...": "../blocks/*/_*.json#/models"
   }
 ]

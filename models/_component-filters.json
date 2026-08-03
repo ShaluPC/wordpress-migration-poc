@@ -13,6 +13,9 @@
     "...": "./_article.json#/filters"
   },
   {
+    "...": "../blocks/cta-banner/_cta-banner.json#/filters"
+  },
+  {
     "...": "../blocks/*/_*.json#/filters"
   }
 ]
