@@ -100,7 +100,7 @@
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
                   "model": "article",
-                  "filter": "section"
+                  "filter": "article"
                 }
               }
             }
