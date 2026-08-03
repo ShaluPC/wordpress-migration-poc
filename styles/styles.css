@@ -330,8 +330,7 @@ main > .section.article-body.tic-article-detail-bar--desktop {
   margin: 0;
 }
 
-main > .section.article-body.tic-article-detail-bar > div,
-main > .section.article-body.tic-article-detail-bar--desktop > div {
+main > .section.article-body {
   position: relative;
   float: none;
   width: calc(100% - 500px);

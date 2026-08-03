@@ -508,7 +508,7 @@ function decorateSections(main) {
         }
       });
       if (section.dataset.articledetailbar === 'true') {
-        section.classList.add('article-body', 'tic-article-detail-bar', 'tic-article-detail-bar--desktop');
+        section.classList.add('article-body');
       }
       sectionMeta.parentNode.remove();
     }
