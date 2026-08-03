@@ -36,7 +36,7 @@
 }
 
 @font-face {
-  font-family: 'Graphik';
+  font-family: 'Graphik Regular';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -53,17 +53,9 @@
     url('../fonts/Graphik-Medium.woff') format('woff');
 }
 
-@font-face {
-  font-family: 'Graphik Medium';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('../fonts/Graphik-Medium.woff2') format('woff2'),
-    url('../fonts/Graphik-Medium.woff') format('woff');
-}
 
 @font-face {
-  font-family: 'Graphik';
+  font-family: 'Graphik Bold';
   font-style: normal;
   font-weight: 700;
   font-display: swap;

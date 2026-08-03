@@ -327,9 +327,6 @@ main .section.highlight {
 main > .section.article {
   background-color: transparent !important;
   margin: 0;
-}
-
-main > .section.article > div {
   position: relative;
   float: none;
   width: calc(100% - 500px);
@@ -337,4 +334,16 @@ main > .section.article > div {
   margin: auto;
   padding: 90px 0 0;
   color: #03512a;
+  
+  /* Article title */
+    h1{
+      font-size: 56px;
+        line-height: 1;
+        color: #003512;
+        letter-spacing: -.8px;
+        font-weight: 700;
+        font-family: "Graphik Bold", "Helvetica Neue", "Helvetica", sans-serif;
+    }
 }
+
+
