@@ -1,13 +1,13 @@
 .cta-banner {
   background-color: var(--background-color);
-  border-radius: 28px;
+  border-radius: 16px;
   box-shadow: 0 18px 40px rgb(0 0 0 / 10%);
   overflow: hidden;
-  padding: 24px;
+  padding: 40px;
 }
 
 .cta-banner.bg-green {
-  background-color: #04611f;
+  background-color: #005d1f;
   color: #fff;
 }
 
@@ -46,8 +46,15 @@
   gap: 20px;
 }
 
-.cta-banner-title > *:first-child {
+.cta-banner .main-heading {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  line-height: 28px;
   margin-top: 0;
+  margin-bottom: 20px;
+  padding: 0;
 }
 
 .cta-banner-buttons {

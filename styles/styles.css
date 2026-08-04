@@ -334,6 +334,16 @@ main > .section.article {
   margin: auto;
   padding: 90px 0 0;
   color: #03512a;
+
+  @media (max-width: 989.98px) {
+     width: 100%;
+  }
+  @media (min-width: 768px) and (max-width: 989.98px) {
+    padding: 75px;
+  }
+  @media (max-width: 767.98px) {
+    padding: 60px 25px;
+  }
   
   /* Article title */
   h1,h2,h3,h4,h5,h6{

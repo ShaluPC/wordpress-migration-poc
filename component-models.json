@@ -186,13 +186,13 @@
         "label": "Alt",
         "value": ""
       },
-      {
-        "component": "richtext",
-        "name": "title",
-        "value": "",
-        "label": "Title",
-        "valueType": "string"
-      },
+        {
+          "component": "text",
+          "name": "title",
+          "value": "",
+          "label": "Title",
+          "valueType": "string"
+        },
       {
         "component": "select",
         "name": "classes",

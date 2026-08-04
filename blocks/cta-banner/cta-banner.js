@@ -67,9 +67,9 @@ export default function decorate(block) {
 
   if (titleCell) {
     const title = document.createElement('div');
-    title.className = 'cta-banner-title';
+    title.className = 'main-heading';
     moveInstrumentation(titleCell, title);
-    title.append(...titleCell.childNodes);
+    title.textContent = titleCell.textContent.trim();
     contentWrap.append(title);
   }
 

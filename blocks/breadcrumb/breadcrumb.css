@@ -47,7 +47,7 @@
 
 @media (max-width: 989px) {
   .breadcrumb:not(.breadcrumb-ready)::before {
-    content: '< Section';
+    /* content: '< Section'; */
     font-weight: 600;
   }
 
