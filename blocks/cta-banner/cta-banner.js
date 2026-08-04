@@ -49,7 +49,6 @@ export default function decorate(block) {
 
   const imageCell = rows[0]?.querySelector('picture, img');
   const titleCell = rows[1];
-  const ctaRows = rows.slice(2);
 
   const imageWrap = document.createElement('div');
   imageWrap.className = 'cta-banner-image';
@@ -64,6 +63,9 @@ export default function decorate(block) {
 
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
+  const ctaRows = rows.slice(2).flatMap((row) => [...row.querySelectorAll('a[href]')]
+    .map((link) => link.closest('li, div'))
+    .filter(Boolean));
 
   if (titleCell) {
     const title = document.createElement('div');
