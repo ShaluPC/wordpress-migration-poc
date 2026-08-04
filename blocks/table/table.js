@@ -25,6 +25,23 @@ function unwrapSingleChild(node) {
   return current;
 }
 
+function getRowGroups(rowsCell) {
+  const root = unwrapSingleChild(rowsCell);
+  const titles = [...root.querySelectorAll('p[data-aue-prop$="/rowTitle"]')];
+
+  if (titles.length) {
+    return titles.map((titleCell) => ({
+      titleCell,
+      cellsCell: titleCell.parentElement?.querySelector(':scope > ul'),
+    }));
+  }
+
+  return [...root.children].map((rowItem) => ({
+    titleCell: unwrapSingleChild(rowItem)?.children?.[0],
+    cellsCell: unwrapSingleChild(rowItem)?.children?.[1],
+  }));
+}
+
 export default function decorate(block) {
   const sections = [...block.children];
   if (!sections.length) return;
@@ -56,29 +73,21 @@ export default function decorate(block) {
     table.append(thead);
   }
 
-  const rowItems = getItems(unwrapSingleChild(rowsCell));
-  if (rowItems.length) {
+  const rowGroups = getRowGroups(rowsCell).filter(({ titleCell, cellsCell }) => titleCell && cellsCell);
+  if (rowGroups.length) {
     const tbody = document.createElement('tbody');
 
-    rowItems.forEach((rowItem) => {
+    rowGroups.forEach(({ titleCell, cellsCell }) => {
       const tr = document.createElement('tr');
-      moveInstrumentation(rowItem, tr);
-
-      const rowContent = unwrapSingleChild(rowItem);
-      const rowChildren = [...rowContent.children];
-      const rowTitleCell = rowChildren[0];
-      let dataCells = rowChildren.slice(1);
-
-      if (dataCells.length === 1) {
-        const nestedDataCells = extractItems(unwrapSingleChild(dataCells[0]));
-        if (nestedDataCells.length > 1) dataCells = nestedDataCells;
-      }
+      moveInstrumentation(titleCell, tr);
 
       const rowTitle = document.createElement('th');
       rowTitle.scope = 'row';
       rowTitle.className = 'table-row-title';
-      rowTitle.textContent = getText(rowTitleCell);
+      rowTitle.textContent = getText(titleCell);
       tr.append(rowTitle);
+
+      const dataCells = [...cellsCell.children];
 
       dataCells.forEach((valueItem) => {
         const td = document.createElement('td');
