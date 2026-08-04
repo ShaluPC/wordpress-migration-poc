@@ -3,7 +3,6 @@
   border-radius: 16px;
   box-shadow: 0 18px 40px rgb(0 0 0 / 10%);
   overflow: hidden;
-  padding: 40px;
   margin: 60px auto !important;
   padding: 40px;
   justify-content: space-between;
@@ -49,7 +48,7 @@
 
 .cta-banner-content {
   display: grid;
-  width: calc(100% - 140px);
+  /* width: calc(100% - 140px); */
 }
 
 .cta-banner .main-heading {
