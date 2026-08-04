@@ -42,11 +42,6 @@
           "fields": [
             {
               "component": "text",
-              "name": "rowTitle",
-              "label": "Row Title"
-            },
-            {
-              "component": "text",
               "name": "cells",
               "label": "Cells",
               "multi": true

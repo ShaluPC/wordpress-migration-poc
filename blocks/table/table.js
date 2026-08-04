@@ -32,14 +32,22 @@ function getRowGroups(rowsCell) {
   if (titles.length) {
     return titles.map((titleCell) => ({
       titleCell,
-      cellsCell: titleCell.parentElement?.querySelector(':scope > ul'),
+      dataCells: [...(titleCell.parentElement?.querySelector(':scope > ul')?.children || [])],
     }));
   }
 
-  return [...root.children].map((rowItem) => ({
-    titleCell: unwrapSingleChild(rowItem)?.children?.[0],
-    cellsCell: unwrapSingleChild(rowItem)?.children?.[1],
-  }));
+  const rowCells = [...root.querySelectorAll(':scope > ul')];
+  if (rowCells.length) {
+    return rowCells.map((cellsCell) => ({ dataCells: [...cellsCell.children], titleCell: null }));
+  }
+
+  return [...root.children].map((rowItem) => {
+    const rowContent = unwrapSingleChild(rowItem);
+    const titleCell = rowContent?.querySelector?.('p[data-aue-prop$="/rowTitle"]') || null;
+    const cellsCell = rowContent?.querySelector?.(':scope > ul') || rowContent?.querySelector?.('ul');
+    const dataCells = cellsCell ? [...cellsCell.children] : [...(rowContent?.children || [])].filter((child) => child !== titleCell);
+    return { titleCell, dataCells };
+  });
 }
 
 export default function decorate(block) {
@@ -73,21 +81,21 @@ export default function decorate(block) {
     table.append(thead);
   }
 
-  const rowGroups = getRowGroups(rowsCell).filter(({ titleCell, cellsCell }) => titleCell && cellsCell);
+  const rowGroups = getRowGroups(rowsCell).filter(({ dataCells }) => dataCells.length);
   if (rowGroups.length) {
     const tbody = document.createElement('tbody');
 
-    rowGroups.forEach(({ titleCell, cellsCell }) => {
+    rowGroups.forEach(({ titleCell, dataCells }) => {
       const tr = document.createElement('tr');
-      moveInstrumentation(titleCell, tr);
+      if (titleCell) moveInstrumentation(titleCell, tr);
 
-      const rowTitle = document.createElement('th');
-      rowTitle.scope = 'row';
-      rowTitle.className = 'table-row-title';
-      rowTitle.textContent = getText(titleCell);
-      tr.append(rowTitle);
-
-      const dataCells = [...cellsCell.children];
+      if (titleCell) {
+        const rowTitle = document.createElement('th');
+        rowTitle.scope = 'row';
+        rowTitle.className = 'table-row-title';
+        rowTitle.textContent = getText(titleCell);
+        tr.append(rowTitle);
+      }
 
       dataCells.forEach((valueItem) => {
         const td = document.createElement('td');
