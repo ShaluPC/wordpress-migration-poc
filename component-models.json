@@ -261,6 +261,23 @@
   {
     "id": "table",
     "fields": [
+       {
+        "component": "select",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Fixed layout",
+            "value": "fixed-layout"
+          }
+        ]
+      },
       {
         "component": "container",
         "name": "headers",
@@ -290,23 +307,6 @@
             "name": "cells",
             "label": "Cells",
             "multi": true
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "classes",
-        "label": "Layout",
-        "value": "",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "Fixed layout",
-            "value": "fixed-layout"
           }
         ]
       }
