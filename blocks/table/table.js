@@ -25,6 +25,19 @@ function unwrapSingleChild(node) {
   return current;
 }
 
+function getBooleanField(block, fieldName) {
+  const datasetValue = block?.dataset?.[fieldName];
+  if (datasetValue != null) {
+    return datasetValue === '' || datasetValue === 'true';
+  }
+
+  const field = block?.querySelector?.(`[data-aue-prop$="/${fieldName}"]`);
+  if (!field) return false;
+
+  const value = getText(field).toLowerCase();
+  return value === '' || value === 'true' || value === 'yes' || value === 'on' || value === '1';
+}
+
 function getRowGroups(rowsCell) {
   const root = unwrapSingleChild(rowsCell);
   const titles = [...root.querySelectorAll('p[data-aue-prop$="/rowTitle"]')];
@@ -54,6 +67,7 @@ export default function decorate(block) {
   const sections = [...block.children];
   if (!sections.length) return;
 
+  const fixedLayout = getBooleanField(block, 'fixedLayout');
   const headersCell = sections[0];
   const rowsCell = sections[1];
 
@@ -62,6 +76,7 @@ export default function decorate(block) {
 
   const table = document.createElement('table');
   table.className = 'table-grid';
+  if (fixedLayout) table.classList.add('table-grid--fixed');
 
   const headerItems = getItems(unwrapSingleChild(headersCell));
   if (headerItems.length) {

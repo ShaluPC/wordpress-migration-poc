@@ -52,6 +52,12 @@
               "multi": true
             }
           ]
+        },
+        {
+          "component": "boolean",
+          "name": "fixedLayout",
+          "label": "Use fixed table layout",
+          "valueType": "boolean"
         }
       ]
     }
