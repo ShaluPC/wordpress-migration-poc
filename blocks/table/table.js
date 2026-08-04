@@ -17,6 +17,14 @@ function extractItems(cell) {
   return text ? [cell] : [];
 }
 
+function splitCells(source) {
+  const raw = source?.tagName === 'TEXTAREA' ? source.value : getText(source);
+  return raw
+    .split(/\r?\n/)
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
 function unwrapSingleChild(node) {
   let current = node;
   while (current?.children?.length === 1 && current.children[0].children.length) {
@@ -27,26 +35,26 @@ function unwrapSingleChild(node) {
 
 function getRowGroups(rowsCell) {
   const root = unwrapSingleChild(rowsCell);
-  const titles = [...root.querySelectorAll('p[data-aue-prop$="/rowTitle"]')];
+  const textareas = [...root.querySelectorAll('textarea[data-aue-prop$="/cells"], textarea')];
 
-  if (titles.length) {
-    return titles.map((titleCell) => ({
-      titleCell,
-      dataCells: [...(titleCell.parentElement?.querySelector(':scope > ul')?.children || [])],
+  if (textareas.length) {
+    return textareas.map((textarea) => ({
+      dataCells: splitCells(textarea),
     }));
   }
 
   const rowCells = [...root.querySelectorAll(':scope > ul')];
   if (rowCells.length) {
-    return rowCells.map((cellsCell) => ({ dataCells: [...cellsCell.children], titleCell: null }));
+    return rowCells.map((cellsCell) => ({ dataCells: [...cellsCell.children].flatMap((cell) => splitCells(cell)) }));
   }
 
   return [...root.children].map((rowItem) => {
     const rowContent = unwrapSingleChild(rowItem);
-    const titleCell = rowContent?.querySelector?.('p[data-aue-prop$="/rowTitle"]') || null;
-    const cellsCell = rowContent?.querySelector?.(':scope > ul') || rowContent?.querySelector?.('ul');
-    const dataCells = cellsCell ? [...cellsCell.children] : [...(rowContent?.children || [])].filter((child) => child !== titleCell);
-    return { titleCell, dataCells };
+    const cellsCell = rowContent?.querySelector?.('textarea[data-aue-prop$="/cells"]')
+      || rowContent?.querySelector?.('textarea')
+      || rowContent?.querySelector?.(':scope > ul')
+      || rowContent?.querySelector?.('ul');
+    return { dataCells: cellsCell ? splitCells(cellsCell) : [] };
   });
 }
 
@@ -85,22 +93,12 @@ export default function decorate(block) {
   if (rowGroups.length) {
     const tbody = document.createElement('tbody');
 
-    rowGroups.forEach(({ titleCell, dataCells }) => {
+    rowGroups.forEach(({ dataCells }) => {
       const tr = document.createElement('tr');
-      if (titleCell) moveInstrumentation(titleCell, tr);
-
-      if (titleCell) {
-        const rowTitle = document.createElement('th');
-        rowTitle.scope = 'row';
-        rowTitle.className = 'table-row-title';
-        rowTitle.textContent = getText(titleCell);
-        tr.append(rowTitle);
-      }
 
       dataCells.forEach((valueItem) => {
         const td = document.createElement('td');
-        moveInstrumentation(valueItem, td);
-        td.textContent = getText(valueItem);
+        td.textContent = valueItem;
         tr.append(td);
       });
 

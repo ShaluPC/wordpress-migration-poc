@@ -281,10 +281,12 @@
         "multi": true,
         "fields": [
           {
-            "component": "text",
+            "component": "textarea",
             "name": "cells",
             "label": "Cells",
-            "multi": true
+            "valueType": "string",
+            "value": "Random cell 1\nRandom cell 2\nRandom cell 3\nRandom cell 4",
+            "description": "Enter one cell per line."
           }
         ]
       }
