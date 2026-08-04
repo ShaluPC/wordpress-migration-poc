@@ -281,6 +281,11 @@
         "multi": true,
         "fields": [
           {
+              "component": "text",
+              "name": "dummyFieldRowTitle",
+              "label": "Dummy Field-Row Title"
+          },
+          {
             "component": "text",
             "name": "cells",
             "label": "Cells",
