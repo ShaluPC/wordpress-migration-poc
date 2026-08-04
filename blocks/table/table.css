@@ -52,7 +52,7 @@
 
 .table-grid tbody tr:nth-child(even) th,
 .table-grid tbody tr:nth-child(even) td {
-  background: #f7faf7;
+  background: #f0f0f0;
 }
 
 .table-grid tbody th.table-row-title {

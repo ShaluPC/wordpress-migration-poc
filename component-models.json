@@ -294,10 +294,21 @@
         ]
       },
       {
-        "component": "boolean",
-        "name": "fixedLayout",
-        "label": "Use fixed table layout",
-        "valueType": "boolean"
+        "component": "select",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Fixed layout",
+            "value": "fixed-layout"
+          }
+        ]
       }
     ]
   },
