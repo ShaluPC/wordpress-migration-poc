@@ -18,18 +18,19 @@ function extractItems(cell) {
 }
 
 function unwrapSingleChild(node) {
-  const children = [...(node?.children || [])];
-  if (children.length === 1 && children[0].children.length) return children[0];
-  return node;
+  let current = node;
+  while (current?.children?.length === 1 && current.children[0].children.length) {
+    current = current.children[0];
+  }
+  return current;
 }
 
 export default function decorate(block) {
   const sections = [...block.children];
   if (!sections.length) return;
 
-  const captionCell = sections[0];
-  const headersCell = sections[1];
-  const rowsCell = sections[2];
+  const headersCell = sections[0];
+  const rowsCell = sections[1];
 
   const scrollWrap = document.createElement('div');
   scrollWrap.className = 'table-scroll';
@@ -37,17 +38,11 @@ export default function decorate(block) {
   const table = document.createElement('table');
   table.className = 'table-grid';
 
-  if (captionCell) {
-    const caption = document.createElement('caption');
-    moveInstrumentation(captionCell, caption);
-    caption.textContent = getText(captionCell);
-    table.append(caption);
-  }
-
-  const headerItems = extractItems(headersCell);
+  const headerItems = getItems(unwrapSingleChild(headersCell));
   if (headerItems.length) {
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
+
     headerItems.forEach((item, index) => {
       const th = document.createElement('th');
       moveInstrumentation(item, th);
@@ -56,11 +51,12 @@ export default function decorate(block) {
       if (index === 0) th.classList.add('table-row-title');
       headerRow.append(th);
     });
+
     thead.append(headerRow);
     table.append(thead);
   }
 
-  const rowItems = getItems(rowsCell);
+  const rowItems = getItems(unwrapSingleChild(rowsCell));
   if (rowItems.length) {
     const tbody = document.createElement('tbody');
 
@@ -74,7 +70,7 @@ export default function decorate(block) {
       let dataCells = rowChildren.slice(1);
 
       if (dataCells.length === 1) {
-        const nestedDataCells = extractItems(dataCells[0]);
+        const nestedDataCells = extractItems(unwrapSingleChild(dataCells[0]));
         if (nestedDataCells.length > 1) dataCells = nestedDataCells;
       }
 

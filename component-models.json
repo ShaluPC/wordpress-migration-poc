@@ -262,12 +262,6 @@
     "id": "table",
     "fields": [
       {
-        "component": "text",
-        "name": "caption",
-        "label": "Table Title",
-        "value": ""
-      },
-      {
         "component": "container",
         "name": "headers",
         "label": "Column Titles",
@@ -294,7 +288,7 @@
           {
             "component": "text",
             "name": "cells",
-            "label": "Cell Value",
+            "label": "Cells",
             "multi": true
           }
         ]
