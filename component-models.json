@@ -259,6 +259,49 @@
     ]
   },
   {
+    "id": "table",
+    "fields": [
+      {
+        "component": "text",
+        "name": "caption",
+        "label": "Table Title",
+        "value": ""
+      },
+      {
+        "component": "container",
+        "name": "headers",
+        "label": "Column Titles",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "title",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "rows",
+        "label": "Rows",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "rowTitle",
+            "label": "Row Title"
+          },
+          {
+            "component": "text",
+            "name": "cells",
+            "label": "Cell Value",
+            "multi": true
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {

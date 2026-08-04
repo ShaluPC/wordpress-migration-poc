@@ -33,11 +33,26 @@
       "columns",
       "fragment",
       "breadcrumb",
-      "cta-banner"
+      "cta-banner",
+      "table"
     ]
   },
   {
     "id": "cta-banner",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "cards",
+      "columns",
+      "fragment",
+      "breadcrumb"
+    ]
+  },
+  {
+    "id": "table",
     "components": [
       "text",
       "image",

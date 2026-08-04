@@ -58,7 +58,8 @@
         "cards",
         "columns",
         "fragment",
-        "breadcrumb"
+        "breadcrumb",
+        "table"
       ]
     }
   ]
