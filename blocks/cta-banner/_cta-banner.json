@@ -54,9 +54,9 @@
               "value": "bg-green"
             },
             {
-            "name": "blue",
-            "value": "bg-blue"
-          },
+              "name": "Blue",
+              "value": "bg-blue"
+            },
             {
               "name": "White",
               "value": "bg-white"
@@ -80,21 +80,29 @@
               "label": "Text"
             },
             {
-            "component": "select",
-            "name": "classes",
-            "label": "Type",
-            "value": "",
-            "valueType": "string",
-            "options": [
+              "component": "select",
+              "name": "classes",
+              "label": "Type",
+              "valueType": "string",
+              "value": "",
+              "options": [
                 {
-                "name": "Default",
-                "value": ""
+                  "name": "default",
+                  "value": ""
                 },
                 {
-                "name": "Right Arrow",
-                "value": "right-arrow"
+                  "name": "primary",
+                  "value": "primary"
+                },
+                {
+                  "name": "secondary",
+                  "value": "secondary"
+                },
+                {
+                  "name": "Right Arrow",
+                  "value": "right-arrow"
                 }
-            ]
+              ]
             }
           ]
         }

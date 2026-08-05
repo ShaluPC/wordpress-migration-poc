@@ -94,21 +94,21 @@
         "label": "Text"
       },
       {
-            "component": "select",
-            "name": "classes",
-            "label": "Type",
-            "value": "",
-            "valueType": "string",
-            "options": [
-                {
-                "name": "Default",
-                "value": ""
-                },
-                {
-                "name": "Secondary",
-                "value": "secondary"
-                }
-            ]
+        "component": "select",
+        "name": "classes",
+        "label": "Type",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          }
+        ]
       }
     ]
   },
@@ -179,13 +179,13 @@
         "label": "Alt",
         "value": ""
       },
-        {
-          "component": "text",
-          "name": "title",
-          "value": "",
-          "label": "Title",
-          "valueType": "string"
-        },
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
       {
         "component": "select",
         "name": "classes",
@@ -227,197 +227,203 @@
             "component": "select",
             "name": "classes",
             "label": "Type",
+            "valueType": "string",
+            "value": "",
+            "options": [
+              {
+                "name": "default",
+                "value": ""
+              },
+              {
+                "name": "primary",
+                "value": "primary"
+              },
+              {
+                "name": "secondary",
+                "value": "secondary"
+              },
+              {
+                "name": "right arrow",
+                "value": "right-arrow"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "table",
+        "fields": [
+          {
+            "component": "select",
+            "name": "classes",
+            "label": "Layout",
             "value": "",
             "valueType": "string",
             "options": [
               {
                 "name": "Default",
-                "value": "secondary"
+                "value": ""
               },
               {
-                "name": "Right Arrow",
-                "value": "right-arrow"
+                "name": "Fixed layout",
+                "value": "fixed-layout"
               }
-                ]
-              }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "table",
-    "fields": [
-       {
-        "component": "select",
-        "name": "classes",
-        "label": "Layout",
-        "value": "",
-        "valueType": "string",
-        "options": [
+            ]
+          },
           {
-            "name": "Default",
+            "component": "container",
+            "name": "headers",
+            "label": "Column Titles",
+            "multi": true,
+            "fields": [
+              {
+                "component": "text",
+                "name": "title",
+                "label": "Title"
+              }
+            ]
+          },
+          {
+            "component": "container",
+            "name": "rows",
+            "label": "Rows",
+            "multi": true,
+            "fields": [
+              {
+                "component": "text",
+                "name": "dummyFieldRowTitle",
+                "label": "Dummy Field-Row Title"
+              },
+              {
+                "component": "text",
+                "name": "cells",
+                "label": "Cells",
+                "multi": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "card",
+        "fields": [
+          {
+            "component": "reference",
+            "valueType": "string",
+            "name": "image",
+            "label": "Image",
+            "multi": false
+          },
+          {
+            "component": "richtext",
+            "name": "text",
+            "value": "",
+            "label": "Text",
+            "valueType": "string"
+          }
+        ]
+      },
+      {
+        "id": "column",
+        "fields": [
+          {
+            "component": "select",
+            "name": "width",
+            "label": "Width",
+            "options": [
+              {
+                "name": "25%",
+                "value": "width-25"
+              },
+              {
+                "name": "33%",
+                "value": "width-33"
+              },
+              {
+                "name": "50%",
+                "value": "width-50"
+              },
+              {
+                "name": "66%",
+                "value": "width-66"
+              },
+              {
+                "name": "75%",
+                "value": "width-75"
+              },
+              {
+                "name": "100%",
+                "value": "width-100"
+              }
+            ]
+          },
+          {
+            "component": "multiselect",
+            "name": "style",
+            "label": "Style",
+            "options": [
+              {
+                "name": "Light background",
+                "value": "bg-light"
+              },
+              {
+                "name": "Brand background",
+                "value": "bg-brand"
+              },
+              {
+                "name": "Rounded corners",
+                "value": "rounded"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fragment",
+        "fields": [
+          {
+            "component": "aem-content",
+            "name": "reference",
+            "label": "Reference"
+          }
+        ]
+      },
+      {
+        "id": "hero",
+        "fields": [
+          {
+            "component": "reference",
+            "valueType": "string",
+            "name": "image",
+            "label": "Image",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "valueType": "string",
+            "name": "imageAlt",
+            "label": "Alt",
             "value": ""
           },
           {
-            "name": "Fixed layout",
-            "value": "fixed-layout"
+            "component": "richtext",
+            "name": "text",
+            "value": "",
+            "label": "Text",
+            "valueType": "string"
           }
         ]
       },
       {
-        "component": "container",
-        "name": "headers",
-        "label": "Column Titles",
-        "multi": true,
+        "id": "breadcrumb",
         "fields": [
           {
             "component": "text",
-            "name": "title",
-            "label": "Title"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "rows",
-        "label": "Rows",
-        "multi": true,
-        "fields": [
-          {
-              "component": "text",
-              "name": "dummyFieldRowTitle",
-              "label": "Dummy Field-Row Title"
-          },
-          {
-            "component": "text",
-            "name": "cells",
-            "label": "Cells",
-            "multi": true
+            "valueType": "string",
+            "name": "name",
+            "label": "Name",
+            "value": "Breadcrumb"
           }
         ]
       }
     ]
-  },
-  {
-    "id": "card",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "column",
-    "fields": [
-      {
-        "component": "select",
-        "name": "width",
-        "label": "Width",
-        "options": [
-          {
-            "name": "25%",
-            "value": "width-25"
-          },
-          {
-            "name": "33%",
-            "value": "width-33"
-          },
-          {
-            "name": "50%",
-            "value": "width-50"
-          },
-          {
-            "name": "66%",
-            "value": "width-66"
-          },
-          {
-            "name": "75%",
-            "value": "width-75"
-          },
-          {
-            "name": "100%",
-            "value": "width-100"
-          }
-        ]
-      },
-      {
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Light background",
-            "value": "bg-light"
-          },
-          {
-            "name": "Brand background",
-            "value": "bg-brand"
-          },
-          {
-            "name": "Rounded corners",
-            "value": "rounded"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "fragment",
-    "fields": [
-      {
-        "component": "aem-content",
-        "name": "reference",
-        "label": "Reference"
-      }
-    ]
-  },
-  {
-    "id": "hero",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "breadcrumb",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "name",
-        "label": "Name",
-        "value": "Breadcrumb"
-      }
-    ]
-  }
-]
