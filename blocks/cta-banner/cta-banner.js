@@ -9,8 +9,7 @@ function decorateButtons(rows) {
     const cells = [...row.children];
     const linkCell = cells[0];
     const textCell = cells[1];
-    const titleCell = cells[2];
-    const typeCell = cells[3];
+    const typeCell = cells[2];
     const link = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector('a[href]');
     if (!link) return;
 
@@ -21,7 +20,6 @@ function decorateButtons(rows) {
     moveInstrumentation(link, button);
     button.href = link.href;
     button.textContent = textCell?.textContent?.trim() || link.textContent.trim();
-    button.title = titleCell?.textContent?.trim() || link.title || button.textContent;
     button.className = 'button';
 
     const linkType = typeCell?.textContent?.trim().toLowerCase();
