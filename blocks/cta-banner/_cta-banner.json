@@ -80,11 +80,6 @@
               "label": "Text"
             },
             {
-              "component": "text",
-              "name": "linkTitle",
-              "label": "Title"
-            },
-            {
             "component": "select",
             "name": "classes",
             "label": "Type",
@@ -93,7 +88,7 @@
             "options": [
                 {
                 "name": "Default",
-                "value": "secondary"
+                "value": ""
                 },
                 {
                 "name": "Right Arrow",

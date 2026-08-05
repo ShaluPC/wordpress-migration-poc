@@ -94,11 +94,6 @@
         "label": "Text"
       },
       {
-        "component": "text",
-        "name": "linkTitle",
-        "label": "Title"
-      },
-      {
             "component": "select",
             "name": "classes",
             "label": "Type",
@@ -107,11 +102,11 @@
             "options": [
                 {
                 "name": "Default",
-                "value": "secondary"
+                "value": ""
                 },
                 {
-                "name": "Right Arrow",
-                "value": "right-arrow"
+                "name": "Secondary",
+                "value": "secondary"
                 }
             ]
       }
@@ -235,27 +230,21 @@
           },
           {
             "component": "select",
-            "name": "linkType",
+            "name": "classes",
             "label": "Type",
+            "value": "",
+            "valueType": "string",
             "options": [
               {
-                "name": "default",
-                "value": ""
-              },
-              {
-                "name": "primary",
-                "value": "primary"
-              },
-              {
-                "name": "secondary",
+                "name": "Default",
                 "value": "secondary"
-                },
-                {
-                  "name": "right arrow",
-                  "value": "right-arrow"
+              },
+              {
+                "name": "Right  Arrow",
+                "value": "right-arrow"
               }
-            ]
-          }
+                ]
+              }
         ]
       }
     ]
