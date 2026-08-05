@@ -17,14 +17,9 @@ function decorateButtons(rows) {
   }
 
   rows.forEach((row) => {
-    const cells = [...row.querySelectorAll(':scope > *')].filter((cell) => cell.tagName !== 'HR');
-    const linkCell = row.querySelector('[data-aue-prop$="/link"]') || cells.find((cell) => cell.matches?.('a[href]')) || cells[0] || null;
-    const textCell = row.querySelector('[data-aue-prop$="/linkText"]')
-      || cells.find((cell) => cell !== linkCell && cell.textContent?.trim() && cell.textContent.trim().toLowerCase() !== 'right-arrow')
-      || null;
-    const typeCell = row.querySelector('[data-aue-prop$="/classes"]')
-      || cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow')
-      || null;
+    const cells = Array.isArray(row) ? row : [...row.querySelectorAll(':scope > *')].filter((cell) => cell.tagName !== 'HR');
+    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"]')) || cells[0] || null;
+    const typeCell = cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow' || ['primary', 'secondary'].includes(cell.textContent?.trim().toLowerCase())) || null;
     const sourceNode = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector?.('a[href]') || linkCell;
     const href = getHref(linkCell);
     if (!href) return;
@@ -35,7 +30,7 @@ function decorateButtons(rows) {
     const button = document.createElement('a');
     moveInstrumentation(sourceNode, button);
     button.href = href;
-    button.textContent = textCell?.textContent?.trim() || linkCell?.textContent?.trim() || href;
+    button.textContent = sourceNode?.textContent?.trim() || linkCell?.textContent?.trim() || href;
     button.className = 'button';
 
     const linkType = typeCell?.textContent?.trim().toLowerCase();
@@ -80,15 +75,29 @@ export default function decorate(block) {
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
   const ctaRows = rows.slice(2).flatMap((row) => {
-    const fieldWrappers = [...row.querySelectorAll('[data-aue-prop^="ctas/"]')]
-      .map((field) => field.closest('div') || field.parentElement)
-      .filter(Boolean);
+    const ctaContainer = row.querySelector('[data-aue-prop^="ctas/"]')?.closest('div') || row;
+    const groups = [];
+    let currentGroup = [];
 
-    if (fieldWrappers.length) {
-      return [...new Set(fieldWrappers)];
+    [...ctaContainer.children].forEach((child) => {
+      if (child.tagName === 'HR') {
+        if (currentGroup.length) {
+          groups.push(currentGroup);
+          currentGroup = [];
+        }
+        return;
+      }
+
+      currentGroup.push(child);
+    });
+
+    if (currentGroup.length) groups.push(currentGroup);
+
+    if (!groups.length && ctaContainer.querySelector('a[href]')) {
+      groups.push([...ctaContainer.children].filter((child) => child.tagName !== 'HR'));
     }
 
-    return row.querySelector('a[href]') ? [row] : [];
+    return groups;
   });
 
   if (titleCell) {
