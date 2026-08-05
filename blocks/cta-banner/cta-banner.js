@@ -5,21 +5,37 @@ function decorateButtons(rows) {
   const buttonList = document.createElement('div');
   buttonList.className = 'cta-banner-buttons';
 
+  function getHref(linkCell) {
+    const anchor = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector?.('a[href]');
+    if (anchor?.href) return anchor.href;
+
+    const text = linkCell?.textContent?.trim();
+    if (!text) return '';
+    if (/^https?:\/\//i.test(text)) return text;
+    if (/^www\./i.test(text)) return `https://${text}`;
+    return text;
+  }
+
   rows.forEach((row) => {
-    const cells = [...row.children].filter((cell) => cell.tagName !== 'HR');
-    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"]')) || cells[0];
-    const textCell = cells.find((cell) => cell !== linkCell && cell.textContent?.trim() && cell.textContent.trim().toLowerCase() !== 'right-arrow') || null;
-    const typeCell = cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow') || null;
-    const link = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector('a[href]');
-    if (!link) return;
+    const cells = [...row.querySelectorAll(':scope > *')].filter((cell) => cell.tagName !== 'HR');
+    const linkCell = row.querySelector('[data-aue-prop$="/link"]') || cells.find((cell) => cell.matches?.('a[href]')) || cells[0] || null;
+    const textCell = row.querySelector('[data-aue-prop$="/linkText"]')
+      || cells.find((cell) => cell !== linkCell && cell.textContent?.trim() && cell.textContent.trim().toLowerCase() !== 'right-arrow')
+      || null;
+    const typeCell = row.querySelector('[data-aue-prop$="/classes"]')
+      || cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow')
+      || null;
+    const sourceNode = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector?.('a[href]') || linkCell;
+    const href = getHref(linkCell);
+    if (!href) return;
 
     const buttonWrapper = document.createElement('p');
     buttonWrapper.className = 'button-wrapper';
 
     const button = document.createElement('a');
-    moveInstrumentation(link, button);
-    button.href = link.href;
-    button.textContent = textCell?.textContent?.trim() || link.textContent.trim();
+    moveInstrumentation(sourceNode, button);
+    button.href = href;
+    button.textContent = textCell?.textContent?.trim() || linkCell?.textContent?.trim() || href;
     button.className = 'button';
 
     const linkType = typeCell?.textContent?.trim().toLowerCase();
@@ -63,8 +79,13 @@ export default function decorate(block) {
 
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
-  const ctaRows = rows.slice(2).flatMap((row) => [row, ...[...row.children].filter((child) => child.tagName === 'DIV')]
-    .filter((ctaRow) => ctaRow.querySelector('[data-aue-prop^="ctas/"]') || ctaRow.querySelector('a[href]')));
+  const ctaRows = rows.slice(2).flatMap((row) => {
+    const previewRows = row.querySelectorAll('a[href]').length ? [row] : [];
+    const editorRows = [...row.querySelectorAll('[data-aue-prop^="ctas/"]')]
+      .map((field) => field.closest('div') || field.parentElement)
+      .filter(Boolean);
+    return [...previewRows, ...editorRows];
+  }).filter((ctaRow, index, items) => items.indexOf(ctaRow) === index);
 
   if (titleCell) {
     const title = document.createElement('div');
