@@ -85,27 +85,21 @@
               "label": "Title"
             },
             {
-              "component": "select",
-              "name": "classes",
-              "label": "Type",
-              "options": [
+            "component": "select",
+            "name": "classes",
+            "label": "Type",
+            "value": "",
+            "valueType": "string",
+            "options": [
                 {
-                  "name": "default",
-                  "value": ""
+                "name": "Default",
+                "value": "secondary"
                 },
                 {
-                  "name": "primary",
-                  "value": "primary"
-                },
-                {
-                  "name": "secondary",
-                  "value": "secondary"
-                },
-                {
-                  "name": "right arrow",
-                  "value": "right-arrow"
+                "name": "Right Arrow",
+                "value": "right-arrow"
                 }
-              ]
+            ]
             }
           ]
         }
