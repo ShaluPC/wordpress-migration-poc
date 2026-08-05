@@ -6,10 +6,10 @@ function decorateButtons(rows) {
   buttonList.className = 'cta-banner-buttons';
 
   rows.forEach((row) => {
-    const cells = [...row.children];
-    const linkCell = cells[0];
-    const textCell = cells[1];
-    const typeCell = cells[2];
+    const cells = [...row.children].filter((cell) => cell.tagName !== 'HR');
+    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"]')) || cells[0];
+    const textCell = cells.find((cell) => cell !== linkCell && cell.textContent?.trim() && cell.textContent.trim().toLowerCase() !== 'right-arrow') || null;
+    const typeCell = cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow') || null;
     const link = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector('a[href]');
     if (!link) return;
 
@@ -63,9 +63,8 @@ export default function decorate(block) {
 
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
-  const ctaRows = rows.slice(2).flatMap((row) => [...row.querySelectorAll('a[href]')]
-    .map((link) => link.closest('li, div'))
-    .filter(Boolean));
+  const ctaRows = rows.slice(2).flatMap((row) => [row, ...[...row.children].filter((child) => child.tagName === 'DIV')]
+    .filter((ctaRow) => ctaRow.querySelector('[data-aue-prop^="ctas/"]') || ctaRow.querySelector('a[href]')));
 
   if (titleCell) {
     const title = document.createElement('div');
