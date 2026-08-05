@@ -54,9 +54,9 @@
               "value": "bg-green"
             },
             {
-              "name": "Light",
-              "value": "bg-light"
-            },
+            "name": "blue",
+            "value": "bg-blue"
+          },
             {
               "name": "White",
               "value": "bg-white"
