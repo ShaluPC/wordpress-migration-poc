@@ -26,7 +26,7 @@
 .cta-banner-layout {
   display: grid;
   grid-template-columns: 100px 1fr;
-  gap: 32px;
+  gap: 40px;
   align-items: center;
 }
 
@@ -86,6 +86,44 @@
   text-decoration: none !important;
 }
 
+.cta-banner a.button.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #fff !important;
+  font-family: "Graphik Medium", "Helvetica Neue", "Helvetica", "sans-serif";
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 0;
+  text-decoration: none;
+}
+
+.cta-banner a.button.arrow-link::after {
+  content: '›';
+  font-size: 22px;
+  line-height: 0.9;
+  transition: transform 0.2s ease;
+}
+
+.cta-banner a.button.arrow-link:hover,
+.cta-banner a.button.arrow-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cta-banner a.button.arrow-link:hover::after,
+.cta-banner a.button.arrow-link:focus-visible::after {
+  transform: translateX(2px);
+}
+
+.cta-banner.bg-light a.button.arrow-link,
+.cta-banner.bg-white a.button.arrow-link {
+  color: #005d1f !important;
+}
+
 .cta-banner.bg-green a.button.secondary:hover,
 .cta-banner.bg-green a.button.primary:hover,
 .cta-banner.bg-green a.button.secondary:focus-visible,
@@ -93,6 +131,10 @@
   border-color: #fff;
   color: #fff;
   background-color: transparent;
+}
+
+.cta-banner.bg-green a.button.arrow-link {
+  color: #fff !important;
 }
 
 @media (width < 992px) {

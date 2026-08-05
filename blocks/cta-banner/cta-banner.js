@@ -29,6 +29,8 @@ function decorateButtons(rows) {
       button.classList.add('primary');
     } else if (linkType === 'secondary') {
       button.classList.add('secondary');
+    } else if (linkType === 'right-arrow') {
+      button.classList.add('arrow-link');
     } else {
       button.classList.add('secondary');
     }

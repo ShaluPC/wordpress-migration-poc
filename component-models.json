@@ -251,6 +251,10 @@
               {
                 "name": "secondary",
                 "value": "secondary"
+                },
+                {
+                  "name": "right arrow",
+                  "value": "right-arrow"
               }
             ]
           }
