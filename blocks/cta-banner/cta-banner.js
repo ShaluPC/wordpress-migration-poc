@@ -5,15 +5,12 @@ function decorateButtons(rows) {
   const buttonList = document.createElement('div');
   buttonList.className = 'cta-banner-buttons';
 
-  function getRowType(row) {
-    return ['primary', 'secondary', 'right-arrow'].find((className) => row.classList.contains(className)) || '';
-  }
-
   rows.forEach((row) => {
     const cells = [...row.children];
     const linkCell = cells[0];
     const textCell = cells[1];
     const titleCell = cells[2];
+    const typeCell = cells[3];
     const link = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector('a[href]');
     if (!link) return;
 
@@ -27,7 +24,7 @@ function decorateButtons(rows) {
     button.title = titleCell?.textContent?.trim() || link.title || button.textContent;
     button.className = 'button';
 
-    const linkType = getRowType(row);
+    const linkType = typeCell?.textContent?.trim().toLowerCase();
     if (linkType === 'primary') {
       button.classList.add('primary');
     } else if (linkType === 'secondary') {

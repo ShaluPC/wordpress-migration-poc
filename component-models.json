@@ -224,11 +224,6 @@
             "label": "Text"
           },
           {
-            "component": "text",
-            "name": "linkTitle",
-            "label": "Title"
-          },
-          {
             "component": "select",
             "name": "classes",
             "label": "Type",
@@ -240,7 +235,7 @@
                 "value": "secondary"
               },
               {
-                "name": "Right  Arrow",
+                "name": "Right Arrow",
                 "value": "right-arrow"
               }
                 ]
