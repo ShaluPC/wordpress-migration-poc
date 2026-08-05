@@ -79,13 +79,12 @@ export default function decorate(block) {
 
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
-  const ctaRows = rows.slice(2).flatMap((row) => {
-    const previewRows = row.querySelectorAll('a[href]').length ? [row] : [];
-    const editorRows = [...row.querySelectorAll('[data-aue-prop^="ctas/"]')]
-      .map((field) => field.closest('div') || field.parentElement)
-      .filter(Boolean);
-    return [...previewRows, ...editorRows];
-  }).filter((ctaRow, index, items) => items.indexOf(ctaRow) === index);
+  const ctaRows = rows.slice(2).map((row) => {
+    const field = row.querySelector('[data-aue-prop^="ctas/"]');
+    if (field) return field.closest('div') || field.parentElement;
+
+    return row.querySelector('a[href]') ? row : null;
+  }).filter(Boolean);
 
   if (titleCell) {
     const title = document.createElement('div');
