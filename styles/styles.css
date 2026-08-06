@@ -325,32 +325,35 @@ main .section.highlight {
 
 main > .section.article {
   background-color: transparent !important;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 24px 0;
+  margin: 0;
+  position: relative;
+  float: none;
+  width: calc(100% - 500px);
+  max-width: 760px;
+  margin: auto;
+  padding: 90px 0 0;
   color: #03512a;
 }
 
-main > .section.article > .article-title-wrapper,
-main > .section.article > .article-detail-bar-wrapper,
-main > .section.article > .article-body-wrapper {
-  grid-column: 1;
+@media (max-width: 989.98px) {
+  main > .section.article {
+    width: 100%;
+  }
 }
 
-main > .section.article .article-title-wrapper h1 {
-  margin: 0;
-  color: #003512;
-  font-family: "Graphik Bold", "Helvetica Neue", "Helvetica", "sans-serif";
-  font-size: clamp(44px, 5vw, 56px);
-  font-weight: 700;
-  letter-spacing: -.8px;
-  line-height: 0.95;
+@media (min-width: 768px) and (max-width: 989.98px) {
+  main > .section.article {
+    padding: 75px;
+  }
 }
 
+@media (max-width: 767.98px) {
+  main > .section.article {
+    padding: 60px 25px;
+  }
+}
+
+main > .section.article h1,
 main > .section.article h2,
 main > .section.article h3,
 main > .section.article h4,
@@ -359,6 +362,12 @@ main > .section.article h6 {
   color: #003512;
   font-family: "Graphik Bold", "Helvetica Neue", "Helvetica", "sans-serif";
   line-height: 1;
+}
+
+main > .section.article h1 {
+  font-size: 56px;
+  letter-spacing: -.8px;
+  font-weight: 700;
 }
 
 main > .section.article h2 {
@@ -373,22 +382,29 @@ main > .section.article h3 {
   letter-spacing: -.57px;
 }
 
-@media (width >= 990px) {
-  main > .section.article {
-    grid-template-columns: minmax(220px, 270px) minmax(0, 1fr);
-    column-gap: 40px;
-    row-gap: 28px;
-    padding: 90px 32px 0;
+@media (max-width: 767.98px) {
+  main > .section.article h1 {
+    font-size: 44px;
   }
+}
 
-  main > .section.article > .article-title-wrapper,
-  main > .section.article > .article-body-wrapper {
-    grid-column: 2;
-  }
+main > .section.article > .article-title-wrapper,
+main > .section.article > .article-body-wrapper {
+  position: relative;
+  z-index: 1;
+}
 
+main > .section.article > .article-detail-bar-wrapper {
+  margin: 24px 0 0;
+}
+
+@media (min-width: 990px) {
   main > .section.article > .article-detail-bar-wrapper {
-    grid-column: 1;
-    grid-row: 1 / span 2;
+    width: 150px;
+    position: absolute;
+    top: 90px;
+    left: -220px;
+    margin: 0;
   }
 }
 

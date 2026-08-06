@@ -1,17 +1,21 @@
 .article-detail-bar {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  align-items: flex-start;
+  width: 150px;
   color: #003512;
   font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-.article-detail-bar__section,
-.article-detail-bar__share {
-  display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
-  gap: 12px;
-  align-items: start;
+.article-detail-bar__section {
+  flex: 0 0 calc(50% - 10px);
 }
+
+.article-detail-bar__share {
+  flex: 0 0 100%;
+}
+
 
 .article-detail-bar__icon {
   display: inline-flex;
@@ -92,6 +96,13 @@
 
 @media (width >= 990px) {
   .article-detail-bar {
+    display: grid;
     gap: 22px;
+    align-items: stretch;
+  }
+
+  .article-detail-bar__section,
+  .article-detail-bar__share {
+    flex: initial;
   }
 }
