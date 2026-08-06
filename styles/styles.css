@@ -155,15 +155,14 @@ button {
 
 /* links */
 a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
+  color: #005d1f;
+  text-decoration: underline;
   overflow-wrap: break-word;
 }
 
 a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
-}
+  color: #003512;;
+ }
 
 /* buttons */
 p.button-wrapper {

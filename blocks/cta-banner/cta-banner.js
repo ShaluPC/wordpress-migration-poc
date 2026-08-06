@@ -30,17 +30,21 @@ function decorateButtons(rows) {
     const button = document.createElement('a');
     moveInstrumentation(sourceNode, button);
     button.href = href;
-    button.textContent = sourceNode?.textContent?.trim() || linkCell?.textContent?.trim() || href;
     button.className = 'button';
 
     const linkType = typeCell?.textContent?.trim().toLowerCase();
+    const buttonText = sourceNode?.textContent?.trim() || linkCell?.textContent?.trim() || href;
     if (linkType === 'primary') {
+      button.textContent = buttonText;
       button.classList.add('primary');
     } else if (linkType === 'secondary') {
+      button.textContent = buttonText;
       button.classList.add('secondary');
     } else if (linkType === 'right-arrow') {
+      button.innerHTML = `<span class="arrow-link-text">${buttonText}</span>`;
       button.classList.add('arrow-link');
     } else {
+      button.textContent = buttonText;
       button.classList.add('secondary');
     }
 

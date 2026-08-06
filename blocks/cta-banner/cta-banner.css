@@ -101,6 +101,10 @@
   text-decoration: none;
 }
 
+.cta-banner a.button.arrow-link .arrow-link-text {
+  text-decoration: none;
+}
+
 .cta-banner a.button.arrow-link::after {
   content: '›';
   font-size: 22px;
@@ -110,6 +114,11 @@
 
 .cta-banner a.button.arrow-link:hover,
 .cta-banner a.button.arrow-link:focus-visible {
+  text-decoration: none;
+}
+
+.cta-banner a.button.arrow-link:hover .arrow-link-text,
+.cta-banner a.button.arrow-link:focus-visible .arrow-link-text {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -128,9 +137,10 @@
 .cta-banner.bg-green a.button.primary:hover,
 .cta-banner.bg-green a.button.secondary:focus-visible,
 .cta-banner.bg-green a.button.primary:focus-visible {
-  border-color: #fff;
-  color: #fff;
-  background-color: transparent;
+  background-color: #00e95c !important;
+  border: 2px solid transparent !important;
+  color: unset !important;
+  text-decoration: none !important;
 }
 
 .cta-banner.bg-green a.button.arrow-link {
