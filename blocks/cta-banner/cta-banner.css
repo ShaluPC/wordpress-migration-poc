@@ -55,7 +55,6 @@
   letter-spacing: -0.25px;
   line-height: 28px;
   margin-top: 0;
-  margin-bottom: 20px;
   padding: 0;
 }
 
@@ -106,9 +105,12 @@
 }
 
 .cta-banner a.button.arrow-link::after {
-  content: '›';
-  font-size: 22px;
-  line-height: 0.9;
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  background: no-repeat center / 16px 16px url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M6 3.5L10.5 8L6 12.5' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   transition: transform 0.2s ease;
 }
 
