@@ -480,17 +480,19 @@ function decorateArticleDetailBar(section) {
   const titleWrapper = document.createElement('div');
   titleWrapper.className = 'article-title-wrapper';
 
-  const detailBarWrapper = document.createElement('div');
-  detailBarWrapper.className = 'article-detail-bar-wrapper';
+  const existingDetailBar = section.querySelector(':scope .article-detail-bar');
+  const detailBarWrapper = existingDetailBar?.parentElement || document.createElement('div');
+  detailBarWrapper.classList.add('article-detail-bar-wrapper');
 
   defaultWrapper.before(titleWrapper);
   defaultWrapper.before(detailBarWrapper);
 
   titleWrapper.append(firstHeading);
 
-  const detailBar = buildBlock('article-detail-bar', '');
-  detailBarWrapper.append(detailBar);
-  decorateBlock(detailBar);
+  if (!existingDetailBar) {
+    const detailBar = buildBlock('article-detail-bar', '');
+    detailBarWrapper.append(detailBar);
+  }
 
   defaultWrapper.classList.add('article-body-wrapper');
 }
@@ -514,6 +516,12 @@ function decorateSections(main) {
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section');
+    const hasArticleTitle = !!section.querySelector(':scope > .default-content-wrapper h1');
+    const hasArticleDetailBar = !!section.querySelector(':scope .article-detail-bar');
+    if (hasArticleTitle && hasArticleDetailBar) {
+      section.classList.add('article', 'article-body');
+    }
+
     if (section.classList.contains('article')) {
       decorateArticleDetailBar(section);
     }
