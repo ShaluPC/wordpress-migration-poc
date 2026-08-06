@@ -75,7 +75,9 @@ export default function decorate(block) {
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
   const ctaRows = rows.slice(2).flatMap((row) => {
-    const ctaContainer = row.querySelector('a[href]') ? row.querySelector('a[href]') : row.querySelector('[data-aue-prop^="ctas/"]')?.closest('div') || row;
+    const ctaContainer = row.querySelector('[data-aue-prop^="ctas/"]')?.closest('div')
+      || row.querySelector('a[href]')?.closest('div')
+      || row;
     const groups = [];
     let currentGroup = [];
 
