@@ -333,7 +333,7 @@ main > .section.article {
   max-width: 760px;
   margin: auto;
   padding: 90px 0 0;
-  color: #03512a;
+  color: #003512;
 }
 
 @media (max-width: 989.98px) {

@@ -514,8 +514,7 @@ function decorateSections(main) {
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
     section.classList.add('section');
-    if (section.dataset.articledetailbar === 'true') {
-      section.classList.add('article', 'article-body');
+    if (section.classList.contains('article')) {
       decorateArticleDetailBar(section);
     }
     section.dataset.sectionStatus = 'initialized';

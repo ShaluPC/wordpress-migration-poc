@@ -164,12 +164,6 @@
             "value": "highlight"
           }
         ]
-      },
-      {
-        "component": "boolean",
-        "name": "articleDetailBar",
-        "label": "Add article detail bar",
-        "valueType": "boolean"
       }
     ]
   },
