@@ -24,6 +24,9 @@
     "...": "../blocks/cta-banner/_cta-banner.json#/models"
   },
   {
+    "...": "../blocks/article-detail-bar/_article-detail-bar.json#/models"
+  },
+  {
     "...": "../blocks/*/_*.json#/models"
   }
 ]
