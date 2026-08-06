@@ -14,6 +14,7 @@
 
 .article-detail-bar__share {
   flex: 0 0 100%;
+  display: flex;
 }
 
 
@@ -46,8 +47,7 @@
 }
 
 .article-detail-bar__label {
-  font-family: 'Graphik Bold', 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 700;
+  font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .article-detail-bar__value {
@@ -60,7 +60,7 @@
 }
 
 .article-detail-bar__share-label {
-  margin: 0;
+  margin-right : 20px;
   font-family: 'Graphik Bold', 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 17px;
   line-height: 1.5;
