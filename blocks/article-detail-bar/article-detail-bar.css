@@ -3,13 +3,13 @@
   flex-wrap: wrap;
   gap: 20px;
   align-items: flex-start;
-  width: 150px;
   color: #003512;
   font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .article-detail-bar__section {
   flex: 0 0 calc(50% - 10px);
+  display: flex;
 }
 
 .article-detail-bar__share {
@@ -24,6 +24,7 @@
   width: 24px;
   height: 24px;
   color: #003512;
+  margin: 0px 15px 0px 0px;
 }
 
 .article-detail-bar__icon svg {
@@ -97,12 +98,14 @@
 @media (width >= 990px) {
   .article-detail-bar {
     display: grid;
-    gap: 22px;
+    gap: 40px;
     align-items: stretch;
+    width: 150px;
   }
 
   .article-detail-bar__section,
   .article-detail-bar__share {
     flex: initial;
+    display: block;
   }
 }
