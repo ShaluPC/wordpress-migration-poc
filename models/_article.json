@@ -59,7 +59,8 @@
         "columns",
         "fragment",
         "breadcrumb",
-        "table"
+        "table",
+        "article-detail-bar"
       ]
     }
   ]

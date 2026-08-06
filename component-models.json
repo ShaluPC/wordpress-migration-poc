@@ -1,5 +1,8 @@
 [
   {
+  },
+  {
+    "...": "../blocks/article-detail-bar/_article-detail-bar.json#/models"
     "id": "page-metadata",
     "fields": [
       {

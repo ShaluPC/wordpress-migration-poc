@@ -470,6 +470,31 @@ function decorateIcons(element, prefix = '') {
   });
 }
 
+function decorateArticleDetailBar(section) {
+  if (section.querySelector(':scope > .article-title-wrapper, :scope > .article-detail-bar-wrapper')) return;
+
+  const defaultWrapper = section.querySelector(':scope > .default-content-wrapper');
+  const firstHeading = defaultWrapper?.querySelector('h1');
+  if (!defaultWrapper || !firstHeading) return;
+
+  const titleWrapper = document.createElement('div');
+  titleWrapper.className = 'article-title-wrapper';
+
+  const detailBarWrapper = document.createElement('div');
+  detailBarWrapper.className = 'article-detail-bar-wrapper';
+
+  defaultWrapper.before(titleWrapper);
+  defaultWrapper.before(detailBarWrapper);
+
+  titleWrapper.append(firstHeading);
+
+  const detailBar = buildBlock('article-detail-bar', '');
+  detailBarWrapper.append(detailBar);
+  decorateBlock(detailBar);
+
+  defaultWrapper.classList.add('article-body-wrapper');
+}
+
 /**
  * Decorates all sections in a container element.
  * @param {Element} main The container element
@@ -491,6 +516,7 @@ function decorateSections(main) {
     section.classList.add('section');
     if (section.dataset.articledetailbar === 'true') {
       section.classList.add('article', 'article-body');
+      decorateArticleDetailBar(section);
     }
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
