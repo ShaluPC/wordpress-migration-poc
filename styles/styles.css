@@ -74,7 +74,7 @@
 body {
   display: none;
   margin: 0;
-  background-color: blue;
+  background-color: grey;
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
