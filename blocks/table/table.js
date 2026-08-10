@@ -10,17 +10,17 @@ function getItems(cell) {
   return [...(cell?.children || [])];
 }
 
-function extractItems(cell) {
-  const items = getItems(cell);
-  if (items.length) return items;
-  const text = getText(cell);
-  return text ? [cell] : [];
-}
+// function extractItems(cell) {
+//   const items = getItems(cell);
+//   if (items.length) return items;
+//   const text = getText(cell);
+//   return text ? [cell] : [];
+// }
 
 function unwrapSingleChild(node) {
   let current = node;
   while (current?.children?.length === 1 && current.children[0].children.length) {
-    current = current.children[0];
+    [current] = current.children;
   }
   return current;
 }
@@ -45,7 +45,9 @@ function getRowGroups(rowsCell) {
     const rowContent = unwrapSingleChild(rowItem);
     const titleCell = rowContent?.querySelector?.('p[data-aue-prop$="/rowTitle"]') || null;
     const cellsCell = rowContent?.querySelector?.(':scope > ul') || rowContent?.querySelector?.('ul');
-    const dataCells = cellsCell ? [...cellsCell.children] : [...(rowContent?.children || [])].filter((child) => child !== titleCell);
+    const dataCells = cellsCell
+      ? [...cellsCell.children]
+      : [...(rowContent?.children || [])].filter((child) => child !== titleCell);
     return { titleCell, dataCells };
   });
 }
