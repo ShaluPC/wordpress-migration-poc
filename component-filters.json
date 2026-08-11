@@ -39,34 +39,6 @@
     ]
   },
   {
-    "id": "cta-banner",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "breadcrumb"
-    ]
-  },
-  {
-    "id": "table",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "breadcrumb"
-    ]
-  },
-  {
     "id": "cards",
     "components": [
       "card"
@@ -103,8 +75,14 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "cta-banner"
+      "fragment"
+    ]
+  },
+  {
+    "id": "key-takeaways",
+    "components": [
+      "text",
+      "title"
     ]
   }
 ]

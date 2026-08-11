@@ -1,0 +1,88 @@
+{
+  "definitions": [
+    {
+      "title": "Key Takeaways",
+      "id": "key-takeaways",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Key Takeaways",
+              "model": "key-takeaways",
+              "filter": "key-takeaways"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "key-takeaways",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "label": "Background color",
+          "value": "",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "White",
+              "value": "bg-white"
+            },
+            {
+              "name": "Blue",
+              "value": "bg-blue"
+            },
+            {
+              "name": "Green",
+              "value": "bg-green"
+            }
+          ]
+        },
+        {
+          "component": "boolean",
+          "name": "classes_rounded-corners",
+          "label": "Rounded corners",
+          "valueType": "boolean",
+          "value": true
+        },
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "name": "takeaway-points",
+          "label": "Takeaway Points",
+          "multi": true,
+          "fields": [
+            {
+              "component": "text",
+              "name": "text",
+              "label": "Point",
+              "valueType": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "key-takeaways",
+      "components": [
+        "text",
+        "title"
+      ]
+    }
+  ]
+}

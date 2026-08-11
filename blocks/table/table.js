@@ -27,7 +27,7 @@ function unwrapSingleChild(node) {
 
 function getRowGroups(rowsCell) {
   const root = unwrapSingleChild(rowsCell);
-  const titles = [...root.querySelectorAll('p[data-aue-prop$="/rowTitle"]')];
+  const titles = [...root.querySelectorAll('p[data-aue-prop$="/rowLabel"]')];
 
   if (titles.length) {
     return titles.map((titleCell) => ({
@@ -43,7 +43,7 @@ function getRowGroups(rowsCell) {
 
   return [...root.children].map((rowItem) => {
     const rowContent = unwrapSingleChild(rowItem);
-    const titleCell = rowContent?.querySelector?.('p[data-aue-prop$="/rowTitle"]') || null;
+    const titleCell = rowContent?.querySelector?.('p[data-aue-prop$="/rowLabel"]') || null;
     const cellsCell = rowContent?.querySelector?.(':scope > ul') || rowContent?.querySelector?.('ul');
     const dataCells = cellsCell
       ? [...cellsCell.children]

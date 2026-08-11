@@ -1,0 +1,63 @@
+.key-takeaways {
+  margin: 40px 0;
+  padding: 40px;
+  background-color: #f6f4e9;
+  color: #003512;
+}
+
+.key-takeaways.rounded-corners {
+  border-radius: 16px;
+}
+
+.key-takeaways.bg-white {
+  background-color: #fff;
+}
+
+.key-takeaways.bg-blue {
+  background-color: #eaf3ff;
+}
+
+.key-takeaways.bg-green {
+  background-color: #eef7ef;
+}
+
+.key-takeaways-content {
+  display: grid;
+  gap: 24px;
+}
+
+.key-takeaways-title {
+  margin: 0;
+  color: inherit;
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.key-takeaways-points {
+  margin: 0;
+  padding-left: 24px;
+  display: grid;
+  gap: 16px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.key-takeaways-points li::marker {
+  color: #005d1f;
+}
+
+@media (width < 600px) {
+  .key-takeaways {
+    padding: 24px;
+  }
+
+  .key-takeaways-title {
+    font-size: 24px;
+  }
+
+  .key-takeaways-points {
+    font-size: 16px;
+  }
+}

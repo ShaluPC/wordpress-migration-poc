@@ -47,6 +47,12 @@
           "...": "../blocks/columns/_columns.json#/definitions"
         },
         {
+          "...": "../blocks/table/_table.json#/definitions"
+        },
+        {
+          "...": "../blocks/key-takeaways/_key-takeaways.json#/definitions"
+        },
+        {
           "...": "../blocks/fragment/_fragment.json#/definitions"
         },
         {

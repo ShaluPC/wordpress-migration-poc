@@ -1,16 +1,5 @@
 [
   {
-    "id": "article-detail-bar",
-    "fields": [
-      {
-        "component": "text",
-        "name": "name",
-        "label": "Name",
-        "value": "Article Detail Bar"
-      }
-    ]
-  },
-  {
     "id": "page-metadata",
     "fields": [
       {
@@ -105,18 +94,25 @@
         "label": "Text"
       },
       {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
         "component": "select",
-        "name": "classes",
+        "name": "linkType",
         "label": "Type",
-        "value": "",
-        "valueType": "string",
         "options": [
           {
-            "name": "Default",
+            "name": "default",
             "value": ""
           },
           {
-            "name": "Secondary",
+            "name": "primary",
+            "value": "primary"
+          },
+          {
+            "name": "secondary",
             "value": "secondary"
           }
         ]
@@ -203,7 +199,7 @@
             "value": "bg-green"
           },
           {
-            "name": "blue",
+            "name": "Blue",
             "value": "bg-blue"
           },
           {
@@ -248,186 +244,344 @@
                 "value": "secondary"
               },
               {
-                "name": "right arrow",
+                "name": "Right Arrow",
                 "value": "right-arrow"
               }
             ]
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "article-detail-bar",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Name",
+        "value": "Article Detail Bar"
+      }
+    ]
+  },
+  {
+    "id": "breadcrumb",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Name",
+        "value": "Breadcrumb"
+      }
+    ]
+  },
+  {
+    "id": "card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
-        "id": "table",
-        "fields": [
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "column",
+    "fields": [
+      {
+        "component": "select",
+        "name": "width",
+        "label": "Width",
+        "options": [
           {
-            "component": "select",
-            "name": "classes",
-            "label": "Layout",
-            "value": "",
-            "valueType": "string",
-            "options": [
-              {
-                "name": "Default",
-                "value": ""
-              },
-              {
-                "name": "Fixed layout",
-                "value": "fixed-layout"
-              }
-            ]
+            "name": "25%",
+            "value": "width-25"
           },
           {
-            "component": "container",
-            "name": "headers",
-            "label": "Column Titles",
-            "multi": true,
-            "fields": [
-              {
-                "component": "text",
-                "name": "title",
-                "label": "Title"
-              }
-            ]
+            "name": "33%",
+            "value": "width-33"
           },
           {
-            "component": "container",
-            "name": "rows",
-            "label": "Rows",
-            "multi": true,
-            "fields": [
-              {
-                "component": "text",
-                "name": "dummyFieldRowTitle",
-                "label": "Dummy Field-Row Title"
-              },
-              {
-                "component": "text",
-                "name": "cells",
-                "label": "Cells",
-                "multi": true
-              }
-            ]
+            "name": "50%",
+            "value": "width-50"
+          },
+          {
+            "name": "66%",
+            "value": "width-66"
+          },
+          {
+            "name": "75%",
+            "value": "width-75"
+          },
+          {
+            "name": "100%",
+            "value": "width-100"
           }
         ]
       },
       {
-        "id": "card",
-        "fields": [
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
           {
-            "component": "reference",
-            "valueType": "string",
-            "name": "image",
-            "label": "Image",
-            "multi": false
+            "name": "Light background",
+            "value": "bg-light"
           },
           {
-            "component": "richtext",
-            "name": "text",
-            "value": "",
-            "label": "Text",
-            "valueType": "string"
+            "name": "Brand background",
+            "value": "bg-brand"
+          },
+          {
+            "name": "Rounded corners",
+            "value": "rounded"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cta-banner",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Background color",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Green",
+            "value": "bg-green"
+          },
+          {
+            "name": "Blue",
+            "value": "bg-blue"
+          },
+          {
+            "name": "White",
+            "value": "bg-white"
           }
         ]
       },
       {
-        "id": "column",
-        "fields": [
-          {
-            "component": "select",
-            "name": "width",
-            "label": "Width",
-            "options": [
-              {
-                "name": "25%",
-                "value": "width-25"
-              },
-              {
-                "name": "33%",
-                "value": "width-33"
-              },
-              {
-                "name": "50%",
-                "value": "width-50"
-              },
-              {
-                "name": "66%",
-                "value": "width-66"
-              },
-              {
-                "name": "75%",
-                "value": "width-75"
-              },
-              {
-                "name": "100%",
-                "value": "width-100"
-              }
-            ]
-          },
-          {
-            "component": "multiselect",
-            "name": "style",
-            "label": "Style",
-            "options": [
-              {
-                "name": "Light background",
-                "value": "bg-light"
-              },
-              {
-                "name": "Brand background",
-                "value": "bg-brand"
-              },
-              {
-                "name": "Rounded corners",
-                "value": "rounded"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "fragment",
+        "component": "container",
+        "name": "ctas",
+        "label": "Buttons",
+        "multi": true,
         "fields": [
           {
             "component": "aem-content",
-            "name": "reference",
-            "label": "Reference"
-          }
-        ]
-      },
-      {
-        "id": "hero",
-        "fields": [
-          {
-            "component": "reference",
-            "valueType": "string",
-            "name": "image",
-            "label": "Image",
-            "multi": false
+            "name": "link",
+            "label": "Link"
           },
           {
             "component": "text",
+            "name": "linkText",
+            "label": "Text"
+          },
+          {
+            "component": "select",
+            "name": "classes",
+            "label": "Type",
             "valueType": "string",
-            "name": "imageAlt",
-            "label": "Alt",
+            "value": "",
+            "options": [
+              {
+                "name": "default",
+                "value": ""
+              },
+              {
+                "name": "primary",
+                "value": "primary"
+              },
+              {
+                "name": "secondary",
+                "value": "secondary"
+              },
+              {
+                "name": "Right Arrow",
+                "value": "right-arrow"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fragment",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "reference",
+        "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "hero",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "key-takeaways",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Background color",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
             "value": ""
           },
           {
-            "component": "richtext",
-            "name": "text",
-            "value": "",
-            "label": "Text",
-            "valueType": "string"
+            "name": "White",
+            "value": "bg-white"
+          },
+          {
+            "name": "Blue",
+            "value": "bg-blue"
+          },
+          {
+            "name": "Green",
+            "value": "bg-green"
           }
         ]
       },
       {
-        "id": "breadcrumb",
+        "component": "boolean",
+        "name": "classes_rounded-corners",
+        "label": "Rounded corners",
+        "valueType": "boolean",
+        "value": true
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "name": "takeaway-points",
+        "label": "Takeaway Points",
+        "multi": true,
         "fields": [
           {
             "component": "text",
-            "valueType": "string",
-            "name": "name",
-            "label": "Name",
-            "value": "Breadcrumb"
+            "name": "text",
+            "label": "Point",
+            "valueType": "string"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Fixed layout",
+            "value": "fixed-layout"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "headers",
+        "label": "Column Titles",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "title",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "rows",
+        "label": "Rows",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "rowLabel",
+            "label": "Row Label"
+          },
+          {
+            "component": "text",
+            "name": "cells",
+            "label": "Cells",
+            "multi": true
           }
         ]
       }
