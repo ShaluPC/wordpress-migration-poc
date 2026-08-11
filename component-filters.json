@@ -39,51 +39,9 @@
     ]
   },
   {
-    "id": "cta-banner",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "breadcrumb"
-    ]
-  },
-  {
-    "id": "table",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "breadcrumb"
-    ]
-  },
-  {
     "id": "cards",
     "components": [
       "card"
-    ]
-  },
-  {
-    "id": "card",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "breadcrumb",
-      "hero",
-      "cards",
-      "columns",
-      "fragment"
     ]
   },
   {
@@ -103,8 +61,14 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "cta-banner"
+      "fragment"
+    ]
+  },
+  {
+    "id": "key-takeaways",
+    "components": [
+      "text",
+      "title"
     ]
   }
 ]
