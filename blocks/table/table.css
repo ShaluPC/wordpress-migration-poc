@@ -5,7 +5,6 @@
 
 .table-grid {
   width: 100%;
-  min-width: 760px;
   border-collapse: collapse;
   table-layout: auto;
   font-family: var(--body-font-family);
@@ -69,9 +68,5 @@
 @media (width < 900px) {
   .table-grid caption {
     font-size: 22px;
-  }
-
-  .table-grid {
-    min-width: 680px;
   }
 }
