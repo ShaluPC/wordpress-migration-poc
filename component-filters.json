@@ -18,7 +18,10 @@
       "columns",
       "fragment",
       "breadcrumb",
-      "cta-banner"
+      "cta-banner",
+      "table",
+      "article-detail-bar",
+      "key-takeaways"
     ]
   },
   {
@@ -35,7 +38,8 @@
       "breadcrumb",
       "cta-banner",
       "table",
-      "article-detail-bar"
+      "article-detail-bar",
+      "key-takeaways"
     ]
   },
   {
