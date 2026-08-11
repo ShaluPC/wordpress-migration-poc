@@ -6,7 +6,7 @@ function getText(node) {
 
 function getChildItems(container) {
   if (!container) return [];
-  const list = container.querySelector(':scope > ul');
+  const list = container.querySelector(':scope ul');
   if (list) return [...list.children];
   return [...container.children];
 }
