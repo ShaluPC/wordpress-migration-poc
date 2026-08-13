@@ -331,24 +331,23 @@ main > .section.article {
   float: none;
   width: calc(100% - 500px);
   max-width: 760px;
-  margin: auto;
   padding: 90px 0 0;
   color: #003512;
 }
 
-@media (max-width: 989.98px) {
+@media (width <= 989.98px) {
   main > .section.article {
     width: 100%;
   }
 }
 
-@media (min-width: 768px) and (max-width: 989.98px) {
+@media (width >= 768px) and (width <= 989.98px) {
   main > .section.article {
     padding: 75px;
   }
 }
 
-@media (max-width: 767.98px) {
+@media (width <= 767.98px) {
   main > .section.article {
     padding: 60px 25px;
   }
@@ -361,7 +360,7 @@ main > .section.article h4,
 main > .section.article h5,
 main > .section.article h6 {
   color: #003512;
-  font-family: "Graphik Bold", "Helvetica Neue", "Helvetica", "sans-serif";
+  font-family: "Graphik Medium", "Helvetica Neue", Helvetica, sans-serif;
   line-height: 1;
 }
 
@@ -383,7 +382,7 @@ main > .section.article h3 {
   letter-spacing: -.57px;
 }
 
-@media (max-width: 767.98px) {
+@media (width <= 767.98px) {
   main > .section.article h1 {
     font-size: 44px;
   }
@@ -399,7 +398,7 @@ main > .section.article > .article-detail-bar-wrapper {
   margin: 24px 0 0;
 }
 
-@media (min-width: 990px) {
+@media (width >= 990px) {
   main > .section.article > .article-detail-bar-wrapper {
     width: 150px;
     position: absolute;

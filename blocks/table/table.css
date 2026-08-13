@@ -10,7 +10,7 @@
   font-family: var(--body-font-family);
 }
 
-.table-grid--fixed {
+.table-grid-fixed {
   table-layout: fixed;
   width: 100%;
 }
@@ -36,10 +36,6 @@
   border-right: 1px solid rgb(255 255 255 / 15%);
 }
 
-.table-grid thead th:last-child {
-  border-right: 0;
-}
-
 .table-grid tbody th,
 .table-grid tbody td {
   padding: 40px;
@@ -47,6 +43,15 @@
   color: #003512;
   font-size: 16px;
   line-height: 24px;
+}
+
+.table-grid thead th:last-child {
+  border-right: 0;
+}
+
+.table-grid tbody td:last-child,
+.table-grid thead th:last-child {
+  border-right: 0;
 }
 
 .table-grid tbody tr:nth-child(even) th,
@@ -58,11 +63,6 @@
   width: 30%;
   font-weight: 700;
   white-space: normal;
-}
-
-.table-grid tbody td:last-child,
-.table-grid thead th:last-child {
-  border-right: 0;
 }
 
 @media (width < 900px) {
