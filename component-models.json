@@ -460,5 +460,40 @@
         ]
       }
     ]
+  },
+  {
+    "id": "related-topics",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "name": "topics",
+        "label": "Topics",
+        "multi": true,
+        "fields": [
+          {
+            "component": "aem-content",
+            "name": "link",
+            "label": "Link"
+          },
+          {
+            "component": "title",
+            "name": "buttonText",
+            "label": "CTA Text"
+          },
+          {
+            "component": "text",
+            "name": "topicInfo",
+            "label": "Topic Info",
+            "valueType": "string"
+          }
+        ]
+      }
+    ]
   }
 ]

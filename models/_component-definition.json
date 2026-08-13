@@ -60,6 +60,9 @@
         },
         {
           "...": "../blocks/article-detail-bar/_article-detail-bar.json#/definitions"
+        },
+        {
+          "...": "../blocks/related-topics/_related-topics.json#/definitions"
         }
       ]
     }
