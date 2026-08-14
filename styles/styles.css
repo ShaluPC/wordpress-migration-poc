@@ -299,12 +299,14 @@ main img {
 main > .section:not(.article) {
   margin: 40px 0;
 }
+
 /*
 main > .section:not(.article) > div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
-}*/
+}
+*/
 
 main > .section:first-of-type {
   margin-top: 0;
