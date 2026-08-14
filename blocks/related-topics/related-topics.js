@@ -8,39 +8,78 @@ function getDirectChildren(node) {
   return node ? [...node.children] : [];
 }
 
-function buildTopicItemFromRow(row) {
+function buildTopicItem(linkNode, buttonTextNode, infoNode) {
   const item = document.createElement('li');
-  item.className = 'related-topics__item';
-  moveInstrumentation(row, item);
+  item.className = 'related-topics-item';
 
-  const cells = getDirectChildren(row).filter((child) => getText(child) || child.querySelector('a[href]') || child.tagName === 'A');
-  const buttonCell = cells.find((child) => child.querySelector('a[href]') || child.tagName === 'A');
-  const link = buttonCell?.querySelector('a[href]') || buttonCell;
-  const textCells = cells.filter((child) => child !== buttonCell && getText(child));
-  const buttonTextCell = textCells[0];
-  const infoCell = textCells[1];
+  const link = linkNode?.querySelector?.('a[href]') || (linkNode?.tagName === 'A' ? linkNode : null);
+  const href = link?.href;
+  const buttonText = getText(buttonTextNode) || getText(link);
 
-  if (link?.tagName === 'A') {
+  if (buttonText) {
     const button = document.createElement('a');
-    button.className = 'related-topics__button';
-    button.href = link.href;
-    button.textContent = getText(link) || getText(buttonTextCell);
-    moveInstrumentation(link, button);
-    if (buttonTextCell) {
-      moveInstrumentation(buttonTextCell, button);
+    button.className = 'related-topics-button';
+    button.href = href || '#';
+    button.textContent = buttonText;
+
+    if (link) {
+      moveInstrumentation(link, button);
+    } else if (buttonTextNode) {
+      moveInstrumentation(buttonTextNode, button);
     }
+
     item.append(button);
   }
 
-  if (infoCell) {
+  if (infoNode && getText(infoNode)) {
     const info = document.createElement('p');
-    info.className = 'related-topics__info';
-    info.textContent = getText(infoCell);
-    moveInstrumentation(infoCell, info);
+    info.className = 'related-topics-info';
+    info.textContent = getText(infoNode);
+    moveInstrumentation(infoNode, info);
     item.append(info);
   }
 
   return item;
+}
+
+function buildTopicItemFromRow(row) {
+  const cells = getDirectChildren(row).filter((child) => getText(child) || child.querySelector('a[href]') || child.tagName === 'A');
+  const linkNode = cells.find((child) => child.querySelector('a[href]') || child.tagName === 'A');
+  const textCells = cells.filter((child) => child !== linkNode && getText(child));
+  const buttonTextNode = textCells[0];
+  const infoNode = textCells[1];
+
+  return buildTopicItem(linkNode, buttonTextNode, infoNode);
+}
+
+function buildTopicItemsFromFlatRow(row) {
+  const root = row.querySelector(':scope > div') || row;
+  const segments = [];
+  let current = [];
+
+  getDirectChildren(root).forEach((node) => {
+    if (node.tagName === 'HR') {
+      if (current.length) segments.push(current);
+      current = [];
+      return;
+    }
+
+    if (node.tagName === 'P' || node.tagName === 'DIV' || node.tagName === 'A') {
+      if (getText(node) || node.querySelector('a[href]')) {
+        current.push(node);
+      }
+    }
+  });
+
+  if (current.length) segments.push(current);
+
+  return segments.map((segment) => {
+    const linkNode = segment.find((node) => node.querySelector('a[href]') || node.tagName === 'A');
+    const textNodes = segment.filter((node) => node !== linkNode && getText(node));
+    const buttonTextNode = textNodes[0];
+    const infoNode = textNodes[1];
+    return buildTopicItem(linkNode, buttonTextNode, infoNode);
+  });
 }
 
 function getTopicFieldGroups(block) {
@@ -65,63 +104,31 @@ function getTopicFieldGroups(block) {
 }
 
 function buildTopicItemFromFields(fields) {
-  const item = document.createElement('li');
-  item.className = 'related-topics__item';
-
   const linkField = fields.link;
-  const buttonTextField = fields.buttonText;
+  const buttonTextField = fields.linkText || fields.buttonText;
   const infoField = fields.topicInfo;
-
-  const linkNode = linkField?.querySelector('a[href]');
-  const href = linkNode?.href;
-  const buttonText = getText(buttonTextField) || getText(linkNode);
-
-  if (buttonText) {
-    const button = document.createElement(href ? 'a' : 'span');
-    button.className = 'related-topics__button';
-    button.textContent = buttonText;
-    if (href) button.href = href;
-
-    if (linkNode) {
-      moveInstrumentation(linkNode, button);
-    } else if (buttonTextField) {
-      moveInstrumentation(buttonTextField, button);
-    }
-
-    item.append(button);
-  }
-
-  const infoText = getText(infoField);
-  if (infoText) {
-    const info = document.createElement('p');
-    info.className = 'related-topics__info';
-    info.textContent = infoText;
-    moveInstrumentation(infoField, info);
-    item.append(info);
-  }
-
-  return item;
+  return buildTopicItem(linkField, buttonTextField, infoField);
 }
 
 export default function decorate(block) {
   const children = [...block.children];
 
   const wrapper = document.createElement('div');
-  wrapper.className = 'related-topics__content';
+  wrapper.className = 'related-topics-content';
 
   const titleCell = block.querySelector('[data-aue-prop="title"]')
     || children.find((child) => getText(child));
 
   if (titleCell) {
     const title = document.createElement('h2');
-    title.className = 'related-topics__title';
+    title.className = 'related-topics-title';
     title.textContent = getText(titleCell);
     moveInstrumentation(titleCell, title);
     wrapper.append(title);
   }
 
   const list = document.createElement('ul');
-  list.className = 'related-topics__list';
+  list.className = 'related-topics-list';
 
   const fieldGroups = getTopicFieldGroups(block);
 
@@ -138,10 +145,14 @@ export default function decorate(block) {
       .filter((child) => getText(child) || child.querySelector('a[href]'));
 
     rows.forEach((row) => {
-      const item = buildTopicItemFromRow(row);
-      if (item.children.length) {
-        list.append(item);
-      }
+      const hasFlatMarkup = !!row.querySelector('hr');
+      const items = hasFlatMarkup ? buildTopicItemsFromFlatRow(row) : [buildTopicItemFromRow(row)];
+
+      items.forEach((item) => {
+        if (item.children.length) {
+          list.append(item);
+        }
+      });
     });
   }
 

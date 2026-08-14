@@ -39,7 +39,7 @@
             },
             {
               "component": "text",
-              "name": "buttonText",
+              "name": "linkText",
               "label": "CTA Text"
             },
             {
