@@ -20,7 +20,11 @@ function buildTopicItem(linkNode, buttonTextNode, infoNode) {
     const button = document.createElement('a');
     button.className = 'related-topics-button';
     button.href = href || '#';
-    button.textContent = buttonText;
+
+    const buttonTextSpan = document.createElement('span');
+    buttonTextSpan.className = 'related-topics-button-text';
+    buttonTextSpan.textContent = buttonText;
+    button.append(buttonTextSpan);
 
     if (link) {
       moveInstrumentation(link, button);

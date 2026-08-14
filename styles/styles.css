@@ -154,12 +154,13 @@ button {
   font: inherit;
 }
 
-/* links */
+/* links 
 a:any-link {
   color: #005d1f;
   text-decoration: underline;
   overflow-wrap: break-word;
 }
+*/
 
 a:hover {
   color: #003512;;

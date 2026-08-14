@@ -41,7 +41,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #003512;
+  color: #003512 !important;
   font-family: 'Graphik Bold', 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 19px;
   font-weight: 700;
@@ -55,8 +55,18 @@
   line-height: 1;
 }
 
+.related-topics-button .related-topics-button-text {
+  text-decoration: none;
+}
+
 .related-topics-button:hover,
 .related-topics-button:focus-visible {
+  color: #003512 !important;
+  text-decoration: none;
+}
+
+.related-topics-button:hover .related-topics-button-text,
+.related-topics-button:focus-visible .related-topics-button-text {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -88,7 +98,7 @@
 .related-topics-info {
     max-width: 350px;
   }
-  
+
   .related-topics-content {
     gap: 32px;
   }
