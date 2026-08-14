@@ -326,7 +326,7 @@ main .section.highlight {
 
 main > .section.article {
   background-color: transparent !important;
-  margin: 0;
+  margin: auto;
   position: relative;
   float: none;
   width: calc(100% - 500px);
