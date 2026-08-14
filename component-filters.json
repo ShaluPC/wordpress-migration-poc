@@ -20,8 +20,8 @@
       "breadcrumb",
       "cta-banner",
       "table",
-      "article-detail-bar",
-      "key-takeaways"
+      "key-takeaways",
+      "related-topics"
     ]
   },
   {
@@ -38,6 +38,7 @@
       "breadcrumb",
       "cta-banner",
       "table",
+      "article-detail-bar",
       "key-takeaways"
     ]
   },
