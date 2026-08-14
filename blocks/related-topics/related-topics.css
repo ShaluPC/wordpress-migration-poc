@@ -13,18 +13,17 @@
 }
 
 .related-topics__title {
-  margin: 0;
   color: #003512;
-  font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: clamp(32px, 3.4vw, 56px);
+  font-family: 'Graphik Bold', 'Helvetica Neue', Helvetica, sans-serif;
   line-height: 1;
   letter-spacing: -0.04em;
+  margin-bottom: 40px;
 }
 
 .related-topics__list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 32px 24px;
+  gap: 40px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -43,8 +42,8 @@
   align-items: center;
   gap: 8px;
   color: #003512;
-  font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 20px;
+  font-family: 'Graphik Bold', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 19px;
   font-weight: 700;
   line-height: 1.2;
   text-decoration: none;
@@ -66,12 +65,12 @@
   margin: 0;
   max-width: 310px;
   color: #5b5b5b;
-  font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 16px;
+  /* font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif; */
+  font-size: 18px;
   line-height: 1.5;
 }
 
-@media (width >= 768px) and (width <= 989.98px) {
+@media (width >= 990px) and (width <= 1200px) {
   .related-topics {
     padding: 75px;
   }
@@ -81,7 +80,7 @@
   }
 }
 
-@media (width < 768px) {
+@media (width < 990px) {
   .related-topics {
     padding: 60px 25px;
   }
