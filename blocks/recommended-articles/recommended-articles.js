@@ -1,5 +1,4 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { createOptimizedPicture } from '../../scripts/aem.js';
 
 function getText(node) {
   return node?.textContent?.replace(/\s+/g, ' ').trim() || '';
@@ -15,26 +14,10 @@ function getImageElement(node) {
   if (picture) return picture.cloneNode(true);
 
   const img = node.querySelector('img');
-  if (img) return img.cloneNode(true);
-
-  const imageLink = node.querySelector('a[href]');
-  const rawSrc = imageLink?.href || getText(node);
-  const src = rawSrc && /^(https?:\/\/|\/)/.test(rawSrc) ? rawSrc : null;
-  if (!src) return null;
-
-  const optimized = createOptimizedPicture(src, '', false, [{ width: '1200' }]);
-  const optimizedImg = optimized.querySelector('img');
-  if (optimizedImg) moveInstrumentation(node, optimizedImg);
-  return optimized;
+  return img ? img.cloneNode(true) : null;
 }
 
-function createCard({
-  imageNode,
-  imageAltNode,
-  sectionNameNode,
-  linkNode,
-  linkTextNode,
-}) {
+function createCard({ imageNode, imageAltNode, sectionNameNode, linkNode, linkTextNode }) {
   const link = linkNode?.querySelector?.('a[href]') || (linkNode?.tagName === 'A' ? linkNode : null);
   const href = link?.href || '#';
   const sectionName = getText(sectionNameNode);
@@ -134,8 +117,7 @@ function buildCardsFromFlatRow(row) {
     .map((segment) => {
       const imageNode = segment.find((node) => node.querySelector('picture, img'));
       const linkNode = segment.find((node) => node.querySelector('a[href]') || node.tagName === 'A');
-      const textNodes = segment
-        .filter((node) => node !== imageNode && node !== linkNode && getText(node));
+      const textNodes = segment.filter((node) => node !== imageNode && node !== linkNode && getText(node));
       return createCard({
         imageNode,
         sectionNameNode: textNodes[0],
@@ -150,8 +132,7 @@ function buildCardFromRow(row) {
   const cells = getDirectChildren(row).filter((child) => getText(child) || child.querySelector('a[href], picture, img'));
   const imageNode = cells.find((node) => node.querySelector('picture, img'));
   const linkNode = cells.find((node) => node.querySelector('a[href]') || node.tagName === 'A');
-  const textNodes = cells
-    .filter((node) => node !== imageNode && node !== linkNode && getText(node));
+  const textNodes = cells.filter((node) => node !== imageNode && node !== linkNode && getText(node));
 
   return createCard({
     imageNode,
