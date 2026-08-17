@@ -63,6 +63,9 @@
         },
         {
           "...": "../blocks/related-topics/_related-topics.json#/definitions"
+        },
+        {
+          "...": "../blocks/recommended-articles/_recommended-articles.json#/definitions"
         }
       ]
     }

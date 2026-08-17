@@ -51,7 +51,8 @@
         "cards",
         "columns",
         "fragment",
-        "related-topics"
+        "related-topics",
+        "recommended-articles"
       ]
     }
   ]

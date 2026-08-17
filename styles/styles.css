@@ -391,6 +391,16 @@ main > .section.article h3 {
   }
 }
 
+main > .section.article a {
+ color: #005d1f;
+ text-decoration: underline;
+ transition: all ease 250ms;
+ 
+   &:focus, &:hover {
+          color: #003512;
+    }
+}
+
 main > .section.article > .article-title-wrapper,
 main > .section.article > .article-body-wrapper {
   position: relative;

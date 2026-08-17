@@ -1,0 +1,71 @@
+{
+  "definitions": [
+    {
+      "title": "Recommended Articles",
+      "id": "recommended-articles",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Recommended Articles",
+              "model": "recommended-articles"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "recommended-articles",
+      "fields": [
+        {
+          "component": "text",
+          "name": "title",
+          "label": "Title",
+          "valueType": "string"
+        },
+        {
+          "component": "container",
+          "name": "articles",
+          "label": "Articles",
+          "multi": true,
+          "fields": [
+            {
+              "component": "reference",
+              "valueType": "string",
+              "name": "image",
+              "label": "Image",
+              "multi": false
+            },
+            {
+              "component": "text",
+              "valueType": "string",
+              "name": "imageAlt",
+              "label": "Image Alt",
+              "value": ""
+            },
+            {
+              "component": "text",
+              "name": "sectionName",
+              "label": "Section Text",
+              "valueType": "string"
+            },
+            {
+              "component": "aem-content",
+              "name": "link",
+              "label": "Link"
+            },
+            {
+              "component": "text",
+              "name": "linkText",
+              "label": "Link Text",
+              "valueType": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
