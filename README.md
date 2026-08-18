@@ -1,13 +1,13 @@
-# Your Project's Title...
-Your project's description...
+# COM AEM EDS
+Starter project for AEM - EDS for Tax Information center Pages.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--com-aem-eds--hrblock.aem.page/
+- Live: https://main--com-aem-eds--hrblock.aem.live/
 
 ## Documentation
 
-Before using the aem-boilerplate, we recommend you to go through the documentation on [www.aem.live](https://www.aem.live/docs/), more specifically:
+Before using this project, we recommend you to go through the documentation on [www.aem.live](https://www.aem.live/docs/), more specifically:
 1. [AEM Authoring](https://www.aem.live/docs/aem-authoring)
 2. [Universal Editor Tutorial](https://www.aem.live/developer/ue-tutorial)
 3. [Component Model Definitions](https://www.aem.live/developer/component-model-definitions)

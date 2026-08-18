@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p134652-e1338859.adobeaemcloud.com//bin/franklin.delivery/ShaluPC/wordpress-migration-poc/main"
+    url: "https://author-p134652-e1338859.adobeaemcloud.com/bin/franklin.delivery/hrblock/com-aem-eds/main"
     type: "markup"
     suffix: ".html"
