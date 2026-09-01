@@ -105,6 +105,42 @@
               }
             }
           }
+        },
+        {
+          "title": "Header",
+          "id": "header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Header Section",
+                  "model": "header",
+                  "filter": "header"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer",
+          "id": "footer",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "Site Footer",
+                  "model": "footer",
+                  "filter": "footer",
+                  "style": [
+                    "site-footer",
+                    "green-dark-theme"
+                  ]
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -157,7 +193,7 @@
             }
           }
         },
-            {
+        {
           "title": "Columns",
           "id": "columns",
           "plugins": {
@@ -172,7 +208,7 @@
             }
           }
         },
-        {
+            {
           "title": "Column",
           "id": "column",
           "plugins": {
@@ -289,6 +325,913 @@
                 "template": {
                   "name": "Recommended Articles",
                   "model": "recommended-articles"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Brand",
+          "id": "nav-brand",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Brand",
+                  "model": "nav-brand",
+                  "imageAlt": "H&R Block",
+                  "link": "/",
+                  "linkText": "H&R Block",
+                  "linkTitle": "H&R Block Home"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Family",
+          "id": "nav-family",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Family",
+                  "filter": "nav-family"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Family Brand — H&R Block",
+          "id": "family-brand",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Family Brand",
+                  "model": "family-brand",
+                  "imageAlt": "H&R Block",
+                  "link": "/",
+                  "linkText": "H&R Block",
+                  "linkTitle": "H&R Block",
+                  "classes": "active"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Family Brand — Advisors",
+          "id": "family-brand-advisors",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Family Brand",
+                  "model": "family-brand",
+                  "imageAlt": "Block Advisors",
+                  "link": "https://www.blockadvisors.com/",
+                  "linkText": "Block Advisors",
+                  "linkTitle": "Block Advisors"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Family Brand — Spruce",
+          "id": "family-brand-spruce",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Family Brand",
+                  "model": "family-brand",
+                  "imageAlt": "Spruce",
+                  "link": "/financial-services/spruce/",
+                  "linkText": "Spruce",
+                  "linkTitle": "Spruce"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Menu",
+          "id": "nav-menu",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Menu",
+                  "filter": "nav-menu"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Panel — Taxes",
+          "id": "nav-panel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Panel",
+                  "model": "nav-panel",
+                  "filter": "nav-panel",
+                  "link": "/taxes/",
+                  "linkText": "Taxes",
+                  "linkTitle": "Taxes"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Panel — Financial products",
+          "id": "nav-panel-financial",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Panel",
+                  "model": "nav-panel",
+                  "filter": "nav-panel",
+                  "link": "/financial-services/",
+                  "linkText": "Financial products",
+                  "linkTitle": "Financial products"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Panel — Business services",
+          "id": "nav-panel-business",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Panel",
+                  "model": "nav-panel",
+                  "filter": "nav-panel",
+                  "link": "/tax-offices/business-services/",
+                  "linkText": "Business services",
+                  "linkTitle": "Business services"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Panel — Tools and resources",
+          "id": "nav-panel-tools",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Panel",
+                  "model": "nav-panel",
+                  "filter": "nav-panel",
+                  "link": "/tax-center/",
+                  "linkText": "Tools and resources",
+                  "linkTitle": "Tools and resources"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Mega Explore",
+          "id": "mega-explore",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Mega Explore",
+                  "model": "mega-explore",
+                  "link": "/taxes/",
+                  "linkText": "Explore taxes",
+                  "linkTitle": "Explore taxes"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Mega Primary Links",
+          "id": "mega-primary",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Mega Primary Links",
+                  "model": "mega-primary",
+                  "links": "<ul><li><a href=\"/online-tax-filing/\">File online</a></li><li><a href=\"/tax-offices/\">File with a pro</a></li><li><a href=\"/tax-software/\">Download software</a></li><li><a href=\"/tax-offices/business-services/small-business-tax/\">Small business taxes</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Mega Column",
+          "id": "mega-column",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Mega Column",
+                  "model": "mega-column",
+                  "heading": "More tax services",
+                  "links": "<ul><li><a href=\"/tax-offices/extended-tax-services/past-taxes/\">Second Look® Review</a></li><li><a href=\"/tax-offices/tax-prep/extended-service/\">Peace of Mind®</a></li><li><a href=\"/tax-offices/product-services/tax-identity-shield/\">Tax Identity Shield®</a></li><li><a href=\"/guarantees/\">Tax Notice Services</a></li><li><a href=\"/tax-offices/extended-tax-services/itin/\">ITIN application</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Mega Card",
+          "id": "mega-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Mega Card",
+                  "model": "mega-card",
+                  "imageAlt": "",
+                  "link": "/tax-center/",
+                  "linkText": "Tax Center",
+                  "linkTitle": "Tax Center",
+                  "description": "<p>Tax help, tips, tools, and answers for every situation.</p>",
+                  "classes": "cream"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Tools",
+          "id": "nav-tools",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Tools",
+                  "filter": "nav-tools"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Tool — Find an office",
+          "id": "nav-tool",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Tool",
+                  "model": "nav-tool",
+                  "imageAlt": "Find an office",
+                  "link": "/tax-offices/local/",
+                  "linkText": "Find an office",
+                  "linkTitle": "Find an office"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Tool — Search",
+          "id": "nav-tool-search",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Tool",
+                  "model": "nav-tool",
+                  "imageAlt": "Search",
+                  "link": "#site-search",
+                  "linkText": "Search",
+                  "linkTitle": "Search"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Sign In",
+          "id": "nav-signin",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Sign In",
+                  "model": "nav-signin",
+                  "imageAlt": "Sign in",
+                  "eyebrow": "Sign in to",
+                  "link": "/myblock/",
+                  "linkText": "MyBlock",
+                  "linkTitle": "Sign in to MyBlock"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary",
+          "id": "nav-secondary",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Nav Secondary",
+                  "filter": "nav-secondary"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary Explore",
+          "id": "nav-secondary-explore",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Secondary Explore",
+                  "model": "nav-secondary-explore",
+                  "imageAlt": "Explore All Topics",
+                  "link": "/tax-center/",
+                  "linkText": "Explore All Topics",
+                  "linkTitle": "Explore All Topics",
+                  "topics": "<ul><li><a href=\"/tax-center/life-stages/\">Life Stages</a></li><li><a href=\"/tax-center/work/\">Work</a></li><li><a href=\"/tax-center/taxes-101/\">Taxes 101</a></li><li><a href=\"/tax-center/tax-breaks-and-money/\">Tax Breaks and Money</a></li><li><a href=\"/tax-center/whats-new/\">What's New</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary Link — Life Stages",
+          "id": "nav-secondary-link",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Secondary Link",
+                  "model": "nav-secondary-link",
+                  "link": "/tax-center/life-stages/",
+                  "linkText": "Life Stages",
+                  "linkTitle": "Life Stages"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary Link — Work",
+          "id": "nav-secondary-link-work",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Secondary Link",
+                  "model": "nav-secondary-link",
+                  "link": "/tax-center/work/",
+                  "linkText": "Work",
+                  "linkTitle": "Work"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary Link — Taxes 101",
+          "id": "nav-secondary-link-taxes101",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Secondary Link",
+                  "model": "nav-secondary-link",
+                  "link": "/tax-center/taxes-101/",
+                  "linkText": "Taxes 101",
+                  "linkTitle": "Taxes 101"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary Link — Tax Breaks and Money",
+          "id": "nav-secondary-link-breaks",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Secondary Link",
+                  "model": "nav-secondary-link",
+                  "link": "/tax-center/tax-breaks-and-money/",
+                  "linkText": "Tax Breaks and Money",
+                  "linkTitle": "Tax Breaks and Money"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Nav Secondary Link — What's New",
+          "id": "nav-secondary-link-whatsnew",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Nav Secondary Link",
+                  "model": "nav-secondary-link",
+                  "link": "/tax-center/whats-new/",
+                  "linkText": "What's New",
+                  "linkTitle": "What's New"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Disclosures",
+          "id": "footer-disclosures",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Footer Disclosures",
+                  "model": "footer-disclosures",
+                  "filter": "footer-disclosures",
+                  "title": "Offer details and disclosures",
+                  "titleType": "h2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Group — Full Site",
+          "id": "disclosure-group",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Group",
+                  "model": "disclosure-group",
+                  "heading": "Full Site Disclaimers",
+                  "links": "<ol start=\"3\"><li value=\"3\">Additional fees apply for tax expert support.</li></ol>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Group — File Online",
+          "id": "disclosure-group-file-online",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Group",
+                  "model": "disclosure-group",
+                  "heading": "File Online",
+                  "links": "<ol start=\"22\"><li value=\"22\">H&amp;R Block Free Online is for simple returns only. Not everyone qualifies. All tax situations are different. Additional fees may apply.</li><li value=\"26\">Enrolled Agents do not provide legal representation; signed Power of Attorney required.</li></ol>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Group — Tax Software",
+          "id": "disclosure-group-tax-software",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Group",
+                  "model": "disclosure-group",
+                  "heading": "Tax Software",
+                  "links": "<ol start=\"41\"><li value=\"41\">Personal state programs are $39.95 each (state e-file available for $19.95).</li></ol>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Group — Retail",
+          "id": "disclosure-group-retail",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Group",
+                  "model": "disclosure-group",
+                  "heading": "Retail",
+                  "links": "<ol start=\"87\"><li value=\"87\">Comparison based on starting price for H&amp;R Block file with a tax pro. Prices may vary by office.</li></ol>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Group — Financial Services",
+          "id": "disclosure-group-financial",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Group",
+                  "model": "disclosure-group",
+                  "heading": "Financial Services",
+                  "links": "<ol start=\"109\"><li value=\"109\">This is an optional tax refund-related loan from Pathward, N.A.; it is not your tax refund.</li></ol>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Group — Income Tax Course",
+          "id": "disclosure-group-tax-course",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Group",
+                  "model": "disclosure-group",
+                  "heading": "Income Tax Course",
+                  "links": "<ol start=\"160\"><li value=\"160\">Enrollment in, or completion of, the H&amp;R Block Income Tax Course is neither an offer nor a guarantee of employment.</li></ol>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Disclosure Notes",
+          "id": "disclosure-notes",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Disclosure Notes",
+                  "model": "disclosure-notes",
+                  "notes": "<p>3. Additional fees apply for tax expert support.</p>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Support",
+          "id": "footer-support",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Footer Support",
+                  "model": "footer-support",
+                  "filter": "footer-support",
+                  "title": "Need support?",
+                  "titleType": "h2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Support Action",
+          "id": "support-action",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Support Action",
+                  "model": "support-action",
+                  "imageAlt": "Customer help",
+                  "link": "/support/",
+                  "linkText": "Customer help",
+                  "linkTitle": "Customer help"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Support Action — Find an office",
+          "id": "support-action-office",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Support Action",
+                  "model": "support-action",
+                  "imageAlt": "Find an office",
+                  "link": "/tax-offices/local/",
+                  "linkText": "Find an office",
+                  "linkTitle": "Find an office"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Support Action — Search",
+          "id": "support-action-search",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Support Action",
+                  "model": "support-action",
+                  "imageAlt": "Search",
+                  "link": "#site-search",
+                  "linkText": "Search",
+                  "linkTitle": "Search"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Links",
+          "id": "footer-links",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Footer Links",
+                  "filter": "footer-links"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Column",
+          "id": "footer-column",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Footer Column",
+                  "model": "footer-column",
+                  "content": "<h5><strong>Tax Services</strong></h5><ul><li><a href=\"/tax-offices/manage-appointment/\">Reschedule or manage appointment</a></li><li><a href=\"/online-tax-filing/\">Online tax filing</a></li><li><a href=\"/tax-offices/\">File with a tax pro</a></li><li><a href=\"/tax-software/\">Tax software</a></li></ul><h5><strong>Small Business Services</strong></h5><ul><li><a href=\"https://www.blockadvisors.com/\">Block Advisors</a></li><li><a href=\"/tax-offices/business-services/small-business-tax/\">Small business taxes</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Column — Tax Tools / Legal",
+          "id": "footer-column-2",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Footer Column",
+                  "model": "footer-column",
+                  "content": "<h5><strong>Tax Tools</strong></h5><ul><li><a href=\"/myblock-benefits/\">MyBlock</a></li><li><a href=\"/mobile/\">Mobile apps</a></li><li><a href=\"/tax-calculator/\">Tax calculator</a></li><li><a href=\"/tax-prep-checklist/\">Tax prep checklist</a></li></ul><h5><strong>Legal</strong></h5><ul><li><a href=\"/legal/\">Legal</a></li><li><a href=\"/privacy/\">Privacy</a></li><li><a href=\"/terms/\">Terms of use</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Column — Financial / Resources",
+          "id": "footer-column-3",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Footer Column",
+                  "model": "footer-column",
+                  "content": "<h5><strong>Financial Services</strong></h5><ul><li><a href=\"/financial-services/\">Overview</a></li><li><a href=\"/spruce/\">Spruce</a></li><li><a href=\"/financial-services/tax-refund-payment/\">Refund &amp; payment options</a></li></ul><h5><strong>Resources</strong></h5><ul><li><a href=\"/tax-center/\">Tax Center</a></li><li><a href=\"/help/\">Help center</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Column — About",
+          "id": "footer-column-4",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Footer Column",
+                  "model": "footer-column",
+                  "content": "<h5><strong>About H&amp;R Block</strong></h5><ul><li><a href=\"/corporate/\">Company</a></li><li><a href=\"/careers/\">Careers</a></li><li><a href=\"/newsroom/\">Newsroom</a></li><li><a href=\"/investors/\">Investors</a></li></ul>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Legal",
+          "id": "footer-legal",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Footer Legal",
+                  "model": "footer-legal",
+                  "filter": "footer-legal",
+                  "legal": "<p>Copyright © 2023-2024 HRB Digital LLC. All Rights Reserved.</p><p>Bank products and services are offered by Pathward®, N.A.</p><p>All deposit accounts through Pathward® are FDIC insured.</p>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Social Link",
+          "id": "social-link",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Social Link",
+                  "model": "social-link",
+                  "imageAlt": "TikTok",
+                  "link": "https://www.tiktok.com/@hrblock",
+                  "linkText": "TikTok",
+                  "linkTitle": "TikTok"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Social Link — Facebook",
+          "id": "social-link-facebook",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Social Link",
+                  "model": "social-link",
+                  "imageAlt": "Facebook",
+                  "link": "https://www.facebook.com/hrblock",
+                  "linkText": "Facebook",
+                  "linkTitle": "Facebook"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Social Link — Instagram",
+          "id": "social-link-instagram",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Social Link",
+                  "model": "social-link",
+                  "imageAlt": "Instagram",
+                  "link": "https://www.instagram.com/hrblock",
+                  "linkText": "Instagram",
+                  "linkTitle": "Instagram"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Social Link — YouTube",
+          "id": "social-link-youtube",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Social Link",
+                  "model": "social-link",
+                  "imageAlt": "YouTube",
+                  "link": "https://www.youtube.com/hrblock",
+                  "linkText": "YouTube",
+                  "linkTitle": "YouTube"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Social Link — X",
+          "id": "social-link-x",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Social Link",
+                  "model": "social-link",
+                  "imageAlt": "X",
+                  "link": "https://x.com/hrblock",
+                  "linkText": "X",
+                  "linkTitle": "X"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Seals",
+          "id": "footer-seals",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Footer Seals",
+                  "filter": "footer-seals"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Seal",
+          "id": "footer-seal",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Footer Seal",
+                  "model": "footer-seal",
+                  "imageAlt": "TRUSTe Privacy Certification",
+                  "link": "https://privacy.truste.com/privacy-seal/validation",
+                  "linkText": "TRUSTe Privacy Certification",
+                  "linkTitle": "TRUSTe Privacy Certification"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Footer Seal — Privacy Choices",
+          "id": "footer-seal-privacy",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Footer Seal",
+                  "model": "footer-seal",
+                  "link": "https://submit-irm.trustarc.com/services/validation/aa9303a8-87ee-42b9-b4db-84819fdef107",
+                  "linkText": "Your Privacy Choices",
+                  "linkTitle": "Your Privacy Choices"
                 }
               }
             }

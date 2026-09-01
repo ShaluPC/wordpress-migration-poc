@@ -19,6 +19,15 @@
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 
+  /* H&R Block brand (from AEM reimagine clientlib tokens) */
+  --hrb-dark-green: #005d1f;
+  --hrb-forest-green: #003512;
+  --hrb-eggshell: #f6f4e9;
+  --hrb-primary-black: #262626;
+  --hrb-mega-border: #e8eef1;
+  --hrb-column-rule: #d6dae0;
+  --hrb-light-grey-1: #f1f5f7;
+
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
@@ -36,8 +45,10 @@
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
 
-  /* nav height */
+  /* Primary bar 64px; family switcher 36px; Tax Center topic bar 48px */
   --nav-height: 64px;
+  --nav-family-height: 36px;
+  --nav-secondary-height: 48px;
 }
 
 /* fallback fonts */
@@ -86,7 +97,24 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  min-height: var(--nav-height);
+  height: auto;
+  overflow: visible;
+}
+
+header:has(.nav-family-list),
+header:has(.nav-family-container) {
+  min-height: calc(var(--nav-height) + var(--nav-family-height));
+}
+
+header:has(.nav-secondary-list),
+header:has(.nav-secondary-container) {
+  min-height: calc(var(--nav-height) + var(--nav-secondary-height));
+}
+
+header:has(.nav-family-list):has(.nav-secondary-list),
+header:has(.nav-family-container):has(.nav-secondary-container) {
+  min-height: calc(var(--nav-height) + var(--nav-family-height) + var(--nav-secondary-height));
 }
 
 header .header,

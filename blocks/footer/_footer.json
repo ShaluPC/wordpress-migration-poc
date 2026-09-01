@@ -1,14 +1,17 @@
 {
   "definitions": [
     {
-      "title": "Section",
-      "id": "section",
+      "title": "Footer",
+      "id": "footer",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/section/v1/section",
             "template": {
-              "model": "section"
+              "name": "Site Footer",
+              "model": "footer",
+              "filter": "footer",
+              "style": ["site-footer", "green-dark-theme"]
             }
           }
         }
@@ -17,23 +20,24 @@
   ],
   "models": [
     {
-      "id": "section",
+      "id": "footer",
       "fields": [
         {
           "component": "text",
           "name": "name",
+          "value": "Site Footer",
           "label": "Section Name",
-          "description": "The label shown for this section in the Content Tree"
+          "valueType": "string",
+          "description": "Label shown in the Content Tree"
         },
         {
           "component": "multiselect",
           "name": "style",
+          "value": ["site-footer", "green-dark-theme"],
           "label": "Style",
+          "valueType": "string",
+          "description": "Applies dark green footer theme. Keep both selected (editable).",
           "options": [
-            {
-              "name": "Highlight",
-              "value": "highlight"
-            },
             {
               "name": "Site Footer",
               "value": "site-footer"
@@ -49,18 +53,18 @@
   ],
   "filters": [
     {
-      "id": "section",
+      "id": "footer",
       "components": [
+        "footer-disclosures",
+        "footer-support",
+        "footer-links",
+        "footer-legal",
+        "footer-seals",
+        "columns",
         "text",
-        "image",
         "button",
         "title",
-        "hero",
-        "cards",
-        "columns",
-        "fragment",
-        "related-topics",
-        "recommended-articles"
+        "image"
       ]
     }
   ]

@@ -8,6 +8,7 @@ import {
   loadSections,
 } from './aem.js';
 import { decorateRichtext } from './editor-support-rte.js';
+import applyFooterTheme, { decorateNestedFooterBlocks } from './footer-theme.js';
 import { decorateButtons, decorateMain } from './scripts.js';
 
 let promiseChanges$ = Promise.resolve();
@@ -43,6 +44,7 @@ async function applyChanges(event) {
       decorateMain(newMain);
       decorateRichtext(newMain);
       await loadSections(newMain);
+      applyFooterTheme(newMain);
       element.remove();
       newMain.style.display = null;
       // eslint-disable-next-line no-use-before-define
@@ -62,6 +64,8 @@ async function applyChanges(event) {
         decorateBlock(newBlock);
         decorateRichtext(newBlock);
         await loadBlock(newBlock);
+        decorateNestedFooterBlocks(document.querySelector('main'));
+        applyFooterTheme(document.querySelector('main'));
         block.remove();
         newBlock.style.display = null;
         return true;
@@ -80,7 +84,9 @@ async function applyChanges(event) {
           decorateRichtext(newSection);
           decorateSections(parentElement);
           decorateBlocks(parentElement);
+          decorateNestedFooterBlocks(parentElement);
           await loadSections(parentElement);
+          applyFooterTheme(parentElement);
           element.remove();
           newSection.style.display = null;
         } else {
@@ -115,10 +121,31 @@ function attachEventListeners(main) {
 
 attachEventListeners(document.querySelector('main'));
 
+/**
+ * Nested Site Footer blocks may be decorated after first loadSection — load their CSS/JS.
+ * @param {Element} root
+ */
+async function loadPendingFooterBlocks(root) {
+  if (!root) return;
+  decorateNestedFooterBlocks(root);
+  const pending = [...root.querySelectorAll(
+    '.footer-support.block, .footer-links.block, .footer-legal.block, .footer-seals.block',
+  )].filter((b) => b.dataset.blockStatus === 'initialized');
+  await Promise.all(pending.map((b) => loadBlock(b)));
+  applyFooterTheme(root);
+}
+
 // decorate rich text
 // this has to happen after decorateMain(), and everythime decorateBlocks() is called
 decorateRichtext();
+loadPendingFooterBlocks(document.querySelector('main'));
 // in cases where the block decoration is not done in one synchronous iteration we need to listen
 // for new richtext-instrumented elements. this happens for example when using experimentation.
-const observer = new MutationObserver(() => decorateRichtext());
-observer.observe(document, { attributeFilter: ['data-richtext-prop'], subtree: true });
+const observer = new MutationObserver(() => {
+  decorateRichtext();
+  loadPendingFooterBlocks(document.querySelector('main'));
+});
+observer.observe(document, {
+  attributeFilter: ['data-richtext-prop', 'data-aue-model'],
+  subtree: true,
+});

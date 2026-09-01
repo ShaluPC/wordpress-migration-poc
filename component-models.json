@@ -136,6 +136,14 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Site Footer",
+            "value": "site-footer"
+          },
+          {
+            "name": "Green Dark Theme",
+            "value": "green-dark-theme"
           }
         ]
       }
@@ -315,12 +323,311 @@
     ]
   },
   {
+    "id": "footer-disclosures",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "value": "Offer details and disclosures",
+        "label": "Heading",
+        "description": "Accordion heading text"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "label": "Heading Type",
+        "value": "h2",
+        "valueType": "string",
+        "description": "Must use titleType so EDS renders a real heading tag",
+        "options": [
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "disclosure-group",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heading",
+        "value": "Full Site Disclaimers",
+        "label": "Group Heading"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "links",
+        "value": "<ol start=\"3\"><li value=\"3\">Additional fees apply for tax expert support.</li></ol>",
+        "label": "Disclaimer notes",
+        "description": "Numbered list (ol) of legal notes for this accordion group — not navigation links"
+      }
+    ]
+  },
+  {
+    "id": "disclosure-notes",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "notes",
+        "value": "<p>3. Additional fees apply for tax expert support.</p>",
+        "label": "Notes / Footnotes",
+        "description": "Optional extra notes group if not authored as a Disclosure Group"
+      }
+    ]
+  },
+  {
+    "id": "footer-legal",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "legal",
+        "value": "<p>Copyright © 2023-2024 HRB Digital LLC. All Rights Reserved.</p><p>Bank products and services are offered by Pathward®, N.A.</p><p>All deposit accounts through Pathward® are FDIC insured.</p>",
+        "label": "Legal / Copyright Text"
+      }
+    ]
+  },
+  {
+    "id": "social-link",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Icon Image",
+        "multi": false,
+        "description": "Select icon image from DAM"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "TikTok",
+        "label": "Icon Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "https://www.tiktok.com/@hrblock",
+        "label": "Link URL",
+        "description": "Page that opens when the icon is clicked"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "TikTok",
+        "label": "Accessible Name"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "TikTok",
+        "label": "Link Title"
+      }
+    ]
+  },
+  {
+    "id": "footer-column",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "content",
+        "value": "<h5><strong>Tax Services</strong></h5><ul><li><a href=\"/tax-offices/manage-appointment/\">Reschedule or manage appointment</a></li><li><a href=\"/online-tax-filing/\">Online tax filing</a></li><li><a href=\"/tax-offices/\">File with a tax pro</a></li></ul>",
+        "label": "Column Content",
+        "valueType": "string",
+        "description": "Add menu headings (H5) and link lists for this column. Defaults are editable."
+      }
+    ]
+  },
+  {
+    "id": "footer-seal",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Seal Image",
+        "multi": false,
+        "description": "Select seal image from DAM (optional for text-only links)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "TRUSTe Privacy Certification",
+        "label": "Image Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "https://privacy.truste.com/privacy-seal/validation",
+        "label": "Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "TRUSTe Privacy Certification",
+        "label": "Link Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "TRUSTe Privacy Certification",
+        "label": "Link Title / Aria Label"
+      }
+    ]
+  },
+  {
+    "id": "footer-support",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "value": "Need support?",
+        "label": "Heading",
+        "description": "Support row heading text"
+      },
+      {
+        "component": "select",
+        "name": "titleType",
+        "label": "Heading Type",
+        "value": "h2",
+        "valueType": "string",
+        "description": "Must use titleType so EDS renders a real heading tag",
+        "options": [
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "support-action",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Icon Image",
+        "multi": false,
+        "description": "Select icon image from DAM"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "Customer help",
+        "label": "Icon Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/support/",
+        "label": "Link / Action URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Customer help",
+        "label": "Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Customer help",
+        "label": "Title / Aria Label"
+      }
+    ]
+  },
+  {
+    "id": "footer",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "value": "Site Footer",
+        "label": "Section Name",
+        "valueType": "string",
+        "description": "Label shown in the Content Tree"
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "value": [
+          "site-footer",
+          "green-dark-theme"
+        ],
+        "label": "Style",
+        "valueType": "string",
+        "description": "Applies dark green footer theme. Keep both selected (editable).",
+        "options": [
+          {
+            "name": "Site Footer",
+            "value": "site-footer"
+          },
+          {
+            "name": "Green Dark Theme",
+            "value": "green-dark-theme"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
         "component": "aem-content",
         "name": "reference",
         "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "header",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "value": "Header Section",
+        "label": "Section Name",
+        "valueType": "string",
+        "description": "Label shown in the Content Tree"
       }
     ]
   },
@@ -408,91 +715,423 @@
     ]
   },
   {
-    "id": "table",
+    "id": "nav-brand",
     "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Logo Image",
+        "multi": false,
+        "description": "Select logo from DAM. Display size (height 40px, max-width 160px) comes from nav-brand.css."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "H&R Block",
+        "label": "Logo Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/",
+        "label": "Logo Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "H&R Block",
+        "label": "Accessible Name"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "H&R Block Home",
+        "label": "Link Title"
+      }
+    ]
+  },
+  {
+    "id": "family-brand",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Brand Icon / Logo",
+        "multi": false,
+        "description": "Optional DAM image. Display size (height 18px) comes from nav-family.css — authors only pick the asset."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "H&R Block",
+        "label": "Icon Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/",
+        "label": "Brand Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "H&R Block",
+        "label": "Brand Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "H&R Block",
+        "label": "Link Title / Aria Label"
+      },
       {
         "component": "select",
         "name": "classes",
-        "label": "Layout",
         "value": "",
+        "label": "Style",
         "valueType": "string",
+        "description": "Active white-pill look is styled in nav-family.css (not content size).",
         "options": [
           {
             "name": "Default",
             "value": ""
           },
           {
-            "name": "Fixed layout",
-            "value": "fixed-layout"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "headers",
-        "label": "Column Titles",
-        "multi": true,
-        "fields": [
-          {
-            "component": "text",
-            "name": "title",
-            "label": "Title"
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "name": "rows",
-        "label": "Rows",
-        "multi": true,
-        "fields": [
-          {
-            "component": "text",
-            "name": "rowLabel",
-            "label": "Row Label"
-          },
-          {
-            "component": "text",
-            "name": "cells",
-            "label": "Cells",
-            "multi": true
+            "name": "Active (white pill)",
+            "value": "active"
           }
         ]
       }
     ]
   },
   {
-    "id": "related-topics",
+    "id": "nav-panel",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "value": "/taxes/",
+        "label": "Top Nav Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Taxes",
+        "label": "Top Nav Label",
+        "description": "e.g. Taxes, Financial products, Business services, Tools and resources"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Taxes",
+        "label": "Link Title"
+      }
+    ]
+  },
+  {
+    "id": "mega-explore",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "value": "/taxes/",
+        "label": "Explore Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Explore taxes",
+        "label": "Explore Label",
+        "description": "e.g. Explore taxes"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Explore taxes",
+        "label": "Link Title"
+      }
+    ]
+  },
+  {
+    "id": "mega-primary",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "links",
+        "value": "<ul><li><a href=\"/online-tax-filing/\">File online</a></li><li><a href=\"/tax-offices/\">File with a pro</a></li><li><a href=\"/tax-software/\">Download software</a></li><li><a href=\"/tax-offices/business-services/small-business-tax/\">Small business taxes</a></li></ul>",
+        "label": "Primary Links",
+        "description": "Bold primary links list. Edit freely in Universal Editor."
+      }
+    ]
+  },
+  {
+    "id": "mega-column",
     "fields": [
       {
         "component": "text",
-        "name": "title",
-        "label": "Title",
-        "valueType": "string"
+        "valueType": "string",
+        "name": "heading",
+        "value": "More tax services",
+        "label": "Column Heading"
       },
       {
-        "component": "container",
-        "name": "topics",
-        "label": "Topics",
-        "multi": true,
-        "fields": [
+        "component": "richtext",
+        "valueType": "string",
+        "name": "links",
+        "value": "<ul><li><a href=\"/tax-offices/extended-tax-services/past-taxes/\">Second Look® Review</a></li><li><a href=\"/tax-offices/tax-prep/extended-service/\">Peace of Mind®</a></li><li><a href=\"/tax-offices/product-services/tax-identity-shield/\">Tax Identity Shield®</a></li><li><a href=\"/guarantees/\">Tax Notice Services</a></li><li><a href=\"/tax-offices/extended-tax-services/itin/\">ITIN application</a></li></ul>",
+        "label": "Column Links",
+        "description": "List of links for this column. Edit freely."
+      }
+    ]
+  },
+  {
+    "id": "mega-card",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Card Image",
+        "multi": false,
+        "description": "Optional DAM image. Rounded size (104×104, border-radius 8px) comes from nav-panel.css — authors only pick the asset."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "",
+        "label": "Image Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "value": "/tax-center/",
+        "label": "Card Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Tax Center",
+        "label": "Card Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Tax Center",
+        "label": "Link Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "value": "<p>Tax help, tips, tools, and answers for every situation.</p>",
+        "label": "Description / Disclaimer",
+        "description": "Card body text. Add a second paragraph for disclaimer (e.g. Pathward FDIC) if needed. Layout matches AEM PromoCard (left media / right CTA + bodycopy)."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "value": "cream",
+        "label": "Card Style",
+        "description": "Visual style from nav-panel.css: green (dark), cream (eggshell), accent (eggshell + neon edge — Spruce)",
+        "options": [
           {
-            "component": "aem-content",
-            "name": "link",
-            "label": "Link"
+            "name": "Green (dark)",
+            "value": "green"
           },
           {
-            "component": "text",
-            "name": "linkText",
-            "label": "CTA Text"
+            "name": "Cream",
+            "value": "cream"
           },
           {
-            "component": "text",
-            "name": "topicInfo",
-            "label": "Topic Info",
-            "valueType": "string"
+            "name": "Accent (eggshell + neon)",
+            "value": "accent"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "nav-secondary-explore",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Icon Image",
+        "multi": false,
+        "description": "Optional DAM icon. Size (18×18) and style come from nav-secondary.css — authors only pick the asset."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "Explore All Topics",
+        "label": "Icon Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/tax-center/",
+        "label": "Fallback Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Explore All Topics",
+        "label": "Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Explore All Topics",
+        "label": "Link Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "topics",
+        "value": "<ul><li><a href=\"/tax-center/life-stages/\">Life Stages</a></li><li><a href=\"/tax-center/work/\">Work</a></li><li><a href=\"/tax-center/taxes-101/\">Taxes 101</a></li><li><a href=\"/tax-center/tax-breaks-and-money/\">Tax Breaks and Money</a></li><li><a href=\"/tax-center/whats-new/\">What's New</a></li></ul>",
+        "label": "All Topics List",
+        "description": "Tax Center topic dropdown. Edit labels/URLs freely."
+      }
+    ]
+  },
+  {
+    "id": "nav-secondary-link",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/tax-center/life-stages/",
+        "label": "Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Life Stages",
+        "label": "Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Life Stages",
+        "label": "Link Title"
+      }
+    ]
+  },
+  {
+    "id": "nav-tool",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Icon Image",
+        "multi": false,
+        "description": "Select icon from DAM. Size (20×20) comes from nav-tools.css — authors only pick the asset."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "Find an office",
+        "label": "Icon Alt Text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/tax-offices/local/",
+        "label": "Link URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "Find an office",
+        "label": "Label"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Find an office",
+        "label": "Link Title"
+      }
+    ]
+  },
+  {
+    "id": "nav-signin",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Icon Image",
+        "multi": false,
+        "description": "Select icon from DAM. Icon size (18×18) and circular/pill button (border-radius 80px) come from nav-tools.css."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "value": "Sign in",
+        "label": "Icon Alt Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "value": "Sign in to",
+        "label": "Eyebrow Text",
+        "description": "Top line text"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "link",
+        "value": "/myblock/",
+        "label": "Sign In URL"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "value": "MyBlock",
+        "label": "Primary Label",
+        "description": "Bottom line text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkTitle",
+        "value": "Sign in to MyBlock",
+        "label": "Link Title / Aria Label"
       }
     ]
   },
@@ -541,6 +1180,95 @@
             "name": "linkText",
             "label": "Link Text",
             "valueType": "string"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "related-topics",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "container",
+        "name": "topics",
+        "label": "Topics",
+        "multi": true,
+        "fields": [
+          {
+            "component": "aem-content",
+            "name": "link",
+            "label": "Link"
+          },
+          {
+            "component": "text",
+            "name": "linkText",
+            "label": "CTA Text"
+          },
+          {
+            "component": "text",
+            "name": "topicInfo",
+            "label": "Topic Info",
+            "valueType": "string"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Fixed layout",
+            "value": "fixed-layout"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "headers",
+        "label": "Column Titles",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "title",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "name": "rows",
+        "label": "Rows",
+        "multi": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "rowLabel",
+            "label": "Row Label"
+          },
+          {
+            "component": "text",
+            "name": "cells",
+            "label": "Cells",
+            "multi": true
           }
         ]
       }

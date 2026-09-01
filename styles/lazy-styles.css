@@ -1,1 +1,35 @@
-/* add global styles that can be loaded post LCP here */
+/* H&R Block site footer — tokens from AEM reimagine footer.less / _variables.less */
+.site-footer,
+.green-dark-theme,
+footer .site-footer,
+footer .green-dark-theme,
+.section.site-footer,
+.section.green-dark-theme,
+footer .section.site-footer,
+footer .section.green-dark-theme {
+  --footer-bg: var(--hrb-dark-green, #005d1f);
+  --footer-fg: var(--hrb-eggshell, #f6f4e9);
+
+  background-color: var(--footer-bg);
+  color: var(--footer-fg);
+  padding: 0 0 20px;
+  width: 100%;
+  margin: 0;
+}
+
+:is(.site-footer, .green-dark-theme, footer .site-footer, footer .green-dark-theme, .section.site-footer, .section.green-dark-theme, footer .section.site-footer, footer .section.green-dark-theme) a {
+  color: inherit;
+}
+
+:is(.site-footer, .green-dark-theme, footer .site-footer, footer .green-dark-theme, .section.site-footer, .section.green-dark-theme, footer .section.site-footer, footer .section.green-dark-theme) a:hover {
+  color: #e8eef1;
+}
+
+.site-footer > div,
+.green-dark-theme > div,
+.section.site-footer > div,
+.section.green-dark-theme > div {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}

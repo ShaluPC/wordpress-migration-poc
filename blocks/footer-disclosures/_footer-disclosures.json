@@ -1,0 +1,215 @@
+{
+  "definitions": [
+    {
+      "title": "Footer Disclosures",
+      "id": "footer-disclosures",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Footer Disclosures",
+              "model": "footer-disclosures",
+              "filter": "footer-disclosures",
+              "title": "Offer details and disclosures",
+              "titleType": "h2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Group — Full Site",
+      "id": "disclosure-group",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Group",
+              "model": "disclosure-group",
+              "heading": "Full Site Disclaimers",
+              "links": "<ol start=\"3\"><li value=\"3\">Additional fees apply for tax expert support.</li></ol>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Group — File Online",
+      "id": "disclosure-group-file-online",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Group",
+              "model": "disclosure-group",
+              "heading": "File Online",
+              "links": "<ol start=\"22\"><li value=\"22\">H&amp;R Block Free Online is for simple returns only. Not everyone qualifies. All tax situations are different. Additional fees may apply.</li><li value=\"26\">Enrolled Agents do not provide legal representation; signed Power of Attorney required.</li></ol>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Group — Tax Software",
+      "id": "disclosure-group-tax-software",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Group",
+              "model": "disclosure-group",
+              "heading": "Tax Software",
+              "links": "<ol start=\"41\"><li value=\"41\">Personal state programs are $39.95 each (state e-file available for $19.95).</li></ol>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Group — Retail",
+      "id": "disclosure-group-retail",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Group",
+              "model": "disclosure-group",
+              "heading": "Retail",
+              "links": "<ol start=\"87\"><li value=\"87\">Comparison based on starting price for H&amp;R Block file with a tax pro. Prices may vary by office.</li></ol>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Group — Financial Services",
+      "id": "disclosure-group-financial",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Group",
+              "model": "disclosure-group",
+              "heading": "Financial Services",
+              "links": "<ol start=\"109\"><li value=\"109\">This is an optional tax refund-related loan from Pathward, N.A.; it is not your tax refund.</li></ol>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Group — Income Tax Course",
+      "id": "disclosure-group-tax-course",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Group",
+              "model": "disclosure-group",
+              "heading": "Income Tax Course",
+              "links": "<ol start=\"160\"><li value=\"160\">Enrollment in, or completion of, the H&amp;R Block Income Tax Course is neither an offer nor a guarantee of employment.</li></ol>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Disclosure Notes",
+      "id": "disclosure-notes",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Disclosure Notes",
+              "model": "disclosure-notes",
+              "notes": "<p>3. Additional fees apply for tax expert support.</p>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "footer-disclosures",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "value": "Offer details and disclosures",
+          "label": "Heading",
+          "description": "Accordion heading text"
+        },
+        {
+          "component": "select",
+          "name": "titleType",
+          "label": "Heading Type",
+          "value": "h2",
+          "valueType": "string",
+          "description": "Must use titleType so EDS renders a real heading tag",
+          "options": [
+            { "name": "H2", "value": "h2" },
+            { "name": "H3", "value": "h3" },
+            { "name": "H4", "value": "h4" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disclosure-group",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "heading",
+          "value": "Full Site Disclaimers",
+          "label": "Group Heading"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "links",
+          "value": "<ol start=\"3\"><li value=\"3\">Additional fees apply for tax expert support.</li></ol>",
+          "label": "Disclaimer notes",
+          "description": "Numbered list (ol) of legal notes for this accordion group — not navigation links"
+        }
+      ]
+    },
+    {
+      "id": "disclosure-notes",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "notes",
+          "value": "<p>3. Additional fees apply for tax expert support.</p>",
+          "label": "Notes / Footnotes",
+          "description": "Optional extra notes group if not authored as a Disclosure Group"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "footer-disclosures",
+      "components": [
+        "disclosure-group",
+        "disclosure-group-file-online",
+        "disclosure-group-tax-software",
+        "disclosure-group-retail",
+        "disclosure-group-financial",
+        "disclosure-group-tax-course",
+        "disclosure-notes"
+      ]
+    }
+  ]
+}

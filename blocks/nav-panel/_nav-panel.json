@@ -1,0 +1,311 @@
+{
+  "definitions": [
+    {
+      "title": "Nav Panel — Taxes",
+      "id": "nav-panel",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Panel",
+              "model": "nav-panel",
+              "filter": "nav-panel",
+              "link": "/taxes/",
+              "linkText": "Taxes",
+              "linkTitle": "Taxes"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Panel — Financial products",
+      "id": "nav-panel-financial",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Panel",
+              "model": "nav-panel",
+              "filter": "nav-panel",
+              "link": "/financial-services/",
+              "linkText": "Financial products",
+              "linkTitle": "Financial products"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Panel — Business services",
+      "id": "nav-panel-business",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Panel",
+              "model": "nav-panel",
+              "filter": "nav-panel",
+              "link": "/tax-offices/business-services/",
+              "linkText": "Business services",
+              "linkTitle": "Business services"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Panel — Tools and resources",
+      "id": "nav-panel-tools",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Panel",
+              "model": "nav-panel",
+              "filter": "nav-panel",
+              "link": "/tax-center/",
+              "linkText": "Tools and resources",
+              "linkTitle": "Tools and resources"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Mega Explore",
+      "id": "mega-explore",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Mega Explore",
+              "model": "mega-explore",
+              "link": "/taxes/",
+              "linkText": "Explore taxes",
+              "linkTitle": "Explore taxes"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Mega Primary Links",
+      "id": "mega-primary",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Mega Primary Links",
+              "model": "mega-primary",
+              "links": "<ul><li><a href=\"/online-tax-filing/\">File online</a></li><li><a href=\"/tax-offices/\">File with a pro</a></li><li><a href=\"/tax-software/\">Download software</a></li><li><a href=\"/tax-offices/business-services/small-business-tax/\">Small business taxes</a></li></ul>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Mega Column",
+      "id": "mega-column",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Mega Column",
+              "model": "mega-column",
+              "heading": "More tax services",
+              "links": "<ul><li><a href=\"/tax-offices/extended-tax-services/past-taxes/\">Second Look® Review</a></li><li><a href=\"/tax-offices/tax-prep/extended-service/\">Peace of Mind®</a></li><li><a href=\"/tax-offices/product-services/tax-identity-shield/\">Tax Identity Shield®</a></li><li><a href=\"/guarantees/\">Tax Notice Services</a></li><li><a href=\"/tax-offices/extended-tax-services/itin/\">ITIN application</a></li></ul>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Mega Card",
+      "id": "mega-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Mega Card",
+              "model": "mega-card",
+              "imageAlt": "",
+              "link": "/tax-center/",
+              "linkText": "Tax Center",
+              "linkTitle": "Tax Center",
+              "description": "<p>Tax help, tips, tools, and answers for every situation.</p>",
+              "classes": "cream"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "nav-panel",
+      "fields": [
+        {
+          "component": "aem-content",
+          "name": "link",
+          "value": "/taxes/",
+          "label": "Top Nav Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "Taxes",
+          "label": "Top Nav Label",
+          "description": "e.g. Taxes, Financial products, Business services, Tools and resources"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "Taxes",
+          "label": "Link Title"
+        }
+      ]
+    },
+    {
+      "id": "mega-explore",
+      "fields": [
+        {
+          "component": "aem-content",
+          "name": "link",
+          "value": "/taxes/",
+          "label": "Explore Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "Explore taxes",
+          "label": "Explore Label",
+          "description": "e.g. Explore taxes"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "Explore taxes",
+          "label": "Link Title"
+        }
+      ]
+    },
+    {
+      "id": "mega-primary",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "links",
+          "value": "<ul><li><a href=\"/online-tax-filing/\">File online</a></li><li><a href=\"/tax-offices/\">File with a pro</a></li><li><a href=\"/tax-software/\">Download software</a></li><li><a href=\"/tax-offices/business-services/small-business-tax/\">Small business taxes</a></li></ul>",
+          "label": "Primary Links",
+          "description": "Bold primary links list. Edit freely in Universal Editor."
+        }
+      ]
+    },
+    {
+      "id": "mega-column",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "heading",
+          "value": "More tax services",
+          "label": "Column Heading"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "links",
+          "value": "<ul><li><a href=\"/tax-offices/extended-tax-services/past-taxes/\">Second Look® Review</a></li><li><a href=\"/tax-offices/tax-prep/extended-service/\">Peace of Mind®</a></li><li><a href=\"/tax-offices/product-services/tax-identity-shield/\">Tax Identity Shield®</a></li><li><a href=\"/guarantees/\">Tax Notice Services</a></li><li><a href=\"/tax-offices/extended-tax-services/itin/\">ITIN application</a></li></ul>",
+          "label": "Column Links",
+          "description": "List of links for this column. Edit freely."
+        }
+      ]
+    },
+    {
+      "id": "mega-card",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Card Image",
+          "multi": false,
+          "description": "Optional DAM image. Rounded size (104×104, border-radius 8px) comes from nav-panel.css — authors only pick the asset."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "value": "",
+          "label": "Image Alt Text"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "value": "/tax-center/",
+          "label": "Card Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "Tax Center",
+          "label": "Card Title"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "Tax Center",
+          "label": "Link Title"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "description",
+          "value": "<p>Tax help, tips, tools, and answers for every situation.</p>",
+          "label": "Description / Disclaimer",
+          "description": "Card body text. Add a second paragraph for disclaimer (e.g. Pathward FDIC) if needed. Layout matches AEM PromoCard (left media / right CTA + bodycopy)."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "classes",
+          "value": "cream",
+          "label": "Card Style",
+          "description": "Visual style from nav-panel.css: green (dark), cream (eggshell), accent (eggshell + neon edge — Spruce)",
+          "options": [
+            { "name": "Green (dark)", "value": "green" },
+            { "name": "Cream", "value": "cream" },
+            { "name": "Accent (eggshell + neon)", "value": "accent" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "nav-panel",
+      "components": [
+        "mega-explore",
+        "mega-primary",
+        "mega-column",
+        "mega-card"
+      ]
+    }
+  ]
+}

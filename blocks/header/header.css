@@ -1,33 +1,85 @@
-/* header and nav layout */
+/* H&R Block header — aligned to AEM reimagine header.less */
+
 header .nav-wrapper {
-  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #fff;
   width: 100%;
-  z-index: 2;
-  position: fixed;
+  z-index: 100;
+  position: relative;
+  box-shadow: none;
+}
+
+/* Tier 1 — family brands (dark green bar) */
+header .nav-wrapper > .nav-family,
+header .nav-wrapper > .nav-family-wrapper,
+header .nav-wrapper > .section.nav-family {
+  display: block;
+  order: 0;
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--hrb-forest-green, #003512);
+}
+
+header .nav-wrapper > .nav-secondary,
+header .nav-wrapper > .nav-secondary-wrapper,
+header .nav-wrapper > .section.nav-secondary {
+  display: block;
+  order: 2;
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header .nav-wrapper > .nav-family > div,
+header .nav-wrapper > .nav-family-wrapper > div,
+header .nav-wrapper > .nav-secondary > div,
+header .nav-wrapper > .nav-secondary-wrapper > div,
+header .nav-wrapper > .section.nav-family > div,
+header .nav-wrapper > .section.nav-secondary > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 header nav {
+  order: 1;
+  width: 100%;
   box-sizing: border-box;
   display: grid;
   grid-template:
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
   align-items: center;
-  gap: 0 24px;
+  gap: 0 16px;
   margin: auto;
-  max-width: 1248px;
+  max-width: none;
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 8px 25px;
   font-family: var(--body-font-family);
+  color: var(--hrb-forest-green, #003512);
 }
 
 header nav[aria-expanded='true'] {
   grid-template:
     'hamburger brand' var(--nav-height)
     'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    'tools tools' auto / auto 1fr;
   overflow-y: auto;
   min-height: 100dvh;
+  align-items: start;
+}
+
+@media (width < 900px) {
+  header nav[aria-expanded='true'] ~ .nav-secondary,
+  header nav[aria-expanded='true'] ~ .nav-secondary-wrapper,
+  header nav[aria-expanded='true'] ~ .section.nav-secondary {
+    display: none;
+  }
 }
 
 @media (width >= 900px) {
@@ -36,11 +88,13 @@ header nav[aria-expanded='true'] {
   }
 
   header nav {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    align-items: center;
+    gap: 12px;
+    height: var(--nav-height);
+    padding: 8px 24px;
   }
 
   header nav[aria-expanded='true'] {
@@ -55,28 +109,28 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: inherit;
+  text-decoration: none;
 }
 
-/* hamburger */
+/* hamburger — forest green bars like AEM .line-icon */
 header nav .nav-hamburger {
   grid-area: hamburger;
-  height: 22px;
+  height: 32px;
   display: flex;
   align-items: center;
 }
 
 header nav .nav-hamburger button {
-  height: 22px;
+  height: 32px;
+  width: 32px;
   margin: 0;
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
+  background-color: transparent;
+  color: var(--hrb-forest-green, #003512);
+  cursor: pointer;
 }
 
 header nav .nav-hamburger-icon,
@@ -99,7 +153,7 @@ header nav[aria-expanded='false'] .nav-hamburger-icon,
 header nav[aria-expanded='false'] .nav-hamburger-icon::before,
 header nav[aria-expanded='false'] .nav-hamburger-icon::after {
   height: 2px;
-  border-radius: 2px;
+  border-radius: 0;
   background: currentcolor;
 }
 
@@ -123,7 +177,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform-origin: 2px 1px;
   width: 24px;
   height: 2px;
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 header nav[aria-expanded='true'] .nav-hamburger-icon::after {
@@ -142,18 +196,26 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
+  flex: 0 0 auto;
+}
+
+header nav .nav-brand-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--hrb-forest-green, #003512);
   font-weight: 700;
-  line-height: 1;
+  font-size: 1.05rem;
+  text-decoration: none;
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 40px;
+  max-width: 160px;
+  object-fit: contain;
 }
 
-/* sections */
+/* sections / main menu — AEM .nav-primary-links */
 header nav .nav-sections {
   grid-area: sections;
   flex: 1 1 auto;
@@ -165,24 +227,38 @@ header nav[aria-expanded='true'] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
+  width: 100%;
+  padding: 16px 0;
 }
 
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  margin: 0;
 }
 
-header nav .nav-sections ul > li {
-  font-weight: 500;
+header nav .nav-sections .nav-menu-list,
+header nav .nav-sections .default-content-wrapper > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
+header nav .nav-sections .nav-menu-link,
+header nav .nav-sections .nav-menu-list > li > a,
+header nav .nav-sections .default-content-wrapper > ul > li > a {
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--hrb-forest-green, #003512);
 }
 
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
+header nav .nav-sections .nav-menu-link:hover,
+header nav .nav-sections .nav-menu-link:focus {
+  color: var(--hrb-dark-green, #005d1f);
+  text-decoration: none;
 }
 
 @media (width >= 900px) {
@@ -193,80 +269,188 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
+    align-self: center;
+    padding: 0;
+    width: auto;
+  }
+
+  header nav .nav-sections .nav-menu-list,
+  header nav .nav-sections .default-content-wrapper > ul {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    margin: 0 4px;
   }
 
   header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
+    position: static;
+    padding: 0 16px;
     cursor: pointer;
   }
 
-  header nav .nav-sections .nav-drop::after {
-    content: '';
+  header nav .nav-sections .nav-drop > .nav-menu-link {
     display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
+    padding: 0;
+    margin-bottom: 0;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
-  }
-
-  header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
-    margin: 0;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+  /* AEM active/hover underline: 4px, radius 2px, #005d1f, bottom -12px */
+  header nav .nav-sections .nav-drop > .nav-menu-link::after {
     content: '';
     position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    left: 0;
+    width: 100%;
+    height: 4px;
+    bottom: -12px;
+    border-radius: 2px;
+    background-color: transparent;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+  header nav .nav-sections .nav-drop:hover > .nav-menu-link::after,
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > .nav-menu-link::after {
+    background-color: var(--hrb-dark-green, #005d1f);
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > .nav-menu-link {
+    color: var(--hrb-dark-green, #005d1f);
+  }
+
+  header nav .nav-sections .nav-drop > ul,
+  header nav .nav-sections .nav-submenu {
+    display: none;
+  }
+
+  header nav .nav-sections .mega-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 20;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 36px 48px 48px;
+    background: #fff;
+    border-top: 1px solid var(--hrb-mega-border, #e8eef1);
+    box-shadow: none;
+    white-space: normal;
+    text-align: left;
+    cursor: default;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > .mega-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  /* Full desktop: cards stay on RIGHT */
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > .mega-menu > .mega-cards {
+    margin-left: auto;
+  }
+}
+
+@media (width >= 900px) and (width < 1360px) {
+  header nav .nav-sections .mega-menu {
+    padding: 32px 24px 40px;
+  }
+
+  /* Mid viewport: not enough room — cards wrap BELOW columns (come down) */
+  header nav .nav-sections .nav-drop[aria-expanded='true'] > .mega-menu > .mega-cards {
+    flex: 1 0 100%;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    order: 3;
+  }
+}
+
+@media (width >= 1360px) and (width <= 1560px) {
+  header nav .nav-sections .mega-menu {
+    padding: 36px 40px 48px;
+  }
+}
+
+@media (width >= 1560px) {
+  header nav .nav-sections .mega-menu {
+    padding: 40px 64px 52px;
+    max-height: 55vh;
+  }
+}
+
+@media (width >= 900px) {
+  body.nav-mega-open::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    top: var(--nav-height);
+    background: rgb(0 0 0 / 50%);
+    z-index: 90;
+    pointer-events: none;
+  }
+
+  body.nav-mega-open:has(.nav-family)::after {
+    top: calc(var(--nav-height) + var(--nav-family-height));
+  }
+
+  body.nav-mega-open:has(.nav-secondary)::after {
+    top: calc(var(--nav-height) + var(--nav-secondary-height));
+  }
+
+  body.nav-mega-open:has(.nav-family):has(.nav-secondary)::after {
+    top: calc(var(--nav-height) + var(--nav-family-height) + var(--nav-secondary-height));
+  }
+}
+
+/* Mobile mega accordion — must not override desktop (nav is aria-expanded=true there) */
+@media (width < 900px) {
+  header nav[aria-expanded='true'] .nav-sections .mega-menu {
+    display: none;
+    padding: 12px 0 20px;
+    white-space: normal;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] > .mega-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections .mega-cards {
+    max-width: none;
+    flex: none;
+  }
+
+  header nav[aria-expanded='true'] .nav-sections .mega-menu-main,
+  header nav[aria-expanded='true'] .nav-sections .mega-columns {
+    max-width: none;
+    flex: none;
+    width: 100%;
   }
 }
 
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  flex: 0 0 auto;
+  justify-self: end;
+  margin-left: auto;
+}
+
+header nav[aria-expanded='true'] .nav-tools {
+  width: 100%;
+  padding: 16px 0 32px;
+}
+
+@media (width >= 900px) {
+  header nav[aria-expanded='true'] .nav-tools {
+    width: auto;
+    padding: 0;
+  }
 }
