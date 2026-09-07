@@ -1,6 +1,60 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function getText(node) {
+  return node?.textContent?.replace(/\s+/g, ' ').trim() || '';
+}
+
+function getDirectChildren(node) {
+  return node ? [...node.children] : [];
+}
+
+function getCtaFieldGroups(block) {
+  const fieldNodes = [...block.querySelectorAll('[data-aue-prop^="ctas/"]')];
+  if (!fieldNodes.length) return [];
+
+  const groups = new Map();
+  fieldNodes.forEach((node) => {
+    const prop = node.getAttribute('data-aue-prop') || '';
+    const match = prop.match(/^ctas\/(\d+)\/([^/]+)$/);
+    if (!match) return;
+
+    const [, index, fieldName] = match;
+    if (!groups.has(index)) groups.set(index, {});
+    groups.get(index)[fieldName] = node;
+  });
+
+  return [...groups.entries()]
+    .sort((a, b) => Number(a[0]) - Number(b[0]))
+    .map(([, fields]) => fields);
+}
+
+function getCtaRowsFromMarkup(row) {
+  const root = row.querySelector(':scope > div') || row;
+  const listItems = [...root.querySelectorAll(':scope ul > li')];
+  if (listItems.length) return listItems;
+
+  const groups = [];
+  let current = [];
+
+  getDirectChildren(root).forEach((child) => {
+    if (child.tagName === 'HR') {
+      if (current.length) groups.push(current);
+      current = [];
+      return;
+    }
+
+    if (getText(child) || child.querySelector('a[href]')) {
+      current.push(child);
+    }
+  });
+
+  if (current.length) groups.push(current);
+  if (groups.length) return groups;
+
+  return getText(root) || root.querySelector('a[href]') ? [[...getDirectChildren(root)]] : [];
+}
+
 function decorateButtons(rows) {
   const buttonList = document.createElement('div');
   buttonList.className = 'cta-banner-buttons';
@@ -17,9 +71,10 @@ function decorateButtons(rows) {
   }
 
   rows.forEach((row) => {
-    const cells = Array.isArray(row) ? row : [...row.querySelectorAll(':scope > *')].filter((cell) => cell.tagName !== 'HR');
-    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"]')) || cells[0] || null;
-    const typeCell = cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow' || ['primary', 'secondary'].includes(cell.textContent?.trim().toLowerCase())) || null;
+    const cells = Array.isArray(row) ? row : [row];
+    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"], [data-aue-prop$="/linkText"]') || cell.querySelector?.('a[href]')) || null;
+    const typeCell = cells.find((cell) => cell.matches?.('[data-aue-prop$="/linkType"]') || ['primary', 'secondary', 'right-arrow'].includes(getText(cell).toLowerCase())) || null;
+    const textCell = cells.find((cell) => cell !== linkCell && (cell.matches?.('[data-aue-prop$="/linkText"]') || !!getText(cell))) || null;
     const sourceNode = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector?.('a[href]') || linkCell;
     const href = getHref(linkCell);
     if (!href) return;
@@ -32,8 +87,8 @@ function decorateButtons(rows) {
     button.href = href;
     button.className = 'button';
 
-    const linkType = typeCell?.textContent?.trim().toLowerCase();
-    const buttonText = sourceNode?.textContent?.trim() || linkCell?.textContent?.trim() || href;
+    const linkType = getText(typeCell).toLowerCase();
+    const buttonText = getText(textCell) || getText(sourceNode) || getText(linkCell) || href;
     if (linkType === 'primary') {
       button.textContent = buttonText;
       button.classList.add('primary');
@@ -78,33 +133,10 @@ export default function decorate(block) {
 
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
-  const ctaRows = rows.slice(2).flatMap((row) => {
-    const ctaContainer = row.querySelector('[data-aue-prop^="ctas/"]')?.closest('div')
-      || row.querySelector('a[href]')?.closest('div')
-      || row;
-    const groups = [];
-    let currentGroup = [];
-
-    [...ctaContainer.children].forEach((child) => {
-      if (child.tagName === 'HR') {
-        if (currentGroup.length) {
-          groups.push(currentGroup);
-          currentGroup = [];
-        }
-        return;
-      }
-
-      currentGroup.push(child);
-    });
-
-    if (currentGroup.length) groups.push(currentGroup);
-
-    if (!groups.length && ctaContainer.querySelector('a[href]')) {
-      groups.push([...ctaContainer.children].filter((child) => child.tagName !== 'HR'));
-    }
-
-    return groups;
-  });
+  const fieldGroups = getCtaFieldGroups(block);
+  const ctaRows = fieldGroups.length
+    ? fieldGroups.map((fields) => [fields.link || fields.linkText || fields.buttonText, fields.linkText, fields.linkType].filter(Boolean))
+    : rows.slice(2).flatMap((row) => getCtaRowsFromMarkup(row));
 
   if (titleCell) {
     const title = document.createElement('div');
