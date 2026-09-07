@@ -164,7 +164,12 @@ function decorateButtons(rows) {
     button.className = 'button';
 
     const linkType = cta.type || 'secondary';
+    buttonWrapper.setAttribute('data-link-type', linkType);
+    buttonWrapper.setAttribute('data-linktype', linkType);
+    buttonWrapper.setAttribute('linktype', linkType);
     button.setAttribute('data-link-type', linkType);
+    button.setAttribute('data-linktype', linkType);
+    button.setAttribute('linktype', linkType);
     const buttonText = cta.text;
 
     if (linkType === 'primary') {
