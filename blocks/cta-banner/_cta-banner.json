@@ -103,7 +103,12 @@
                   "value": "right-arrow"
                 }
               ]
-            }
+            },{
+              "component": "text",
+              "name": "test",
+              "label": "Test",
+              "valueType": "string"
+            },
           ]
         }
       ]
