@@ -223,9 +223,10 @@
         "multi": true,
         "fields": [
           {
-            "component": "aem-content",
+            "component": "text",
             "name": "link",
-            "label": "Link"
+            "label": "Link",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -237,7 +238,7 @@
             "name": "linkType",
             "label": "Type",
             "valueType": "string",
-            "value": "",
+            "value": "secondary",
             "options": [
               {
                 "name": "default",
@@ -453,7 +454,7 @@
         "value": "<h5><strong>Tax Services</strong></h5><ul><li><a href=\"/tax-offices/manage-appointment/\">Reschedule or manage appointment</a></li><li><a href=\"/online-tax-filing/\">Online tax filing</a></li><li><a href=\"/tax-offices/\">File with a tax pro</a></li></ul>",
         "label": "Column Content",
         "valueType": "string",
-        "description": "Add menu headings (H5) and link lists for this column. Defaults are editable."
+        "description": "Add menu headings (H5) and link lists for this column. Defaults match the authoring guide and are fully editable."
       }
     ]
   },
@@ -472,28 +473,28 @@
         "component": "text",
         "valueType": "string",
         "name": "imageAlt",
-        "value": "TRUSTe Privacy Certification",
+        "value": "TRUSTe Certified Privacy",
         "label": "Image Alt Text"
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "link",
-        "value": "https://privacy.truste.com/privacy-seal/validation",
+        "value": "https://privacy.truste.com/privacy-seal/validation?rid=d3f53dd3-a8a0-4f4e-84aa-56378ed8565d",
         "label": "Link URL"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "linkText",
-        "value": "TRUSTe Privacy Certification",
+        "value": "TRUSTe Certified Privacy",
         "label": "Link Label"
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "linkTitle",
-        "value": "TRUSTe Privacy Certification",
+        "value": "TRUSTe Certified Privacy",
         "label": "Link Title / Aria Label"
       }
     ]
