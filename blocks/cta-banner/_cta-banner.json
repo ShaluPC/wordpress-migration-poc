@@ -108,7 +108,7 @@
               "name": "test",
               "label": "Test",
               "valueType": "string"
-            },
+            }
           ]
         }
       ]
