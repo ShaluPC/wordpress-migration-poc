@@ -155,7 +155,7 @@ function getTopicFieldGroups(block) {
 }
 
 function buildTopicItemFromFields(fields) {
-  const linkField = fields.link;
+  const linkField = fields.link || fields.linkText || fields.buttonText;
   const buttonTextField = fields.linkText || fields.buttonText;
   const infoField = fields.topicInfo;
   return buildTopicItem(linkField, buttonTextField, infoField);
