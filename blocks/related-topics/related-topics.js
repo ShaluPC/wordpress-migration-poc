@@ -46,43 +46,90 @@ function buildTopicItem(linkNode, buttonTextNode, infoNode) {
   return item;
 }
 
-function buildTopicItemFromRow(row) {
-  const cells = getDirectChildren(row).filter((child) => getText(child) || child.querySelector('a[href]') || child.tagName === 'A');
-  const linkNode = cells.find((child) => child.querySelector('a[href]') || child.tagName === 'A');
-  const textCells = cells.filter((child) => child !== linkNode && getText(child));
-  const buttonTextNode = textCells[0];
-  const infoNode = textCells[1];
+function hasTopicContent(node) {
+  return !!(node && (getText(node) || node.querySelector('a[href]') || node.tagName === 'A'));
+}
 
+function resolveTopicNodes(nodes) {
+  const linkNode = nodes.find((node) => node.querySelector('a[href]') || node.tagName === 'A') || null;
+  const textNodes = nodes.filter((node) => node !== linkNode && getText(node));
+
+  if (textNodes.length >= 2) {
+    return {
+      linkNode,
+      buttonTextNode: textNodes[0],
+      infoNode: textNodes[1],
+    };
+  }
+
+  if (textNodes.length === 1) {
+    return {
+      linkNode,
+      buttonTextNode: linkNode ? null : textNodes[0],
+      infoNode: linkNode ? textNodes[0] : null,
+    };
+  }
+
+  return {
+    linkNode,
+    buttonTextNode: null,
+    infoNode: null,
+  };
+}
+
+function buildTopicItemFromNodes(nodes) {
+  const { linkNode, buttonTextNode, infoNode } = resolveTopicNodes(nodes);
   return buildTopicItem(linkNode, buttonTextNode, infoNode);
 }
 
-function buildTopicItemsFromFlatRow(row) {
-  const root = row.querySelector(':scope > div') || row;
-  const segments = [];
+function getFlatTopicGroups(root) {
+  const groups = [];
   let current = [];
 
   getDirectChildren(root).forEach((node) => {
     if (node.tagName === 'HR') {
-      if (current.length) segments.push(current);
+      if (current.length) groups.push(current);
       current = [];
       return;
     }
 
-    if (node.tagName === 'P' || node.tagName === 'DIV' || node.tagName === 'A') {
-      if (getText(node) || node.querySelector('a[href]')) {
-        current.push(node);
-      }
+    if (hasTopicContent(node)) {
+      current.push(node);
     }
   });
 
-  if (current.length) segments.push(current);
+  if (current.length) groups.push(current);
+  return groups;
+}
 
-  return segments.map((segment) => {
-    const linkNode = segment.find((node) => node.querySelector('a[href]') || node.tagName === 'A');
-    const textNodes = segment.filter((node) => node !== linkNode && getText(node));
-    const buttonTextNode = textNodes[0];
-    const infoNode = textNodes[1];
-    return buildTopicItem(linkNode, buttonTextNode, infoNode);
+function buildTopicItemsFromFlatRow(row) {
+  const root = row.querySelector(':scope > div') || row;
+  const groups = getFlatTopicGroups(root);
+
+  if (groups.length > 1) {
+    return groups.map((nodes) => buildTopicItemFromNodes(nodes));
+  }
+
+  const links = [...root.querySelectorAll('a[href]')];
+  if (links.length <= 1) {
+    return [buildTopicItemFromNodes(getDirectChildren(root).filter(hasTopicContent))];
+  }
+
+  return links.map((link) => {
+    const linkNode = link.closest('p,div,li,a') || link;
+    let infoNode = null;
+    let cursor = linkNode.nextElementSibling;
+
+    while (cursor) {
+      if (cursor.querySelector('a[href]')) break;
+      if (getText(cursor)) {
+        infoNode = cursor;
+        break;
+      }
+      cursor = cursor.nextElementSibling;
+    }
+
+    return buildTopicItem(linkNode, null, infoNode);
   });
 }
 
@@ -146,11 +193,14 @@ export default function decorate(block) {
   } else {
     const rows = children
       .filter((child) => child !== titleCell)
-      .filter((child) => getText(child) || child.querySelector('a[href]'));
+      .filter((child) => hasTopicContent(child) || child.querySelector('hr'));
 
     rows.forEach((row) => {
-      const hasFlatMarkup = !!row.querySelector('hr');
-      const items = hasFlatMarkup ? buildTopicItemsFromFlatRow(row) : [buildTopicItemFromRow(row)];
+      const root = row.querySelector(':scope > div') || row;
+      const hasFlatMarkup = !!root.querySelector('hr') || root.querySelectorAll('a[href]').length > 1;
+      const items = hasFlatMarkup
+        ? buildTopicItemsFromFlatRow(row)
+        : [buildTopicItemFromNodes(getDirectChildren(row).filter(hasTopicContent))];
 
       items.forEach((item) => {
         if (item.children.length) {
