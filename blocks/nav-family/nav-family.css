@@ -1,0 +1,99 @@
+.nav-family {
+  width: 100%;
+  background-color: var(--hrb-forest-green, #003512);
+  color: #fff;
+}
+
+.nav-family .nav-family-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  width: 100%;
+  min-height: var(--nav-family-height, 36px);
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+@media (width >= 900px) {
+  .nav-family .nav-family-inner {
+    padding: 0 24px;
+  }
+}
+
+@media (width >= 1200px) {
+  .nav-family .nav-family-inner {
+    padding: 0 32px;
+  }
+}
+
+.nav-family .nav-family-list {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-family .nav-family-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  min-height: var(--nav-family-height, 36px);
+  padding: 0 14px;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.nav-family .nav-family-link:hover,
+.nav-family .nav-family-link:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: rgb(255 255 255 / 8%);
+}
+
+.nav-family .is-active .nav-family-link {
+  background-color: #fff;
+  color: var(--hrb-primary-black, #262626);
+  font-weight: 700;
+}
+
+.nav-family .is-active .nav-family-link:hover,
+.nav-family .is-active .nav-family-link:focus {
+  background-color: #fff;
+  color: var(--hrb-primary-black, #262626);
+}
+
+.nav-family .nav-family-icon {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.nav-family .nav-family-icon img,
+.nav-family .nav-family-icon picture {
+  display: block;
+  width: auto;
+  height: 18px;
+  max-width: 72px;
+  object-fit: contain;
+}
+
+.nav-family .nav-family-label {
+  display: inline-block;
+}
+
+/* Spruce wordmark tends to use a lighter serif look on live site */
+.nav-family .nav-family-link[aria-label*='Spruce' i] .nav-family-label {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}

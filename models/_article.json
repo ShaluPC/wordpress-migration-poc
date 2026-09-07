@@ -54,7 +54,8 @@
         "fragment",
         "breadcrumb",
         "table",
-        "article-detail-bar"
+        "article-detail-bar",
+        "recommended-articles"
       ]
     }
   ]

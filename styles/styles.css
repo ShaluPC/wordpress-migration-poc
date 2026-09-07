@@ -19,6 +19,15 @@
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 
+  /* H&R Block brand (from AEM reimagine clientlib tokens) */
+  --hrb-dark-green: #005d1f;
+  --hrb-forest-green: #003512;
+  --hrb-eggshell: #f6f4e9;
+  --hrb-primary-black: #262626;
+  --hrb-mega-border: #e8eef1;
+  --hrb-column-rule: #d6dae0;
+  --hrb-light-grey-1: #f1f5f7;
+
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
@@ -36,8 +45,10 @@
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
 
-  /* nav height */
+  /* Primary bar 64px; family switcher 36px; Tax Center topic bar 48px */
   --nav-height: 64px;
+  --nav-family-height: 36px;
+  --nav-secondary-height: 48px;
 }
 
 /* fallback fonts */
@@ -86,7 +97,24 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  min-height: var(--nav-height);
+  height: auto;
+  overflow: visible;
+}
+
+header:has(.nav-family-list),
+header:has(.nav-family-container) {
+  min-height: calc(var(--nav-height) + var(--nav-family-height));
+}
+
+header:has(.nav-secondary-list),
+header:has(.nav-secondary-container) {
+  min-height: calc(var(--nav-height) + var(--nav-secondary-height));
+}
+
+header:has(.nav-family-list):has(.nav-secondary-list),
+header:has(.nav-family-container):has(.nav-secondary-container) {
+  min-height: calc(var(--nav-height) + var(--nav-family-height) + var(--nav-secondary-height));
 }
 
 header .header,
@@ -154,12 +182,13 @@ button {
   font: inherit;
 }
 
-/* links */
+/* links 
 a:any-link {
   color: #005d1f;
   text-decoration: underline;
   overflow-wrap: break-word;
 }
+*/
 
 a:hover {
   color: #003512;;
@@ -300,11 +329,13 @@ main > .section:not(.article) {
   margin: 40px 0;
 }
 
+/*
 main > .section:not(.article) > div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
 }
+*/
 
 main > .section:first-of-type {
   margin-top: 0;
@@ -326,29 +357,28 @@ main .section.highlight {
 
 main > .section.article {
   background-color: transparent !important;
-  margin: 0;
+  margin: auto;
   position: relative;
   float: none;
   width: calc(100% - 500px);
   max-width: 760px;
-  margin: auto;
   padding: 90px 0 0;
   color: #003512;
 }
 
-@media (max-width: 989.98px) {
+@media (width <= 989.98px) {
   main > .section.article {
     width: 100%;
   }
 }
 
-@media (min-width: 768px) and (max-width: 989.98px) {
+@media (width >= 768px) and (width <= 989.98px) {
   main > .section.article {
     padding: 75px;
   }
 }
 
-@media (max-width: 767.98px) {
+@media (width <= 767.98px) {
   main > .section.article {
     padding: 60px 25px;
   }
@@ -361,7 +391,7 @@ main > .section.article h4,
 main > .section.article h5,
 main > .section.article h6 {
   color: #003512;
-  font-family: "Graphik Bold", "Helvetica Neue", "Helvetica", "sans-serif";
+  font-family: "Graphik Medium", "Helvetica Neue", Helvetica, sans-serif;
   line-height: 1;
 }
 
@@ -383,10 +413,20 @@ main > .section.article h3 {
   letter-spacing: -.57px;
 }
 
-@media (max-width: 767.98px) {
+@media (width <= 767.98px) {
   main > .section.article h1 {
     font-size: 44px;
   }
+}
+
+main > .section.article a {
+ color: #005d1f;
+ text-decoration: underline;
+ transition: all ease 250ms;
+ 
+   &:focus, &:hover {
+          color: #003512;
+    }
 }
 
 main > .section.article > .article-title-wrapper,
@@ -399,7 +439,7 @@ main > .section.article > .article-detail-bar-wrapper {
   margin: 24px 0 0;
 }
 
-@media (min-width: 990px) {
+@media (width >= 990px) {
   main > .section.article > .article-detail-bar-wrapper {
     width: 150px;
     position: absolute;

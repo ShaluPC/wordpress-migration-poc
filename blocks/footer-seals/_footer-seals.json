@@ -1,0 +1,108 @@
+{
+  "definitions": [
+    {
+      "title": "Footer Seals",
+      "id": "footer-seals",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Footer Seals",
+              "filter": "footer-seals"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Seal",
+      "id": "footer-seal",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Seal",
+              "model": "footer-seal",
+              "imageAlt": "TRUSTe Privacy Certification",
+              "link": "https://privacy.truste.com/privacy-seal/validation",
+              "linkText": "TRUSTe Privacy Certification",
+              "linkTitle": "TRUSTe Privacy Certification"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Seal — Privacy Choices",
+      "id": "footer-seal-privacy",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Seal",
+              "model": "footer-seal",
+              "link": "https://submit-irm.trustarc.com/services/validation/aa9303a8-87ee-42b9-b4db-84819fdef107",
+              "linkText": "Your Privacy Choices",
+              "linkTitle": "Your Privacy Choices"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "footer-seal",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Seal Image",
+          "multi": false,
+          "description": "Select seal image from DAM (optional for text-only links)"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "value": "TRUSTe Privacy Certification",
+          "label": "Image Alt Text"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "value": "https://privacy.truste.com/privacy-seal/validation",
+          "label": "Link URL"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "TRUSTe Privacy Certification",
+          "label": "Link Label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "TRUSTe Privacy Certification",
+          "label": "Link Title / Aria Label"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "footer-seals",
+      "components": [
+        "footer-seal",
+        "footer-seal-privacy"
+      ]
+    }
+  ]
+}

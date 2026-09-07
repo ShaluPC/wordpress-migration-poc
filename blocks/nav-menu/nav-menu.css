@@ -1,0 +1,39 @@
+.nav-menu {
+  width: 100%;
+}
+
+.nav-menu .nav-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu .nav-menu-link {
+  color: var(--hrb-forest-green, #003512);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.nav-menu .nav-menu-link:hover,
+.nav-menu .nav-menu-link:focus {
+  color: var(--hrb-dark-green, #005d1f);
+  text-decoration: none;
+}
+
+.nav-menu .nav-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu .nav-submenu a {
+  color: var(--hrb-forest-green, #003512);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.nav-menu .nav-submenu a:hover,
+.nav-menu .nav-submenu a:focus {
+  text-decoration: underline;
+}

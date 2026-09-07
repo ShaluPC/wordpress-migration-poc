@@ -3,7 +3,9 @@
     "id": "main",
     "components": [
       "section",
-      "article"
+      "article",
+      "header",
+      "footer"
     ]
   },
   {

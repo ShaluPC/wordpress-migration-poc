@@ -1,0 +1,109 @@
+.footer-legal {
+  width: 100%;
+  font-family: var(--hrb-font-family);
+}
+
+.footer-legal .footer-legal-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+@media (width >= 600px) {
+  .footer-legal .footer-legal-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    padding: 24px 40px;
+  }
+}
+
+@media (width >= 900px) {
+  .footer-legal .footer-legal-inner {
+    padding: 40px 32px 0;
+  }
+}
+
+@media (width >= 1200px) {
+  .footer-legal .footer-legal-inner {
+    padding: 40px 80px 0;
+  }
+}
+
+.footer-legal .legal-copy {
+  color: var(--hrb-eggshell, #f6f4e9);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (width >= 600px) {
+  .footer-legal .legal-copy {
+    grid-column: 1;
+  }
+}
+
+.footer-legal .legal-copy p {
+  margin: 0 0 4px;
+  font-size: 12px;
+}
+
+.footer-legal .social-media {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (width >= 600px) {
+  .footer-legal .social-media {
+    grid-column: 2;
+    justify-self: center;
+  }
+}
+
+.footer-legal .social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: rgb(246 244 233 / 20%);
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.footer-legal .social-link img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.footer-legal .social-link:hover,
+.footer-legal .social-link:focus {
+  background-color: var(--hrb-eggshell, #f6f4e9);
+}
+
+.footer-legal .social-link:hover img,
+.footer-legal .social-link:focus img {
+  filter: invert(18%) sepia(42%) saturate(1200%) hue-rotate(98deg) brightness(90%) contrast(95%);
+}
+
+.footer-legal .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.footer-legal .legal-copy .footer-seals {
+  padding: 16px 0 0;
+}
+
+.footer-legal .legal-copy .footer-seals .seals-inner {
+  padding: 0;
+}

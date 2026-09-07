@@ -6,7 +6,7 @@ function getText(node) {
 
 function getChildItems(container) {
   if (!container) return [];
-  const list = container.querySelector(':scope > ul');
+  const list = container.querySelector(':scope ul');
   if (list) return [...list.children];
   return [...container.children];
 }
@@ -37,7 +37,7 @@ export default function decorate(block) {
 
   const titleCell = children.find((child) => getText(child));
   if (titleCell) {
-    const title = document.createElement('h2');
+    const title = document.createElement('h3');
     moveInstrumentation(titleCell, title);
     title.className = 'key-takeaways-title';
     title.textContent = getText(titleCell);

@@ -3,7 +3,9 @@
     "id": "main",
     "components": [
       "section",
-      "article"
+      "article",
+      "header",
+      "footer"
     ]
   },
   {
@@ -20,8 +22,9 @@
       "breadcrumb",
       "cta-banner",
       "table",
-      "article-detail-bar",
-      "key-takeaways"
+      "key-takeaways",
+      "related-topics",
+      "recommended-articles"
     ]
   },
   {
@@ -39,7 +42,8 @@
       "cta-banner",
       "table",
       "article-detail-bar",
-      "key-takeaways"
+      "key-takeaways",
+      "recommended-articles"
     ]
   },
   {
@@ -69,10 +73,134 @@
     ]
   },
   {
+    "id": "footer-disclosures",
+    "components": [
+      "disclosure-group",
+      "disclosure-group-file-online",
+      "disclosure-group-tax-software",
+      "disclosure-group-retail",
+      "disclosure-group-financial",
+      "disclosure-group-tax-course",
+      "disclosure-notes"
+    ]
+  },
+  {
+    "id": "footer-legal",
+    "components": [
+      "social-link",
+      "social-link-facebook",
+      "social-link-instagram",
+      "social-link-youtube",
+      "social-link-x"
+    ]
+  },
+  {
+    "id": "footer-links",
+    "components": [
+      "footer-column",
+      "footer-column-2",
+      "footer-column-3",
+      "footer-column-4"
+    ]
+  },
+  {
+    "id": "footer-seals",
+    "components": [
+      "footer-seal",
+      "footer-seal-privacy"
+    ]
+  },
+  {
+    "id": "footer-support",
+    "components": [
+      "support-action",
+      "support-action-office",
+      "support-action-search"
+    ]
+  },
+  {
+    "id": "footer",
+    "components": [
+      "footer-disclosures",
+      "footer-support",
+      "footer-links",
+      "footer-legal",
+      "footer-seals",
+      "columns",
+      "text",
+      "button",
+      "title",
+      "image"
+    ]
+  },
+  {
+    "id": "header",
+    "components": [
+      "nav-family",
+      "nav-brand",
+      "nav-menu",
+      "nav-panel",
+      "nav-panel-financial",
+      "nav-panel-business",
+      "nav-panel-tools",
+      "nav-tools",
+      "nav-secondary",
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
     "id": "key-takeaways",
     "components": [
       "text",
       "title"
+    ]
+  },
+  {
+    "id": "nav-family",
+    "components": [
+      "family-brand",
+      "family-brand-advisors",
+      "family-brand-spruce"
+    ]
+  },
+  {
+    "id": "nav-menu",
+    "components": [
+      "nav-panel",
+      "nav-panel-financial",
+      "nav-panel-business",
+      "nav-panel-tools"
+    ]
+  },
+  {
+    "id": "nav-panel",
+    "components": [
+      "mega-explore",
+      "mega-primary",
+      "mega-column",
+      "mega-card"
+    ]
+  },
+  {
+    "id": "nav-secondary",
+    "components": [
+      "nav-secondary-explore",
+      "nav-secondary-link",
+      "nav-secondary-link-work",
+      "nav-secondary-link-taxes101",
+      "nav-secondary-link-breaks",
+      "nav-secondary-link-whatsnew"
+    ]
+  },
+  {
+    "id": "nav-tools",
+    "components": [
+      "nav-tool",
+      "nav-tool-search",
+      "nav-signin"
     ]
   }
 ]

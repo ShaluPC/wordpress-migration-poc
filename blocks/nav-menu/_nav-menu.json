@@ -1,0 +1,31 @@
+{
+  "definitions": [
+    {
+      "title": "Nav Menu",
+      "id": "nav-menu",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Menu",
+              "filter": "nav-menu"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [],
+  "filters": [
+    {
+      "id": "nav-menu",
+      "components": [
+        "nav-panel",
+        "nav-panel-financial",
+        "nav-panel-business",
+        "nav-panel-tools"
+      ]
+    }
+  ]
+}

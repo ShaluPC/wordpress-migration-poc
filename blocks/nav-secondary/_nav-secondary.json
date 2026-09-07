@@ -1,0 +1,219 @@
+{
+  "definitions": [
+    {
+      "title": "Nav Secondary",
+      "id": "nav-secondary",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Secondary",
+              "filter": "nav-secondary"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Secondary Explore",
+      "id": "nav-secondary-explore",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Secondary Explore",
+              "model": "nav-secondary-explore",
+              "imageAlt": "Explore All Topics",
+              "link": "/tax-center/",
+              "linkText": "Explore All Topics",
+              "linkTitle": "Explore All Topics",
+              "topics": "<ul><li><a href=\"/tax-center/life-stages/\">Life Stages</a></li><li><a href=\"/tax-center/work/\">Work</a></li><li><a href=\"/tax-center/taxes-101/\">Taxes 101</a></li><li><a href=\"/tax-center/tax-breaks-and-money/\">Tax Breaks and Money</a></li><li><a href=\"/tax-center/whats-new/\">What's New</a></li></ul>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Secondary Link — Life Stages",
+      "id": "nav-secondary-link",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Secondary Link",
+              "model": "nav-secondary-link",
+              "link": "/tax-center/life-stages/",
+              "linkText": "Life Stages",
+              "linkTitle": "Life Stages"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Secondary Link — Work",
+      "id": "nav-secondary-link-work",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Secondary Link",
+              "model": "nav-secondary-link",
+              "link": "/tax-center/work/",
+              "linkText": "Work",
+              "linkTitle": "Work"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Secondary Link — Taxes 101",
+      "id": "nav-secondary-link-taxes101",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Secondary Link",
+              "model": "nav-secondary-link",
+              "link": "/tax-center/taxes-101/",
+              "linkText": "Taxes 101",
+              "linkTitle": "Taxes 101"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Secondary Link — Tax Breaks and Money",
+      "id": "nav-secondary-link-breaks",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Secondary Link",
+              "model": "nav-secondary-link",
+              "link": "/tax-center/tax-breaks-and-money/",
+              "linkText": "Tax Breaks and Money",
+              "linkTitle": "Tax Breaks and Money"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Nav Secondary Link — What's New",
+      "id": "nav-secondary-link-whatsnew",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Nav Secondary Link",
+              "model": "nav-secondary-link",
+              "link": "/tax-center/whats-new/",
+              "linkText": "What's New",
+              "linkTitle": "What's New"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "nav-secondary-explore",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Icon Image",
+          "multi": false,
+          "description": "Optional DAM icon. Size (18×18) and style come from nav-secondary.css — authors only pick the asset."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "value": "Explore All Topics",
+          "label": "Icon Alt Text"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "value": "/tax-center/",
+          "label": "Fallback Link URL"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "Explore All Topics",
+          "label": "Label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "Explore All Topics",
+          "label": "Link Title"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "topics",
+          "value": "<ul><li><a href=\"/tax-center/life-stages/\">Life Stages</a></li><li><a href=\"/tax-center/work/\">Work</a></li><li><a href=\"/tax-center/taxes-101/\">Taxes 101</a></li><li><a href=\"/tax-center/tax-breaks-and-money/\">Tax Breaks and Money</a></li><li><a href=\"/tax-center/whats-new/\">What's New</a></li></ul>",
+          "label": "All Topics List",
+          "description": "Tax Center topic dropdown. Edit labels/URLs freely."
+        }
+      ]
+    },
+    {
+      "id": "nav-secondary-link",
+      "fields": [
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "value": "/tax-center/life-stages/",
+          "label": "Link URL"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "Life Stages",
+          "label": "Label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "Life Stages",
+          "label": "Link Title"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "nav-secondary",
+      "components": [
+        "nav-secondary-explore",
+        "nav-secondary-link",
+        "nav-secondary-link-work",
+        "nav-secondary-link-taxes101",
+        "nav-secondary-link-breaks",
+        "nav-secondary-link-whatsnew"
+      ]
+    }
+  ]
+}

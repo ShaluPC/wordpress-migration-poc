@@ -33,6 +33,14 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Site Footer",
+              "value": "site-footer"
+            },
+            {
+              "name": "Green Dark Theme",
+              "value": "green-dark-theme"
             }
           ]
         }
@@ -50,7 +58,9 @@
         "hero",
         "cards",
         "columns",
-        "fragment"
+        "fragment",
+        "related-topics",
+        "recommended-articles"
       ]
     }
   ]

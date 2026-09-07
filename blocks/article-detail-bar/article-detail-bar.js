@@ -26,14 +26,14 @@ const ICONS = {
 
 function createSection(icon, body, className = '') {
   const section = document.createElement('section');
-  section.className = `article-detail-bar__section ${className}`.trim();
+  section.className = `article-detail-bar-section ${className}`.trim();
 
   const iconWrap = document.createElement('span');
-  iconWrap.className = 'article-detail-bar__icon';
+  iconWrap.className = 'article-detail-bar-icon';
   iconWrap.innerHTML = ICONS[icon];
 
   const content = document.createElement('div');
-  content.className = 'article-detail-bar__content';
+  content.className = 'article-detail-bar-content';
   if (typeof body === 'string') {
     content.textContent = body;
   } else {
@@ -46,7 +46,7 @@ function createSection(icon, body, className = '') {
 
 function createShareLink(label, href, icon) {
   const link = document.createElement('a');
-  link.className = `article-detail-bar__share-link article-detail-bar__share-link--${label.toLowerCase()}`;
+  link.className = `article-detail-bar-share-link article-detail-bar-share-link-${label.toLowerCase()}`;
   link.href = href;
   link.target = '_blank';
   link.rel = 'noreferrer noopener';
@@ -60,42 +60,42 @@ export default function decorate(block) {
   const title = encodeURIComponent(document.title || '');
 
   const items = [
-    createSection('clock', '7 min read', 'article-detail-bar__section--read-time'),
-    createSection('calendar', 'March 21, 2025', 'article-detail-bar__section--date'),
+    createSection('clock', '7 min read', 'article-detail-bar-section-read-time'),
+    createSection('calendar', 'March 21, 2025', 'article-detail-bar-section-date'),
     createSection('author', (() => {
       const fragment = document.createDocumentFragment();
       const label = document.createElement('span');
-      label.className = 'article-detail-bar__label';
+      label.className = 'article-detail-bar-label';
       label.textContent = 'Written by:';
       const value = document.createElement('span');
-      value.className = 'article-detail-bar__value';
+      value.className = 'article-detail-bar-value';
       value.textContent = 'H&R Block Content Team';
       fragment.append(label, value);
       return fragment;
-    })(), 'article-detail-bar__section--written-by'),
+    })(), 'article-detail-bar-section-written-by'),
     createSection('reviewed', (() => {
       const fragment = document.createDocumentFragment();
       const label = document.createElement('span');
-      label.className = 'article-detail-bar__label';
+      label.className = 'article-detail-bar-label';
       label.textContent = 'Reviewed by:';
       const value = document.createElement('a');
-      value.className = 'article-detail-bar__value article-detail-bar__value--link';
+      value.className = 'article-detail-bar-value article-detail-bar-value-link';
       value.href = 'https://www.thetaxinstitute.com/';
       value.textContent = 'The Tax Institute';
       fragment.append(label, value);
       return fragment;
-    })(), 'article-detail-bar__section--reviewed-by'),
+    })(), 'article-detail-bar-section-reviewed-by'),
   ];
 
   const shareSection = document.createElement('section');
-  shareSection.className = 'article-detail-bar__share';
+  shareSection.className = 'article-detail-bar-share';
 
   const shareLabel = document.createElement('p');
-  shareLabel.className = 'article-detail-bar__share-label';
+  shareLabel.className = 'article-detail-bar-share-label';
   shareLabel.textContent = 'Share:';
 
   const shareLinks = document.createElement('div');
-  shareLinks.className = 'article-detail-bar__share-links';
+  shareLinks.className = 'article-detail-bar-share-links';
   shareLinks.append(
     createShareLink('LinkedIn', `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${title}`, 'linkedin'),
     createShareLink('Facebook', `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, 'facebook'),

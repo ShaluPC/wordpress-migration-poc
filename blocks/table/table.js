@@ -65,7 +65,7 @@ export default function decorate(block) {
 
   const table = document.createElement('table');
   table.className = 'table-grid';
-  if (fixedLayout) table.classList.add('table-grid--fixed');
+  if (fixedLayout) table.classList.add('table-grid-fixed');
 
   const headerItems = getItems(unwrapSingleChild(headersCell));
   if (headerItems.length) {

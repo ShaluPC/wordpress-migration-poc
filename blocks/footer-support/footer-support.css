@@ -1,0 +1,124 @@
+.footer-support {
+  width: 100%;
+  font-family: var(--hrb-font-family);
+}
+
+.footer-support .footer-support-inner {
+  padding: 32px 24px 8px;
+}
+
+@media (width >= 600px) {
+  .footer-support .footer-support-inner {
+    padding: 40px 40px 8px;
+  }
+}
+
+@media (width >= 900px) {
+  .footer-support .footer-support-inner {
+    padding: 40px 32px 8px;
+  }
+}
+
+@media (width >= 1200px) {
+  .footer-support .footer-support-inner {
+    padding: 40px 80px 8px;
+  }
+}
+
+.footer-support .support-actions {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+@media (width >= 900px) {
+  .footer-support .support-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.footer-support .support-actions li {
+  margin: 16px 0;
+  min-width: 0;
+}
+
+@media (width >= 900px) {
+  .footer-support .support-actions li {
+    flex: 1 1 0%;
+    max-width: 25%;
+    margin: 0;
+  }
+}
+
+.footer-support .support-heading h2,
+.footer-support .support-heading h3,
+.footer-support .support-heading h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 2;
+  color: var(--hrb-eggshell, #f6f4e9);
+  font-family: var(--hrb-font-family);
+}
+
+@media (width >= 900px) {
+  .footer-support .support-heading h2,
+  .footer-support .support-heading h3,
+  .footer-support .support-heading h4 {
+    font-size: 24px;
+  }
+}
+
+.footer-support .support-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hrb-eggshell, #f6f4e9);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.footer-support .support-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+}
+
+.footer-support .support-action-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.footer-support .support-action-label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+@media (width >= 900px) {
+  .footer-support .support-action-label {
+    font-size: 24px;
+  }
+}
+
+@media (width >= 600px) {
+  .footer-support .support-action:hover .support-action-icon,
+  .footer-support .support-action:focus .support-action-icon {
+    background-color: var(--hrb-eggshell, #f6f4e9);
+  }
+
+  .footer-support .support-action:hover img,
+  .footer-support .support-action:focus img {
+    filter: invert(18%) sepia(42%) saturate(1200%) hue-rotate(98deg) brightness(90%) contrast(95%);
+  }
+}

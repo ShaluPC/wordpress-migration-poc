@@ -1,0 +1,63 @@
+.footer-seals {
+  width: 100%;
+  font-family: var(--hrb-font-family);
+}
+
+.footer-seals .seals-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  padding: 16px 24px 8px;
+}
+
+@media (width >= 600px) {
+  .footer-seals .seals-inner {
+    padding: 16px 40px 8px;
+  }
+}
+
+@media (width >= 900px) {
+  .footer-seals .seals-inner {
+    padding: 16px 32px 8px;
+  }
+}
+
+@media (width >= 1200px) {
+  .footer-seals .seals-inner {
+    padding: 16px 80px 8px;
+  }
+}
+
+.footer-seals .seal-item img {
+  display: block;
+  max-width: 126px;
+  height: auto;
+  background: #fff;
+}
+
+.footer-seals .privacy-choices {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hrb-eggshell, #f6f4e9);
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.footer-seals .privacy-choices::after {
+  content: '';
+  display: inline-block;
+  width: 38px;
+  height: 18px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='18' viewBox='0 0 38 18' fill='none'%3E%3Cpath fill-rule='evenodd' d='M9.37 16.46h8.62l3.92-14.91H9.37C5.32 1.54 2.03 4.89 2.03 9c0 4.11 3.29 7.46 7.34 7.46z' fill='white'/%3E%3Cpath fill-rule='evenodd' d='M28.63 0H9.37C4.43 0 .51 3.99.51 9s3.93 9 8.86 9h19.26C33.57 18 37.49 14.01 37.49 9S33.44 0 28.63 0zM2.03 9c0-4.11 3.29-7.46 7.34-7.46h12.54L17.99 16.46H9.37C5.32 16.46 2.03 13.11 2.03 9z' fill='%230066FF'/%3E%3Cpath d='M31.16 5.14c.25.26.25.77 0 1.03L28.5 9l2.79 2.83c.25.26.25.77 0 1.03-.25.26-.76.26-1.01 0L27.49 10.03 24.7 12.86c-.25.26-.76.26-1.01 0-.25-.26-.25-.77 0-1.03L26.35 9 23.56 6.17c-.25-.26-.25-.77 0-1.03.25-.26.76-.26 1.01 0L27.36 7.97 30.15 5.14c.25-.26.76-.26 1.01 0z' fill='white'/%3E%3Cpath d='M16.09 5.27c.25.26.38.77.13 1.03L10.89 12.6c-.13.13-.25.26-.38.26-.25.13-.63.13-.88-.13L6.84 9.9c-.25-.26-.25-.77 0-1.03.25-.26.76-.26 1.01 0l2.28 2.19 4.81-5.79c.25-.26.76-.26 1.14 0z' fill='%230066FF'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 38px 18px;
+}
+
+.footer-seals .privacy-choices:hover,
+.footer-seals .privacy-choices:focus {
+  color: #e8eef1;
+}

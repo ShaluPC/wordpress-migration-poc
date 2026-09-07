@@ -1,0 +1,148 @@
+{
+  "definitions": [
+    {
+      "title": "Nav Family",
+      "id": "nav-family",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Nav Family",
+              "filter": "nav-family"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Family Brand — H&R Block",
+      "id": "family-brand",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Family Brand",
+              "model": "family-brand",
+              "imageAlt": "H&R Block",
+              "link": "/",
+              "linkText": "H&R Block",
+              "linkTitle": "H&R Block",
+              "classes": "active"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Family Brand — Advisors",
+      "id": "family-brand-advisors",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Family Brand",
+              "model": "family-brand",
+              "imageAlt": "Block Advisors",
+              "link": "https://www.blockadvisors.com/",
+              "linkText": "Block Advisors",
+              "linkTitle": "Block Advisors"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Family Brand — Spruce",
+      "id": "family-brand-spruce",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Family Brand",
+              "model": "family-brand",
+              "imageAlt": "Spruce",
+              "link": "/financial-services/spruce/",
+              "linkText": "Spruce",
+              "linkTitle": "Spruce"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "family-brand",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Brand Icon / Logo",
+          "multi": false,
+          "description": "Optional DAM image. Display size (height 18px) comes from nav-family.css — authors only pick the asset."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "value": "H&R Block",
+          "label": "Icon Alt Text"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "value": "/",
+          "label": "Brand Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "H&R Block",
+          "label": "Brand Label"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "H&R Block",
+          "label": "Link Title / Aria Label"
+        },
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Style",
+          "valueType": "string",
+          "description": "Active white-pill look is styled in nav-family.css (not content size).",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Active (white pill)",
+              "value": "active"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "nav-family",
+      "components": [
+        "family-brand",
+        "family-brand-advisors",
+        "family-brand-spruce"
+      ]
+    }
+  ]
+}

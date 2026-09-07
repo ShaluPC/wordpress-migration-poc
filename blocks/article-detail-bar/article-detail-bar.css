@@ -7,59 +7,58 @@
   font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-.article-detail-bar__section {
+.article-detail-bar-section {
   flex: 0 0 calc(50% - 10px);
   display: flex;
 }
 
-.article-detail-bar__share {
+.article-detail-bar-share {
   flex: 0 0 100%;
   display: flex;
 }
 
-
-.article-detail-bar__icon {
+.article-detail-bar-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
   color: #003512;
-  margin: 0px 15px 0px 0px;
+  margin-right: 15px;
 }
 
-.article-detail-bar__icon svg {
+.article-detail-bar-icon svg {
   width: 24px;
   height: 24px;
   display: block;
 }
 
-.article-detail-bar__content {
+.article-detail-bar-content {
   min-width: 0;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: -0.15px;
 }
 
-.article-detail-bar__label,
-.article-detail-bar__value {
+.article-detail-bar-label,
+.article-detail-bar-value {
   display: block;
 }
 
-.article-detail-bar__label {
+.article-detail-bar-label {
   font-family: 'Graphik Medium', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-.article-detail-bar__value {
+.article-detail-bar-value {
   color: #003512;
 }
 
-.article-detail-bar__value--link {
+.article-detail-bar-value-link {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.article-detail-bar__share-label {
+.article-detail-bar-share-label {
   margin-right : 20px;
   font-family: 'Graphik Bold', 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 17px;
@@ -67,14 +66,14 @@
   font-weight: 700;
 }
 
-.article-detail-bar__share-links {
+.article-detail-bar-share-links {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
 }
 
-.article-detail-bar__share-link {
+.article-detail-bar-share-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -84,14 +83,14 @@
   text-decoration: none;
 }
 
-.article-detail-bar__share-link svg {
+.article-detail-bar-share-link svg {
   width: 22px;
   height: 22px;
   display: block;
 }
 
-.article-detail-bar__share-link:hover,
-.article-detail-bar__share-link:focus-visible {
+.article-detail-bar-share-link:hover,
+.article-detail-bar-share-link:focus-visible {
   color: #003512;
 }
 
@@ -103,8 +102,8 @@
     width: 150px;
   }
 
-  .article-detail-bar__section,
-  .article-detail-bar__share {
+  .article-detail-bar-section,
+  .article-detail-bar-share {
     flex: initial;
     display: block;
   }

@@ -155,9 +155,9 @@ For all other environments, you need to know the GitHub owner and repository nam
 
 With this information, you can construct URLs for the preview environment (same content as `localhost:3000`) and the production environment (same content as the live website, approved by authors)
 
-- **Production Preview**: `https://main--{repo}--{owner}.aem.page/`
-- **Production Live**: `https://main--{repo}--{owner}.aem.live/`
-- **Feature Preview**: `https://{branch}--{repo}--{owner}.aem.page/`
+- **Production Preview**: `https://main--com-aem-eds--hrblock.aem.page/`
+- **Production Live**: `https://main--com-aem-eds--hrblock.aem.live/`
+- **Feature Preview**: `https://{branch}--com-aem-eds--hrblock.aem.page/`
 
 ### Publishing Process
 1. Push changes to a feature branch

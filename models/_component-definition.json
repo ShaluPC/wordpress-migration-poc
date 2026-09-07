@@ -30,6 +30,12 @@
         },
         {
           "...": "./_article.json#/definitions"
+        },
+        {
+          "...": "../blocks/header/_header.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer/_footer.json#/definitions"
         }
       ]
     },
@@ -60,6 +66,45 @@
         },
         {
           "...": "../blocks/article-detail-bar/_article-detail-bar.json#/definitions"
+        },
+        {
+          "...": "../blocks/related-topics/_related-topics.json#/definitions"
+        },
+        {
+          "...": "../blocks/recommended-articles/_recommended-articles.json#/definitions"
+        },
+        {
+          "...": "../blocks/nav-brand/_nav-brand.json#/definitions"
+        },
+        {
+          "...": "../blocks/nav-family/_nav-family.json#/definitions"
+        },
+        {
+          "...": "../blocks/nav-menu/_nav-menu.json#/definitions"
+        },
+        {
+          "...": "../blocks/nav-panel/_nav-panel.json#/definitions"
+        },
+        {
+          "...": "../blocks/nav-tools/_nav-tools.json#/definitions"
+        },
+        {
+          "...": "../blocks/nav-secondary/_nav-secondary.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-disclosures/_footer-disclosures.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-support/_footer-support.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-links/_footer-links.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-legal/_footer-legal.json#/definitions"
+        },
+        {
+          "...": "../blocks/footer-seals/_footer-seals.json#/definitions"
         }
       ]
     }

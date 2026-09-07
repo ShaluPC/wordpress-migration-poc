@@ -1,20 +1,72 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: transparent;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer-wrapper > .footer {
+  width: 100%;
 }
 
-footer .footer p {
+footer .footer-wrapper > .footer > div {
   margin: 0;
+  max-width: none;
+  padding: 0;
 }
 
+/* Four columns: support labels over link lists */
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer-wrapper > .footer {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 24px;
+    align-items: start;
+    padding: 0 32px 16px;
+    box-sizing: border-box;
+  }
+
+  footer .footer-wrapper > .footer .footer-support,
+  footer .footer-wrapper > .footer .footer-links,
+  footer .footer-wrapper > .footer .footer-support-inner,
+  footer .footer-wrapper > .footer .footer-links-inner,
+  footer .footer-wrapper > .footer .support-actions,
+  footer .footer-wrapper > .footer .footer-links-columns,
+  footer .footer-wrapper > .footer .footer-support-wrapper,
+  footer .footer-wrapper > .footer .footer-links-wrapper {
+    display: contents;
+  }
+
+  footer .footer-wrapper > .footer .footer-disclosures-wrapper,
+  footer .footer-wrapper > .footer .footer-disclosures,
+  footer .footer-wrapper > .footer .footer-legal-wrapper,
+  footer .footer-wrapper > .footer .footer-legal,
+  footer .footer-wrapper > .footer .footer-seals-wrapper,
+  footer .footer-wrapper > .footer .footer-seals {
+    grid-column: 1 / -1;
+  }
+
+  footer .footer-wrapper > .footer .footer-support-inner,
+  footer .footer-wrapper > .footer .footer-links-inner,
+  footer .footer-wrapper > .footer .footer-disclosures-inner,
+  footer .footer-wrapper > .footer .footer-legal-inner,
+  footer .footer-wrapper > .footer .seals-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  footer .footer-wrapper > .footer .support-actions > li {
+    padding-top: 40px;
+    padding-bottom: 8px;
+    margin: 0;
+    max-width: none;
+  }
+
+  footer .footer-wrapper > .footer .footer-links-column {
+    width: auto;
+    padding-top: 8px;
+  }
+}
+
+@media (width >= 1200px) {
+  footer .footer-wrapper > .footer {
+    padding: 0 80px 16px;
   }
 }

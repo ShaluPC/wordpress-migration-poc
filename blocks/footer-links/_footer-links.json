@@ -1,0 +1,109 @@
+{
+  "definitions": [
+    {
+      "title": "Footer Links",
+      "id": "footer-links",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Footer Links",
+              "filter": "footer-links"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Column",
+      "id": "footer-column",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Column",
+              "model": "footer-column",
+              "content": "<h5><strong>Tax Services</strong></h5><ul><li><a href=\"/tax-offices/manage-appointment/\">Reschedule or manage appointment</a></li><li><a href=\"/online-tax-filing/\">Online tax filing</a></li><li><a href=\"/tax-offices/\">File with a tax pro</a></li><li><a href=\"/tax-software/\">Tax software</a></li></ul><h5><strong>Small Business Services</strong></h5><ul><li><a href=\"https://www.blockadvisors.com/\">Block Advisors</a></li><li><a href=\"/tax-offices/business-services/small-business-tax/\">Small business taxes</a></li></ul>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Column — Tax Tools / Legal",
+      "id": "footer-column-2",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Column",
+              "model": "footer-column",
+              "content": "<h5><strong>Tax Tools</strong></h5><ul><li><a href=\"/myblock-benefits/\">MyBlock</a></li><li><a href=\"/mobile/\">Mobile apps</a></li><li><a href=\"/tax-calculator/\">Tax calculator</a></li><li><a href=\"/tax-prep-checklist/\">Tax prep checklist</a></li></ul><h5><strong>Legal</strong></h5><ul><li><a href=\"/legal/\">Legal</a></li><li><a href=\"/privacy/\">Privacy</a></li><li><a href=\"/terms/\">Terms of use</a></li></ul>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Column — Financial / Resources",
+      "id": "footer-column-3",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Column",
+              "model": "footer-column",
+              "content": "<h5><strong>Financial Services</strong></h5><ul><li><a href=\"/financial-services/\">Overview</a></li><li><a href=\"/spruce/\">Spruce</a></li><li><a href=\"/financial-services/tax-refund-payment/\">Refund &amp; payment options</a></li></ul><h5><strong>Resources</strong></h5><ul><li><a href=\"/tax-center/\">Tax Center</a></li><li><a href=\"/help/\">Help center</a></li></ul>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Footer Column — About",
+      "id": "footer-column-4",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Footer Column",
+              "model": "footer-column",
+              "content": "<h5><strong>About H&amp;R Block</strong></h5><ul><li><a href=\"/corporate/\">Company</a></li><li><a href=\"/careers/\">Careers</a></li><li><a href=\"/newsroom/\">Newsroom</a></li><li><a href=\"/investors/\">Investors</a></li></ul>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "footer-column",
+      "fields": [
+        {
+          "component": "richtext",
+          "name": "content",
+          "value": "<h5><strong>Tax Services</strong></h5><ul><li><a href=\"/tax-offices/manage-appointment/\">Reschedule or manage appointment</a></li><li><a href=\"/online-tax-filing/\">Online tax filing</a></li><li><a href=\"/tax-offices/\">File with a tax pro</a></li></ul>",
+          "label": "Column Content",
+          "valueType": "string",
+          "description": "Add menu headings (H5) and link lists for this column. Defaults are editable."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "footer-links",
+      "components": [
+        "footer-column",
+        "footer-column-2",
+        "footer-column-3",
+        "footer-column-4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+.nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.nav-brand .nav-brand-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  line-height: 0;
+}
+
+.nav-brand .nav-brand-link picture,
+.nav-brand .nav-brand-link img {
+  display: block;
+  width: auto;
+  height: 40px;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+header .nav-brand .nav-brand-link img {
+  height: 40px;
+  max-width: 160px;
+}

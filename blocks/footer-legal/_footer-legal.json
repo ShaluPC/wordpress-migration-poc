@@ -1,0 +1,184 @@
+{
+  "definitions": [
+    {
+      "title": "Footer Legal",
+      "id": "footer-legal",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Footer Legal",
+              "model": "footer-legal",
+              "filter": "footer-legal",
+              "legal": "<p>Copyright © 2023-2024 HRB Digital LLC. All Rights Reserved.</p><p>Bank products and services are offered by Pathward®, N.A.</p><p>All deposit accounts through Pathward® are FDIC insured.</p>"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Social Link",
+      "id": "social-link",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Social Link",
+              "model": "social-link",
+              "imageAlt": "TikTok",
+              "link": "https://www.tiktok.com/@hrblock",
+              "linkText": "TikTok",
+              "linkTitle": "TikTok"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Social Link — Facebook",
+      "id": "social-link-facebook",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Social Link",
+              "model": "social-link",
+              "imageAlt": "Facebook",
+              "link": "https://www.facebook.com/hrblock",
+              "linkText": "Facebook",
+              "linkTitle": "Facebook"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Social Link — Instagram",
+      "id": "social-link-instagram",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Social Link",
+              "model": "social-link",
+              "imageAlt": "Instagram",
+              "link": "https://www.instagram.com/hrblock",
+              "linkText": "Instagram",
+              "linkTitle": "Instagram"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Social Link — YouTube",
+      "id": "social-link-youtube",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Social Link",
+              "model": "social-link",
+              "imageAlt": "YouTube",
+              "link": "https://www.youtube.com/hrblock",
+              "linkText": "YouTube",
+              "linkTitle": "YouTube"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Social Link — X",
+      "id": "social-link-x",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Social Link",
+              "model": "social-link",
+              "imageAlt": "X",
+              "link": "https://x.com/hrblock",
+              "linkText": "X",
+              "linkTitle": "X"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "footer-legal",
+      "fields": [
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "legal",
+          "value": "<p>Copyright © 2023-2024 HRB Digital LLC. All Rights Reserved.</p><p>Bank products and services are offered by Pathward®, N.A.</p><p>All deposit accounts through Pathward® are FDIC insured.</p>",
+          "label": "Legal / Copyright Text"
+        }
+      ]
+    },
+    {
+      "id": "social-link",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Icon Image",
+          "multi": false,
+          "description": "Select icon image from DAM"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "value": "TikTok",
+          "label": "Icon Alt Text"
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "link",
+          "value": "https://www.tiktok.com/@hrblock",
+          "label": "Link URL",
+          "description": "Page that opens when the icon is clicked"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "value": "TikTok",
+          "label": "Accessible Name"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkTitle",
+          "value": "TikTok",
+          "label": "Link Title"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "footer-legal",
+      "components": [
+        "social-link",
+        "social-link-facebook",
+        "social-link-instagram",
+        "social-link-youtube",
+        "social-link-x"
+      ]
+    }
+  ]
+}
