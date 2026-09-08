@@ -75,20 +75,36 @@ function toClassName(name) {
 
 function readBlockConfig(block) {
   const config = {};
-  block.querySelectorAll(':scope > div').forEach((row) => {
-    const cols = [...row.children];
-    if (!cols[0] || !cols[1]) return;
 
-    const name = toClassName(cols[0].textContent);
-    const col = cols[1];
-
+  const getColValue = (col) => {
     if (col.querySelector('a')) {
       const links = [...col.querySelectorAll('a')].map((a) => a.href);
-      config[name] = links.length === 1 ? links[0] : links;
+      return links.length === 1 ? links[0] : links;
+    }
+
+    return col.textContent.trim();
+  };
+
+  block.querySelectorAll(':scope > div').forEach((row) => {
+    const cols = [...row.children];
+
+    if (cols[0] && cols[1]) {
+      const name = toClassName(cols[0].textContent);
+      const value = getColValue(cols[1]);
+      if (name && value) config[name] = value;
       return;
     }
 
-    config[name] = col.textContent.trim();
+    if (!cols[0]) return;
+
+    const value = getColValue(cols[0]);
+    if (!value) return;
+
+    // UE can render this block with a single value cell containing only the fragment path.
+    if (!config['content-fragment']) config['content-fragment'] = value;
+    if (!config.contentfragment) config.contentfragment = value;
+    if (!config.fragment) config.fragment = value;
+    if (!config.reference) config.reference = value;
   });
 
   return config;
