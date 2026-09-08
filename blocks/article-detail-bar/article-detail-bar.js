@@ -1,4 +1,5 @@
 const PAGE_URL = window.location.href;
+const PERSISTED_QUERY_ENDPOINT = '/graphql/execute.json/poc-eds/ArticleDetailBarByPath';
 
 const DEFAULT_FIELDS = {
   readTime: 7,
@@ -110,40 +111,6 @@ function readBlockConfig(block) {
   return config;
 }
 
-function getConfigValue(config, keys) {
-  return keys.find((key) => typeof config[key] === 'string' && config[key].trim())
-    ? config[keys.find((key) => typeof config[key] === 'string' && config[key].trim())]
-    : '';
-}
-
-function getNestedValue(source, path) {
-  return path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), source);
-}
-
-function getContentFragmentValue(source, keys) {
-  const keyList = Array.isArray(keys) ? keys : [keys];
-  for (let i = 0; i < keyList.length; i += 1) {
-    const key = keyList[i];
-
-    const direct = getNestedValue(source, [key]);
-    if (typeof direct === 'number' && Number.isFinite(direct)) return direct;
-    if (typeof direct === 'string' && direct.trim()) return direct.trim();
-
-    const elementValue = getNestedValue(source, ['elements', key, 'value']);
-    if (typeof elementValue === 'number' && Number.isFinite(elementValue)) return elementValue;
-    if (typeof elementValue === 'string' && elementValue.trim()) return elementValue.trim();
-
-    const masterValue = getNestedValue(source, ['jcr:content', 'data', 'master', key]);
-    if (typeof masterValue === 'number' && Number.isFinite(masterValue)) return masterValue;
-    if (typeof masterValue === 'string' && masterValue.trim()) return masterValue.trim();
-
-    const dataValue = getNestedValue(source, ['jcr:content', 'data', key]);
-    if (typeof dataValue === 'number' && Number.isFinite(dataValue)) return dataValue;
-    if (typeof dataValue === 'string' && dataValue.trim()) return dataValue.trim();
-  }
-  return '';
-}
-
 function parseReadTimeMinutes(value) {
   if (typeof value === 'number' && Number.isFinite(value)) {
     return Math.max(1, Math.round(value));
@@ -169,32 +136,34 @@ function normalizeFragmentPath(path) {
   }
 }
 
-async function fetchFragmentData(path) {
+function normalizeCfPathForQuery(path) {
   const normalizedPath = normalizeFragmentPath(path);
-  if (!normalizedPath) return null;
+  if (!normalizedPath) return '';
 
-  const basePath = normalizedPath.replace(/\.json$/i, '').replace(/\/$/, '');
-  const candidates = [
-    normalizedPath,
-    `${basePath}.json`,
-  ];
+  return normalizedPath
+    .replace(/\.plain\.html$/i, '')
+    .replace(/\.html$/i, '')
+    .replace(/\.json$/i, '')
+    .replace(/\/$/, '');
+}
 
-  const results = await Promise.all(candidates.map(async (candidate) => {
-    try {
-      const response = await fetch(candidate);
-      if (!response.ok) return null;
+async function fetchFragmentData(path) {
+  const cfPath = normalizeCfPathForQuery(path);
+  if (!cfPath) return null;
 
-      const contentType = response.headers.get('content-type') || '';
-      if (!contentType.includes('application/json')) return null;
+  const encodedPath = encodeURIComponent(cfPath);
+  const endpoint = `${PERSISTED_QUERY_ENDPOINT};cfPath=${encodedPath}`;
 
-      const data = await response.json();
-      return data && typeof data === 'object' ? data : null;
-    } catch {
-      return null;
-    }
-  }));
+  try {
+    const response = await fetch(endpoint);
+    if (!response.ok) return null;
 
-  return results.find((result) => result) || null;
+    const data = await response.json();
+    const item = data?.data?.articleDetailBarList?.items?.[0];
+    return item && typeof item === 'object' ? item : null;
+  } catch {
+    return null;
+  }
 }
 
 function formatDate(value) {
@@ -242,27 +211,15 @@ function createLabeledLinkSection(icon, sectionClass, labelText, valueText, href
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-  const fragmentPath = getConfigValue(config, ['content-fragment', 'contentfragment', 'fragment', 'reference']);
+  const fragmentPath = config['content-fragment'] || config.contentfragment || config.fragment || config.reference || '';
   const fragmentData = fragmentPath ? await fetchFragmentData(fragmentPath) : null;
 
-  const readTimeValue = getContentFragmentValue(fragmentData, [
-    'readTime',
-    'read-time',
-    'readTimeMinutes',
-    'read-time-minutes',
-    'timeToRead',
-    'time-to-read',
-  ]);
-
   const resolved = {
-    readTime: `${parseReadTimeMinutes(readTimeValue)} min read`,
-    publishedDate: formatDate(
-      getContentFragmentValue(fragmentData, ['publishDate', 'publishedDate', 'publish-date', 'published-date', 'date'])
-        || DEFAULT_FIELDS.publishedDate,
-    ),
-    writtenBy: getContentFragmentValue(fragmentData, ['writtenBy', 'written-by', 'author', 'authorName', 'author-name']) || DEFAULT_FIELDS.writtenBy,
-    reviewedBy: getContentFragmentValue(fragmentData, ['reviewedBy', 'reviewed-by', 'reviewer', 'reviewerName', 'reviewer-name']) || DEFAULT_FIELDS.reviewedBy,
-    reviewedByUrl: getContentFragmentValue(fragmentData, ['reviewedByUrl', 'reviewed-by-url', 'reviewerUrl', 'reviewer-url']) || DEFAULT_FIELDS.reviewedByUrl,
+    readTime: `${parseReadTimeMinutes(fragmentData?.readtime)} min read`,
+    publishedDate: formatDate(fragmentData?.publishdate || DEFAULT_FIELDS.publishedDate),
+    writtenBy: fragmentData?.writtenby || DEFAULT_FIELDS.writtenBy,
+    reviewedBy: fragmentData?.reviewedby || DEFAULT_FIELDS.reviewedBy,
+    reviewedByUrl: fragmentData?.reviewedbyurl || DEFAULT_FIELDS.reviewedByUrl,
   };
 
   const shareUrl = encodeURIComponent(PAGE_URL);
