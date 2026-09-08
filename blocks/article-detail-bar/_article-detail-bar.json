@@ -25,6 +25,11 @@
           "name": "name",
           "label": "Name",
           "value": "Article Detail Bar"
+        },
+        {
+          "component": "aem-content",
+          "name": "contentFragment",
+          "label": "Content Fragment"
         }
       ]
     }

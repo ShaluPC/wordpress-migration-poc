@@ -1,5 +1,13 @@
 const PAGE_URL = window.location.href;
 
+const DEFAULT_FIELDS = {
+  readTime: 7,
+  publishedDate: 'March 21, 2025',
+  writtenBy: 'H&R Block Content Team',
+  reviewedBy: 'The Tax Institute',
+  reviewedByUrl: 'https://www.thetaxinstitute.com/',
+};
+
 const ICONS = {
   clock: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="12" cy="12" r="11" stroke="#262626" stroke-width="2"></circle>
@@ -55,36 +63,200 @@ function createShareLink(label, href, icon) {
   return link;
 }
 
-export default function decorate(block) {
+function toClassName(name) {
+  return typeof name === 'string'
+    ? name
+      .toLowerCase()
+      .replace(/[^0-9a-z]/gi, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+    : '';
+}
+
+function readBlockConfig(block) {
+  const config = {};
+  block.querySelectorAll(':scope > div').forEach((row) => {
+    const cols = [...row.children];
+    if (!cols[0] || !cols[1]) return;
+
+    const name = toClassName(cols[0].textContent);
+    const col = cols[1];
+
+    if (col.querySelector('a')) {
+      const links = [...col.querySelectorAll('a')].map((a) => a.href);
+      config[name] = links.length === 1 ? links[0] : links;
+      return;
+    }
+
+    config[name] = col.textContent.trim();
+  });
+
+  return config;
+}
+
+function getConfigValue(config, keys) {
+  return keys.find((key) => typeof config[key] === 'string' && config[key].trim())
+    ? config[keys.find((key) => typeof config[key] === 'string' && config[key].trim())]
+    : '';
+}
+
+function getNestedValue(source, path) {
+  return path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), source);
+}
+
+function getContentFragmentValue(source, keys) {
+  const keyList = Array.isArray(keys) ? keys : [keys];
+  for (let i = 0; i < keyList.length; i += 1) {
+    const key = keyList[i];
+
+    const direct = getNestedValue(source, [key]);
+    if (typeof direct === 'number' && Number.isFinite(direct)) return direct;
+    if (typeof direct === 'string' && direct.trim()) return direct.trim();
+
+    const elementValue = getNestedValue(source, ['elements', key, 'value']);
+    if (typeof elementValue === 'number' && Number.isFinite(elementValue)) return elementValue;
+    if (typeof elementValue === 'string' && elementValue.trim()) return elementValue.trim();
+
+    const masterValue = getNestedValue(source, ['jcr:content', 'data', 'master', key]);
+    if (typeof masterValue === 'number' && Number.isFinite(masterValue)) return masterValue;
+    if (typeof masterValue === 'string' && masterValue.trim()) return masterValue.trim();
+
+    const dataValue = getNestedValue(source, ['jcr:content', 'data', key]);
+    if (typeof dataValue === 'number' && Number.isFinite(dataValue)) return dataValue;
+    if (typeof dataValue === 'string' && dataValue.trim()) return dataValue.trim();
+  }
+  return '';
+}
+
+function parseReadTimeMinutes(value) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return Math.max(1, Math.round(value));
+  }
+
+  if (typeof value === 'string') {
+    const match = value.match(/\d+(\.\d+)?/);
+    if (match) {
+      return Math.max(1, Math.round(Number(match[0])));
+    }
+  }
+
+  return DEFAULT_FIELDS.readTime;
+}
+
+function normalizeFragmentPath(path) {
+  if (!path) return '';
+  try {
+    const url = new URL(path, window.location.href);
+    return `${url.pathname}${url.search}${url.hash}`;
+  } catch {
+    return '';
+  }
+}
+
+async function fetchFragmentData(path) {
+  const normalizedPath = normalizeFragmentPath(path);
+  if (!normalizedPath) return null;
+
+  const basePath = normalizedPath.replace(/\.json$/i, '').replace(/\/$/, '');
+  const candidates = [
+    normalizedPath,
+    `${basePath}.json`,
+  ];
+
+  const results = await Promise.all(candidates.map(async (candidate) => {
+    try {
+      const response = await fetch(candidate);
+      if (!response.ok) return null;
+
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) return null;
+
+      const data = await response.json();
+      return data && typeof data === 'object' ? data : null;
+    } catch {
+      return null;
+    }
+  }));
+
+  return results.find((result) => result) || null;
+}
+
+function formatDate(value) {
+  if (!value) return '';
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return value;
+
+  return parsed.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+function createLabeledTextSection(icon, sectionClass, labelText, valueText) {
+  const fragment = document.createDocumentFragment();
+  const label = document.createElement('span');
+  label.className = 'article-detail-bar-label';
+  label.textContent = labelText;
+
+  const value = document.createElement('span');
+  value.className = 'article-detail-bar-value';
+  value.textContent = valueText;
+
+  fragment.append(label, value);
+  return createSection(icon, fragment, sectionClass);
+}
+
+function createLabeledLinkSection(icon, sectionClass, labelText, valueText, href) {
+  const fragment = document.createDocumentFragment();
+  const label = document.createElement('span');
+  label.className = 'article-detail-bar-label';
+  label.textContent = labelText;
+
+  const value = document.createElement(href ? 'a' : 'span');
+  value.className = href
+    ? 'article-detail-bar-value article-detail-bar-value-link'
+    : 'article-detail-bar-value';
+  if (href) value.href = href;
+  value.textContent = valueText;
+
+  fragment.append(label, value);
+  return createSection(icon, fragment, sectionClass);
+}
+
+export default async function decorate(block) {
+  const config = readBlockConfig(block);
+  const fragmentPath = getConfigValue(config, ['content-fragment', 'contentfragment', 'fragment', 'reference']);
+  const fragmentData = fragmentPath ? await fetchFragmentData(fragmentPath) : null;
+
+  const readTimeValue = getContentFragmentValue(fragmentData, [
+    'readTime',
+    'read-time',
+    'readTimeMinutes',
+    'read-time-minutes',
+    'timeToRead',
+    'time-to-read',
+  ]);
+
+  const resolved = {
+    readTime: `${parseReadTimeMinutes(readTimeValue)} min read`,
+    publishedDate: formatDate(
+      getContentFragmentValue(fragmentData, ['publishDate', 'publishedDate', 'publish-date', 'published-date', 'date'])
+        || DEFAULT_FIELDS.publishedDate,
+    ),
+    writtenBy: getContentFragmentValue(fragmentData, ['writtenBy', 'written-by', 'author', 'authorName', 'author-name']) || DEFAULT_FIELDS.writtenBy,
+    reviewedBy: getContentFragmentValue(fragmentData, ['reviewedBy', 'reviewed-by', 'reviewer', 'reviewerName', 'reviewer-name']) || DEFAULT_FIELDS.reviewedBy,
+    reviewedByUrl: getContentFragmentValue(fragmentData, ['reviewedByUrl', 'reviewed-by-url', 'reviewerUrl', 'reviewer-url']) || DEFAULT_FIELDS.reviewedByUrl,
+  };
+
   const shareUrl = encodeURIComponent(PAGE_URL);
   const title = encodeURIComponent(document.title || '');
 
   const items = [
-    createSection('clock', '7 min read', 'article-detail-bar-section-read-time'),
-    createSection('calendar', 'March 21, 2025', 'article-detail-bar-section-date'),
-    createSection('author', (() => {
-      const fragment = document.createDocumentFragment();
-      const label = document.createElement('span');
-      label.className = 'article-detail-bar-label';
-      label.textContent = 'Written by:';
-      const value = document.createElement('span');
-      value.className = 'article-detail-bar-value';
-      value.textContent = 'H&R Block Content Team';
-      fragment.append(label, value);
-      return fragment;
-    })(), 'article-detail-bar-section-written-by'),
-    createSection('reviewed', (() => {
-      const fragment = document.createDocumentFragment();
-      const label = document.createElement('span');
-      label.className = 'article-detail-bar-label';
-      label.textContent = 'Reviewed by:';
-      const value = document.createElement('a');
-      value.className = 'article-detail-bar-value article-detail-bar-value-link';
-      value.href = 'https://www.thetaxinstitute.com/';
-      value.textContent = 'The Tax Institute';
-      fragment.append(label, value);
-      return fragment;
-    })(), 'article-detail-bar-section-reviewed-by'),
+    createSection('clock', resolved.readTime, 'article-detail-bar-section-read-time'),
+    createSection('calendar', resolved.publishedDate, 'article-detail-bar-section-date'),
+    createLabeledTextSection('author', 'article-detail-bar-section-written-by', 'Written by:', resolved.writtenBy),
+    createLabeledLinkSection('reviewed', 'article-detail-bar-section-reviewed-by', 'Reviewed by:', resolved.reviewedBy, resolved.reviewedByUrl),
   ];
 
   const shareSection = document.createElement('section');
