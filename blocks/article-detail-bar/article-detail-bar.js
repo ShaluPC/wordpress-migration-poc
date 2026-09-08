@@ -152,18 +152,26 @@ async function fetchFragmentData(path) {
   if (!cfPath) return null;
 
   const encodedPath = encodeURIComponent(cfPath);
-  const endpoint = `${PERSISTED_QUERY_ENDPOINT};cfPath=${encodedPath}`;
+  const endpoints = [
+    `${PERSISTED_QUERY_ENDPOINT};cfPath=${cfPath}`,
+    `${PERSISTED_QUERY_ENDPOINT};cfPath=${encodedPath}`,
+    `${PERSISTED_QUERY_ENDPOINT}?cfPath=${encodedPath}`,
+  ];
 
-  try {
-    const response = await fetch(endpoint);
-    if (!response.ok) return null;
+  const results = await Promise.all(endpoints.map(async (endpoint) => {
+    try {
+      const response = await fetch(endpoint);
+      if (!response.ok) return null;
 
-    const data = await response.json();
-    const item = data?.data?.articleDetailBarList?.items?.[0];
-    return item && typeof item === 'object' ? item : null;
-  } catch {
-    return null;
-  }
+      const data = await response.json();
+      const item = data?.data?.articleDetailBarList?.items?.[0];
+      return item && typeof item === 'object' ? item : null;
+    } catch {
+      return null;
+    }
+  }));
+
+  return results.find((result) => result) || null;
 }
 
 function formatDate(value) {
