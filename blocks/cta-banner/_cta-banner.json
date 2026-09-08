@@ -69,9 +69,10 @@
           "multi": true,
           "fields": [
             {
-              "component": "aem-content",
+              "component": "text",
               "name": "link",
-              "label": "Link"
+              "label": "Link",
+              "valueType": "string"
             },
             {
               "component": "text",
@@ -83,7 +84,7 @@
               "name": "linkType",
               "label": "Type",
               "valueType": "string",
-              "value": "",
+              "value": "secondary",
               "options": [
                 {
                   "name": "default",
@@ -102,6 +103,11 @@
                   "value": "right-arrow"
                 }
               ]
+            },{
+              "component": "text",
+              "name": "test",
+              "label": "Test",
+              "valueType": "string"
             }
           ]
         }

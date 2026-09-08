@@ -1,6 +1,99 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function getText(node) {
+  return node?.textContent?.replace(/\s+/g, ' ').trim() || '';
+}
+
+function getDirectChildren(node) {
+  return node ? [...node.children] : [];
+}
+
+const CTA_TYPES = ['primary', 'secondary', 'right-arrow'];
+
+function normalizeType(value) {
+  const normalized = (value || '').toLowerCase().trim();
+  return CTA_TYPES.includes(normalized) ? normalized : '';
+}
+
+function typeFromClassList(node) {
+  if (!node?.classList) return '';
+  return CTA_TYPES.find((type) => node.classList.contains(type)) || '';
+}
+
+function typeFromAttributes(node) {
+  if (!node?.getAttribute) return '';
+
+  return normalizeType(
+    node.getAttribute('data-link-type')
+    || node.getAttribute('data-type')
+    || node.getAttribute('data-cta-type')
+    || '',
+  );
+}
+
+function inferTypeFromMarkup(node) {
+  if (!node) return '';
+
+  const classType = typeFromClassList(node);
+  if (classType) return classType;
+
+  const attrType = typeFromAttributes(node);
+  if (attrType) return attrType;
+
+  if (node.matches?.('li') && node.querySelector('strong a, strong')) {
+    return 'primary';
+  }
+
+  return '';
+}
+
+function getCtaFieldGroups(block) {
+  const fieldNodes = [...block.querySelectorAll('[data-aue-prop^="ctas/"]')];
+  if (!fieldNodes.length) return [];
+
+  const groups = new Map();
+  fieldNodes.forEach((node) => {
+    const prop = node.getAttribute('data-aue-prop') || '';
+    const match = prop.match(/^ctas\/(\d+)\/([^/]+)$/);
+    if (!match) return;
+
+    const [, index, fieldName] = match;
+    if (!groups.has(index)) groups.set(index, {});
+    groups.get(index)[fieldName] = node;
+  });
+
+  return [...groups.entries()]
+    .sort((a, b) => Number(a[0]) - Number(b[0]))
+    .map(([, fields]) => fields);
+}
+
+function getCtaRowsFromMarkup(row) {
+  const root = row.querySelector(':scope > div') || row;
+  const listItems = [...root.querySelectorAll(':scope ul > li')];
+  if (listItems.length) return listItems;
+
+  const groups = [];
+  let current = [];
+
+  getDirectChildren(root).forEach((child) => {
+    if (child.tagName === 'HR') {
+      if (current.length) groups.push(current);
+      current = [];
+      return;
+    }
+
+    if (getText(child) || child.querySelector('a[href]')) {
+      current.push(child);
+    }
+  });
+
+  if (current.length) groups.push(current);
+  if (groups.length) return groups;
+
+  return getText(root) || root.querySelector('a[href]') ? [[...getDirectChildren(root)]] : [];
+}
+
 function decorateButtons(rows) {
   const buttonList = document.createElement('div');
   buttonList.className = 'cta-banner-buttons';
@@ -16,24 +109,69 @@ function decorateButtons(rows) {
     return text;
   }
 
-  rows.forEach((row) => {
-    const cells = Array.isArray(row) ? row : [...row.querySelectorAll(':scope > *')].filter((cell) => cell.tagName !== 'HR');
-    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"]')) || cells[0] || null;
-    const typeCell = cells.find((cell) => cell.textContent?.trim().toLowerCase() === 'right-arrow' || ['primary', 'secondary'].includes(cell.textContent?.trim().toLowerCase())) || null;
-    const sourceNode = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector?.('a[href]') || linkCell;
-    const href = getHref(linkCell);
-    if (!href) return;
+  function getTypeFromCell(cell) {
+    if (!cell) return '';
 
+    const classType = typeFromClassList(cell);
+    if (classType) return classType;
+
+    const attrType = typeFromAttributes(cell);
+    if (attrType) return attrType;
+
+    const directType = normalizeType(getText(cell));
+    if (directType) return directType;
+
+    const nestedTypeNode = cell.querySelector?.('[data-aue-prop$="/linkType"]');
+    return normalizeType(getText(nestedTypeNode));
+  }
+
+  function parseRow(row) {
+    const cells = Array.isArray(row) ? row : [row];
+    const linkCell = cells.find((cell) => cell.matches?.('a[href], [data-aue-prop$="/link"], [data-aue-prop$="/linkText"]')
+      || cell.querySelector?.('a[href]')) || null;
+    const sourceNode = linkCell?.matches?.('a[href]') ? linkCell : linkCell?.querySelector?.('a[href]') || linkCell;
+    const typeCell = cells.find((cell) => getTypeFromCell(cell)) || null;
+    const textCell = cells.find((cell) => cell !== linkCell
+      && cell !== typeCell
+      && (cell.matches?.('[data-aue-prop$="/linkText"]') || !!getText(cell))) || null;
+    const href = getHref(linkCell);
+
+    if (!href) return null;
+
+    const inferredType = getTypeFromCell(typeCell)
+      || inferTypeFromMarkup(Array.isArray(row) ? null : row)
+      || inferTypeFromMarkup(linkCell)
+      || inferTypeFromMarkup(sourceNode);
+
+    return {
+      href,
+      sourceNode,
+      type: inferredType,
+      text: getText(textCell) || getText(sourceNode) || getText(linkCell) || href,
+    };
+  }
+
+  const ctas = rows.map((row) => parseRow(row)).filter(Boolean);
+  if (!ctas.length) return buttonList;
+
+  ctas.forEach((cta) => {
     const buttonWrapper = document.createElement('p');
     buttonWrapper.className = 'button-wrapper';
 
     const button = document.createElement('a');
-    moveInstrumentation(sourceNode, button);
-    button.href = href;
+    moveInstrumentation(cta.sourceNode, button);
+    button.href = cta.href;
     button.className = 'button';
 
-    const linkType = typeCell?.textContent?.trim().toLowerCase();
-    const buttonText = sourceNode?.textContent?.trim() || linkCell?.textContent?.trim() || href;
+    const linkType = cta.type || 'secondary';
+    buttonWrapper.setAttribute('data-link-type', linkType);
+    buttonWrapper.setAttribute('data-linktype', linkType);
+    buttonWrapper.setAttribute('linktype', linkType);
+    button.setAttribute('data-link-type', linkType);
+    button.setAttribute('data-linktype', linkType);
+    button.setAttribute('linktype', linkType);
+    const buttonText = cta.text;
+
     if (linkType === 'primary') {
       button.textContent = buttonText;
       button.classList.add('primary');
@@ -78,33 +216,14 @@ export default function decorate(block) {
 
   const contentWrap = document.createElement('div');
   contentWrap.className = 'cta-banner-content';
-  const ctaRows = rows.slice(2).flatMap((row) => {
-    const ctaContainer = row.querySelector('[data-aue-prop^="ctas/"]')?.closest('div')
-      || row.querySelector('a[href]')?.closest('div')
-      || row;
-    const groups = [];
-    let currentGroup = [];
-
-    [...ctaContainer.children].forEach((child) => {
-      if (child.tagName === 'HR') {
-        if (currentGroup.length) {
-          groups.push(currentGroup);
-          currentGroup = [];
-        }
-        return;
-      }
-
-      currentGroup.push(child);
-    });
-
-    if (currentGroup.length) groups.push(currentGroup);
-
-    if (!groups.length && ctaContainer.querySelector('a[href]')) {
-      groups.push([...ctaContainer.children].filter((child) => child.tagName !== 'HR'));
-    }
-
-    return groups;
-  });
+  const fieldGroups = getCtaFieldGroups(block);
+  const ctaRows = fieldGroups.length
+    ? fieldGroups.map((fields) => [
+      fields.link || fields.linkText || fields.buttonText,
+      fields.linkText,
+      fields.linkType,
+    ].filter(Boolean))
+    : rows.slice(2).flatMap((row) => getCtaRowsFromMarkup(row));
 
   if (titleCell) {
     const title = document.createElement('div');
