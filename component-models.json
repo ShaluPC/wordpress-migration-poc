@@ -270,12 +270,17 @@
   {
     "id": "article-detail-bar",
     "fields": [
-      {
-        "component": "text",
-        "name": "name",
-        "label": "Name",
-        "value": "Article Detail Bar"
-      }
+        {
+          "component": "text",
+          "name": "name",
+          "label": "Name",
+          "value": "Article Detail Bar"
+        },
+        {
+          "component": "aem-content",
+          "name": "contentFragment",
+          "label": "Content Fragment"
+        }
     ]
   },
   {
