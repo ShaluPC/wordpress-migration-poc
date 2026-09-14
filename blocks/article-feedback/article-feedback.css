@@ -1,0 +1,120 @@
+.article-feedback {
+  margin: 56px auto;
+}
+
+.article-feedback .article-feedback-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 8px 0;
+}
+
+.article-feedback .article-feedback-prompt {
+  margin: 0;
+  color: #003512;
+  font-family: var(--heading-font-family);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.article-feedback .article-feedback-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.article-feedback .article-feedback-button {
+  min-width: 210px;
+  padding: 16px 22px;
+  border: 1px solid #d6ddd9;
+  border-radius: 14px;
+  background: #fff;
+  color: #003512;
+  font-family: var(--body-font-family);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.article-feedback .article-feedback-button:hover,
+.article-feedback .article-feedback-button:focus-visible {
+  border-color: #005d1f;
+  box-shadow: 0 0 0 3px rgb(0 93 31 / 16%);
+  transform: translateY(-1px);
+  outline: 0;
+}
+
+.article-feedback .article-feedback-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+  transform: none;
+}
+
+.article-feedback .article-feedback-button-up::after,
+.article-feedback .article-feedback-button-down::after {
+  margin-left: 14px;
+  font-size: 32px;
+  line-height: 1;
+  vertical-align: -2px;
+}
+
+.article-feedback .article-feedback-button-up::after {
+  content: '\\01F44D';
+}
+
+.article-feedback .article-feedback-button-down::after {
+  content: '\\01F44E';
+}
+
+.article-feedback .article-feedback-thank-you {
+  margin: 0;
+  color: #003512;
+  font-family: var(--heading-font-family);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+@media (width <= 900px) {
+  .article-feedback .article-feedback-section {
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .article-feedback .article-feedback-prompt,
+  .article-feedback .article-feedback-thank-you {
+    font-size: 28px;
+  }
+
+  .article-feedback .article-feedback-button {
+    min-width: 190px;
+    font-size: 24px;
+  }
+}
+
+@media (width <= 600px) {
+  .article-feedback .article-feedback-prompt,
+  .article-feedback .article-feedback-thank-you {
+    font-size: 24px;
+  }
+
+  .article-feedback .article-feedback-controls {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .article-feedback .article-feedback-button {
+    width: 100%;
+    min-width: 0;
+    font-size: 22px;
+  }
+}
