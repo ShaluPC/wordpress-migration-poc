@@ -24,7 +24,6 @@
       "table",
       "key-takeaways",
       "related-topics",
-      "article-feedback",
       "recommended-articles"
     ]
   },
@@ -44,6 +43,7 @@
       "table",
       "article-detail-bar",
       "key-takeaways",
+      "article-feedback",
       "recommended-articles"
     ]
   },
