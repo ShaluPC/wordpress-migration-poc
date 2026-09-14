@@ -14,9 +14,9 @@
 .article-feedback .article-feedback-prompt {
   margin: 0;
   color: #003512;
-  font-family: var(--heading-font-family);
-  font-size: 34px;
-  font-weight: 700;
+  font-family: "Graphik Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -24,6 +24,7 @@
 .article-feedback .article-feedback-controls {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -38,8 +39,8 @@
   border-radius: 14px;
   background: #fff;
   color: #003512;
-  font-family: var(--body-font-family);
-  font-size: 30px;
+  font-family: "Graphik Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.3;
   text-align: left;
@@ -74,8 +75,8 @@
 .article-feedback .article-feedback-thank-you {
   margin: 0;
   color: #003512;
-  font-family: var(--heading-font-family);
-  font-size: 34px;
+  font-family: "Graphik Medium", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -83,28 +84,12 @@
 }
 
 @media (width <= 900px) {
-  .article-feedback .article-feedback-section {
-    justify-content: flex-start;
-    gap: 20px;
-  }
-
-  .article-feedback .article-feedback-prompt,
-  .article-feedback .article-feedback-thank-you {
-    font-size: 28px;
-  }
-
   .article-feedback .article-feedback-button {
     min-width: 190px;
-    font-size: 24px;
   }
 }
 
 @media (width <= 600px) {
-  .article-feedback .article-feedback-prompt,
-  .article-feedback .article-feedback-thank-you {
-    font-size: 24px;
-  }
-
   .article-feedback .article-feedback-controls {
     width: 100%;
     gap: 12px;
@@ -113,6 +98,13 @@
   .article-feedback .article-feedback-button {
     width: 100%;
     min-width: 0;
-    font-size: 22px;
+  }
+}
+
+@media (width < 768px) {
+  .article-feedback .article-feedback-prompt,
+  .article-feedback .article-feedback-thank-you,
+  .article-feedback .article-feedback-button {
+    font-size: 16px;
   }
 }
