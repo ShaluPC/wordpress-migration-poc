@@ -11,6 +11,11 @@
   padding: 8px 0;
 }
 
+.article-feedback .article-feedback-section[hidden],
+.article-feedback .article-feedback-thank-you[hidden] {
+  display: none;
+}
+
 .article-feedback .article-feedback-prompt {
   margin: 0;
   color: #003512;
